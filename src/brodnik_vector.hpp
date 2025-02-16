@@ -22,12 +22,16 @@ class brodnik_vector{
         int ib_max_size;
         T **index_block;
         
+        void init();
+
         void grow();
         void shrink();
         T& locate(int i);
 
     public:
         brodnik_vector();
+        brodnik_vector(int n);
+
         ~brodnik_vector();
         
         
@@ -43,6 +47,17 @@ class brodnik_vector{
 
 template <class T>
 brodnik_vector<T>::brodnik_vector(){
+    init();
+}
+
+template <class T>
+brodnik_vector<T>::brodnik_vector(int n){
+    init();
+    while(n--) this->grow();
+}
+
+template <class T>
+void brodnik_vector<T>::init(){
     this->db_size = 0;
     this->sb_size = 1;
 
@@ -57,8 +72,7 @@ brodnik_vector<T>::brodnik_vector(){
     this->index_block[0] = new T[1];
     
     this->n_size = 0;
-};
-
+}
 
 template <class T>
 brodnik_vector<T>::~brodnik_vector(){
