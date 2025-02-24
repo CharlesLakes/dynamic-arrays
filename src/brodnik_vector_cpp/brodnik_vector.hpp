@@ -43,7 +43,8 @@ class brodnik_vector{
 
 };
 
-#define fast_log2(x) (31 - __builtin_clz(int(x)))
+#define fast_log2(x) (31 - __builtin_clz(x))
+
 
 template <class T>
 brodnik_vector<T>::brodnik_vector(){
@@ -151,7 +152,7 @@ void brodnik_vector<T>::shrink(){
         
         if(!this->sb_size){
             this->sb_index--;
-            if(sb_index % 2) this->db_max_size /= 2;
+            if(this->sb_index % 2) this->db_max_size /= 2;
             else this->sb_max_size /= 2;
             this->sb_size = this->sb_max_size;
         }

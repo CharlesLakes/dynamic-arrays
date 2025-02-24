@@ -1,2 +1,6 @@
 *.out
 *.cpp
+*.o
+*.log
+
+.vscode
