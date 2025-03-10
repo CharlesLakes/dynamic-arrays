@@ -14,7 +14,14 @@ def main(code_path, dir_folder):
     for file in files:
         if file.endswith(".in"):
             testcase_name = file[:-3]
-            os.system(f'./code.out < "{dir_folder}/{testcase_name}.in" > ans.out')
+            error = os.system(
+                f'valgrind --leak-check=full --error-exitcode=1 --quiet ./code.out < "{dir_folder}/{testcase_name}.in" > ans.out'
+            )
+
+            if error:
+                print(f"Error or memory leak.")
+                exit(1)
+
             check = os.system(f'diff -q --ignore-trailing-space "{dir_folder}/{testcase_name}.out" ans.out')
             if check:
                 print(f"No match ({testcase_name}).")

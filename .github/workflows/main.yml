@@ -9,8 +9,11 @@ jobs:
     name: Run Tests
     runs-on: ubuntu-latest
     steps:
+      - name: Update Package List and Install Dependencies
+        run: sudo apt-get update && sudo apt-get install -y valgrind
+
       - name: Clone Repository
         uses: actions/checkout@v4
 
-      - name: Run Brodnik Test
-        run: python3 check.py test/sort/main_brodnik.cpp test/sort/
+      - name: Run Brodnik Test with Valgrind
+        run: valgrind --leak-check=full --error-exitcode=1 --quiet python3 check.py test/sort/main_brodnik.cpp test/sort/
