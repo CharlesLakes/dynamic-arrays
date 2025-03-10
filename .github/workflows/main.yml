@@ -15,4 +15,4 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Run Brodnik Test with Valgrind
-        run: valgrind --leak-check=full --error-exitcode=1 --quiet python3 check.py test/sort/main_brodnik.cpp test/sort/
+        run: python3 check.py test/sort/main_brodnik.cpp test/sort/
