@@ -1,0 +1,16 @@
+name: Testing
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  test:
+    name: Run Tests
+    runs-on: ubuntu-latest
+    steps:
+      - name: Clone Repository
+        uses: actions/checkout@v4
+
+      - name: Run Brodnik Test
+        run: python3 check.py test/sort/main_brodnik.cpp test/sort/

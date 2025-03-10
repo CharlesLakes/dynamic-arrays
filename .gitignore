@@ -3,4 +3,5 @@
 *.o
 *.log
 
+!test/sort/*.out
 .vscode
