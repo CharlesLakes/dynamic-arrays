@@ -7,6 +7,7 @@ jobs:
     name: testing
     runs-on: ubuntu-latest
     steps:
-      - run: python3 check.py test/sort/main_brodnik.cpp test/sort/
+      - name: Testing brodnik...
+        run: python3 check.py test/sort/main_brodnik.cpp test/sort/
       
     
