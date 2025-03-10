@@ -1,0 +1,12 @@
+name: testing
+
+on: [push]
+
+jobs:
+  testing:
+    name: testing
+    runs-on: ubuntu-latest
+    steps:
+      - run: python3 check.py test/sort/main_brodnik.cpp test/sort/
+      
+    
