@@ -1,11 +1,11 @@
 import sys
 import os
 
-def compile(code):
-    return os.system(f"g++ {code} -o code.out")
+def compile(code, compiler):
+    return os.system(f"{compiler} {code} -o code.out")
 
-def main(code_path, dir_folder):
-    if compile(code_path):
+def main(code_path, dir_folder, compiler = "g++"):
+    if compile(code_path, compiler):
         print("Error al compilar.")
         exit(1)
 

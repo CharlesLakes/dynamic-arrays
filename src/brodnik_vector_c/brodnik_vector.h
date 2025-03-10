@@ -18,25 +18,13 @@ typedef struct {
     // index block
     int ib_size;
     int ib_max_size;
-    void **index_block;
+    int **index_block;
 } brodnik_vector;
 
-void init(brodnik_vector* this, int size_value);
-void* locate(brodnik_vector *this,int i);
-void push_back(brodnik_vector *this, void *value);
+void init(brodnik_vector* this);
+int* locate(brodnik_vector *this,int i);
+void push_back(brodnik_vector *this, int value);
 void pop_back(brodnik_vector *this);
-
-#define INIT(type,this) init(this,sizeof(type))
-
-#define GET_REF(type,this,position) (type *)locate(this,position)
-
-#define GET_VALUE(type,this,position) *(GET_REF(type,this,position))
-
-#define PUSH_BACK(type,this,value) { \
-    type temporal_value_vector = value; \
-    push_back(this,(void *) &temporal_value_vector); \
-}
-
-#define POP_BACK(type,this) pop_back(this)
+void delete(brodnik_vector *this);
 
 #endif

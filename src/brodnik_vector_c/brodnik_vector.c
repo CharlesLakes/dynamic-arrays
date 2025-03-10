@@ -2,8 +2,8 @@
 #include <stdlib.h>
 #define fast_log2(x) (31 - __builtin_clz(x))
 
-void init(brodnik_vector* this, int size_value){
-    this->size_value = size_value;
+void init(brodnik_vector* this){
+    this->size_value = sizeof(int);
 
     this->db_size = 0;
     this->sb_size = 1;
@@ -15,8 +15,8 @@ void init(brodnik_vector* this, int size_value){
     this->ib_size = 1;
     this->ib_max_size = 1;
 
-    this->index_block = (void**)malloc(sizeof(void *));
-    this->index_block[0] = (void*)malloc(size_value);
+    this->index_block = (int**)malloc(sizeof(int *));
+    this->index_block[0] = (int*)malloc(sizeof(int));
     
     this->n_size = 0;
 }
@@ -36,7 +36,7 @@ void grow(brodnik_vector* this){
             if(this->ib_size == this->ib_max_size){
 
                 // TODO: utilizar realloc y abstraerlo
-                void **new_index_block = (void **) malloc ((this->ib_size + 1)*sizeof(void *)); //new T*[this->ib_size + 1];
+                int **new_index_block = (int **) malloc ((this->ib_size + 1)*sizeof(int *)); //new T*[this->ib_size + 1];
                 for(int i = 0; i < this->ib_size; i++) new_index_block[i] = this->index_block[i];
                 
                 free(this->index_block);
@@ -46,7 +46,7 @@ void grow(brodnik_vector* this){
 
                 this->ib_max_size++;
             }
-            this->index_block[this->ib_size] = (void *) malloc (this->db_max_size*this->size_value); // new T[this->db_max_size];
+            this->index_block[this->ib_size] = (int *) malloc (this->db_max_size*this->size_value); // new T[this->db_max_size];
             this->ib_size++;
         }
 
@@ -76,7 +76,7 @@ void shrink(brodnik_vector* this){
         // TODO: utilizar realloc y abstraerlo
         if(this->ib_size*4 <= this->ib_max_size){
             this->ib_max_size = this->ib_size;
-            void **new_index_block = (void **) malloc(this->ib_size*sizeof(void *));
+            int **new_index_block = (int **) malloc(this->ib_size*sizeof(int *));
             //T **new_index_block = new T*[this->ib_size];
             for(int i = 0; i < this->ib_size; i++)
                 new_index_block[i] = this->index_block[i];
@@ -99,7 +99,7 @@ void shrink(brodnik_vector* this){
 }
 
 
-void* locate(brodnik_vector* this,int i){
+int* locate(brodnik_vector* this,int i){
     int r = i + 1;
     int k = fast_log2(i+1);
     int b = (r >> ((k+1)/2)) - (1 << (k/2));
@@ -112,19 +112,23 @@ void* locate(brodnik_vector* this,int i){
 }
 
 
-void push_back(brodnik_vector *this, void *value){
+void push_back(brodnik_vector *this, int value){
     grow(this);
 
-    void *current_cell = locate(this,this->n_size - 1);
+    int *current_cell = locate(this,this->n_size - 1);
 
-    for(void * curr; curr < current_cell + this->size_value; curr++,value++){
-        char *byte = (char *) curr;
-        char *new_value = (char *) value;
-        *byte = *new_value;
-    }
+    *current_cell = value;
 }
 
 
 void pop_back(brodnik_vector *this){
     shrink(this);
+}
+
+void delete(brodnik_vector *this){
+    for(int i = 0; i < this->ib_size; i++){
+        if(this->index_block[i] == NULL) continue;
+        free(this->index_block[i]);
+    }
+    if(this->index_block != NULL) free(this->index_block);
 }

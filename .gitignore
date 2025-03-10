@@ -5,3 +5,5 @@
 
 !test/sort/*.out
 .vscode
+
+main.c*
