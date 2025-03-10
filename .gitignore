@@ -1,4 +1,3 @@
 *.out
-*.cpp
 !test/sort/*.out
 .vscode
