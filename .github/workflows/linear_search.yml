@@ -1,4 +1,4 @@
-name: Liner Search testing
+name: Linear Search testing
 
 on:
   push:
@@ -17,11 +17,11 @@ jobs:
       - name: Testcases generator
         run: python3 test/liner_search/generator.py
 
-      - name: Run Brodnik (C++) Liner Search Test
+      - name: Run Brodnik (C++) Linear Search Test
         run: python3 check.py test/liner_search/main_brodnik.cpp test/liner_search/
 
-      - name: Run Brodnik (C) Liner Search Test
-        run: python3 check.py test/liner_search/main_brodnik.c test/liner_search/ gcc
+      - name: Run Brodnik (C) Linear Search Test
+        run: python3 check.py test/linear_search/main_brodnik.c test/linear_search/ gcc
       
-      - name: Run STL Vector (C++) Liner Search Test
-        run: python3 check.py test/liner_search/main_vector.cpp test/liner_search/
+      - name: Run STL Vector (C++) Linear Search Test
+        run: python3 check.py test/linear_search/main_vector.cpp test/liner_search/

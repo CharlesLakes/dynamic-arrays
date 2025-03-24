@@ -9,7 +9,7 @@ def write_testcase(testcase_id, array, queries):
         file.write(f"{len(array)}\n")
         file.write(f"{' '.join(map(str,array))}\n")
         file.write(f"{len(queries)}\n")
-        file.write(f"{'\n'.join(map(str,queries))}\n")
+        file.write(f"{' '.join(map(str,queries))}")
 
     answer = [int(query in array) for query in queries]
 
