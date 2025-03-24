@@ -14,8 +14,11 @@ jobs:
       - name: Clone Repository
         uses: actions/checkout@v4
 
-      - name: Run Brodnik (C++) Test
+      - name: Testcases generator
+        run: python3 test/sort/generator.py
+
+      - name: Run Brodnik (C++) Sort Test
         run: python3 check.py test/sort/main_brodnik.cpp test/sort/
 
-      - name: Run Brodnik (C) Test
+      - name: Run Brodnik (C) Sort Test
         run: python3 check.py test/sort/main_brodnik.c test/sort/ gcc
