@@ -1,4 +1,4 @@
-name: Testing
+name: Sort testing
 
 on:
   push:
@@ -22,3 +22,6 @@ jobs:
 
       - name: Run Brodnik (C) Sort Test
         run: python3 check.py test/sort/main_brodnik.c test/sort/ gcc
+      
+      - name: Run STL Vector (C++) Sort Test
+        run: python3 check.py test/sort/main_brodnik.c test/sort/
