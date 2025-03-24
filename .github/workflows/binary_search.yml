@@ -1,0 +1,27 @@
+name: Binary Search testing
+
+on:
+  push:
+
+jobs:
+  test:
+    name: Run Tests
+    runs-on: ubuntu-latest
+    steps:
+      - name: Update Package List and Install Dependencies
+        run: sudo apt-get update && sudo apt-get install -y valgrind
+
+      - name: Clone Repository
+        uses: actions/checkout@v4
+
+      - name: Testcases generator
+        run: python3 test/binary_search/generator.py
+
+      - name: Run Brodnik (C++) Binary Search Test
+        run: python3 check.py test/binary_search/main_brodnik.cpp test/binary_search/
+
+      - name: Run Brodnik (C) Binary Search Test
+        run: python3 check.py test/binary_search/main_brodnik.c test/binary_search/ gcc
+      
+      - name: Run STL Vector (C++) Binary Search Test
+        run: python3 check.py test/binary_search/main_vector.cpp test/binary_search/
