@@ -73,6 +73,7 @@ void shrink(brodnik_vector *this) {
       free(this->index_block[this->db_index + 1]);
       // delete[] this->index_block[this->db_index + 1];
       this->index_block[this->db_index + 1] = NULL;
+      this->ib_size--;
     }
 
     // TODO: utilizar realloc y abstraerlo
@@ -99,6 +100,7 @@ void shrink(brodnik_vector *this) {
         this->sb_max_size /= 2;
       this->sb_size = this->sb_max_size;
     }
+    this->db_size = this->db_max_size;
   }
 }
 
