@@ -18,8 +18,9 @@ def write_testcase(testcase_id, array, queries):
         file.write(f"{' '.join(map(str,answer))}")
 
 
-for n in range(1, 6):
+for n in range(1, 7):
     for i in range(10):
         array = [randint(1, 10**n) for _ in range(10**n)]
+        array.sort()
         queries = [randint(1, 10**n) for _ in range(10**n)]
         write_testcase(f"{CODE_DIR}/T{n}_{i}", array, queries)
