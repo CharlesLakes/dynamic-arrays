@@ -21,7 +21,7 @@ int main(){
                 break;
             }
 
-            if(valud < num) l = mid + 1;
+            if(value < num) l = mid + 1;
             else r = mid - 1;
         }
         cout << flag << " ";
