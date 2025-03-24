@@ -7,9 +7,25 @@ def compile(code, compiler):
     return os.system(f"{compiler} {code} -o code.out")
 
 
+def get_memory_usage():
+    """ Gets the maximum heap and stack memory usage from Massif. """
+    heap_usage, stack_usage = 0, 0
+    try:
+        with open("massif.out", "r") as f:
+            for line in f:
+                if line.startswith("mem_heap_B="):
+                    heap_usage = max(heap_usage, int(line.split('=')[1]))
+                elif line.startswith("mem_stacks_B="):
+                    stack_usage = max(stack_usage, int(line.split('=')[1]))
+    except FileNotFoundError:
+        print("Error: massif.out file not found.")
+        exit(1)
+    return heap_usage, stack_usage
+
+
 def main(code_path, dir_folder, compiler="g++"):
     if compile(code_path, compiler):
-        print("Error al compilar.")
+        print("Compilation error.")
         exit(1)
 
     files = os.listdir(dir_folder)
@@ -21,6 +37,7 @@ def main(code_path, dir_folder, compiler="g++"):
             start_wall = time()
             start_cpu = process_time()
 
+            # Run Memcheck to detect memory leaks
             error = os.system(
                 f'valgrind --leak-check=full --error-exitcode=1 --quiet ./code.out < "{dir_folder}/{testcase_name}.in" > ans.out'
             )
@@ -28,11 +45,11 @@ def main(code_path, dir_folder, compiler="g++"):
             end_wall = time()
             end_cpu = process_time()
 
-            wall_time = end_wall - start_wall
-            cpu_time = end_cpu - start_cpu
+            wall_time = round(end_wall - start_wall, 6)
+            cpu_time = round(end_cpu - start_cpu, 6)
 
             if error:
-                print(f"Error or memory leak.")
+                print(f"Error: Memory leak detected.")
                 exit(1)
 
             check = os.system(
@@ -41,8 +58,16 @@ def main(code_path, dir_folder, compiler="g++"):
                 print(f"No match ({testcase_name}).")
                 exit(1)
 
+            # Run Massif to measure memory usage (heap & stack)
+            os.system(
+                f'valgrind --tool=massif --stacks=yes --massif-out-file=massif.out ./code.out < "{dir_folder}/{testcase_name}.in" > /dev/null'
+            )
+
+            heap_used, stack_used = get_memory_usage()
+
             print(
-                f"AC - {testcase_name} - Wall time: {wall_time} - CPU time: {cpu_time}")
+                f"AC - {testcase_name} | Wall Time: {wall_time}s | CPU Time: {cpu_time}s | "
+                f"Heap: {heap_used}B | Stack: {stack_used}B")
 
 
 if __name__ == "__main__":

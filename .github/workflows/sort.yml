@@ -1,0 +1,27 @@
+name: Sort testing
+
+on:
+  push:
+
+jobs:
+  test:
+    name: Run Tests
+    runs-on: ubuntu-latest
+    steps:
+      - name: Update Package List and Install Dependencies
+        run: sudo apt-get update && sudo apt-get install -y valgrind
+
+      - name: Clone Repository
+        uses: actions/checkout@v4
+
+      - name: Testcases generator
+        run: python3 test/sort/generator.py
+
+      - name: Run Brodnik (C++) Sort Test
+        run: python3 check.py test/sort/main_brodnik.cpp test/sort/
+
+      - name: Run Brodnik (C) Sort Test
+        run: python3 check.py test/sort/main_brodnik.c test/sort/ gcc
+      
+      - name: Run STL Vector (C++) Sort Test
+        run: python3 check.py test/sort/main_vector.cpp test/sort/

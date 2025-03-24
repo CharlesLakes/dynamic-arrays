@@ -1,9 +1,9 @@
 *.out
-*.cpp
+*.in
 *.o
 *.log
+valgrind*
 
-!test/sort/*.out
 .vscode
 
 main.c*

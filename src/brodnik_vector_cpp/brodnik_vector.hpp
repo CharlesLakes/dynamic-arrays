@@ -1,6 +1,7 @@
 #ifndef BRODNIK_VECTOR_HPP
 #define BRODNIK_VECTOR_HPP
 #include <iostream>
+#include "debug.hpp"
 
 template <class T> class brodnik_vector {
 private:
@@ -37,6 +38,8 @@ public:
 
   void pop_back();
 
+  int size();
+
   T &operator[](int index);
 };
 
@@ -50,7 +53,12 @@ template <class T> brodnik_vector<T>::brodnik_vector(int n) {
     this->grow();
 }
 
+template <class T> int brodnik_vector<T>::size(){
+  return this->n_size;
+}
+
 template <class T> void brodnik_vector<T>::init() {
+  DEBUG_THIS("START-INIT");
   this->db_size = 0;
   this->sb_size = 1;
 
@@ -65,6 +73,8 @@ template <class T> void brodnik_vector<T>::init() {
   this->index_block[0] = new T[1];
 
   this->n_size = 0;
+
+  DEBUG_THIS("END-INIT");
 }
 
 template <class T> brodnik_vector<T>::~brodnik_vector() {
@@ -78,6 +88,7 @@ template <class T> brodnik_vector<T>::~brodnik_vector() {
 }
 
 template <class T> void brodnik_vector<T>::grow() {
+  DEBUG_THIS("START-GROW");
   if (this->db_size == this->db_max_size) {
 
     if (this->sb_size == this->sb_max_size) {
@@ -115,18 +126,28 @@ template <class T> void brodnik_vector<T>::grow() {
 
   this->db_size++;
   this->n_size++;
+
+  DEBUG_THIS("END-GROW");
 }
 
 template <class T> void brodnik_vector<T>::shrink() {
+  DEBUG_THIS("START-SHIRNK");
+  // Decrement n
   this->n_size--;
+
+  // Decrement the number of elements occupying the last nonempty data block
   this->db_size--;
 
+  // Check if last used datablock is empty
   if (!this->db_size) {
+    // If there is another empty data block. Deallocate it.
     if (this->db_index + 2 == this->ib_size) {
       delete[] this->index_block[this->db_index + 1];
       this->index_block[this->db_index + 1] = nullptr;
+      this->ib_size--;
     }
 
+    // If the index block is a quarter full. Reallocate it to half its size.
     // TODO: utilizar realloc y abstraerlo
     if (this->ib_size * 4 <= this->ib_max_size) {
       this->ib_max_size = this->ib_size;
@@ -135,22 +156,28 @@ template <class T> void brodnik_vector<T>::shrink() {
         new_index_block[i] = this->index_block[i];
 
       delete[] this->index_block;
-      this->index_block = nullptr;
       this->index_block = new_index_block;
     }
 
+    // Decrement index of last used datablock
     this->db_index--;
+    // Decrement the number of datablocks used in current superblock
     this->sb_size--;
 
+    // if the last superblock is empty.
     if (!this->sb_size) {
+      // Decrement the superblock index
       this->sb_index--;
-      if (this->sb_index % 2)
+      if (this->sb_index % 2 == 0)
         this->db_max_size /= 2;
       else
         this->sb_max_size /= 2;
       this->sb_size = this->sb_max_size;
     }
+    // Set the ocuppancy of the last superblock to full
+    this->db_size = this->db_max_size;
   }
+  DEBUG_THIS("END-SHIRNK");
 }
 
 template <class T> T &brodnik_vector<T>::locate(int i) {
