@@ -1,0 +1,27 @@
+name: Linear Search testing
+
+on:
+  push:
+
+jobs:
+  test:
+    name: Run Tests
+    runs-on: ubuntu-latest
+    steps:
+      - name: Update Package List and Install Dependencies
+        run: sudo apt-get update && sudo apt-get install -y valgrind
+
+      - name: Clone Repository
+        uses: actions/checkout@v4
+
+      - name: Testcases generator
+        run: python3 test/linear_search/generator.py
+
+      - name: Run Brodnik (C++) Linear Search Test
+        run: python3 check.py test/linear_search/main_brodnik.cpp test/linear_search/
+
+      - name: Run Brodnik (C) Linear Search Test
+        run: python3 check.py test/linear_search/main_brodnik.c test/linear_search/ gcc
+      
+      - name: Run STL Vector (C++) Linear Search Test
+        run: python3 check.py test/linear_search/main_vector.cpp test/linear_search/
