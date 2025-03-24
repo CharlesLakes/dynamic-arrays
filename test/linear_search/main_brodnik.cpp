@@ -17,7 +17,7 @@ int main(){
         cin >> num;
         bool flag = false;
         for(int i = 0; i < n; i++)
-            flag != num == vec[i];
+            flag |= num == vec[i];
         cout << flag << " ";
     }
 
