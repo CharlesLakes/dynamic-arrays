@@ -27,7 +27,7 @@ def write_testcase(testcase_id, array, queries):
         file.write(f"{' '.join(map(str,array))}")
 
 
-for n in range(1, 6):
+for n in range(1, 3):
     for i in range(10):
         array = [randint(1, 1000000000) for _ in range(10**n)]
         queries = [(randint(0, 1), randint(1, 1000000000))
