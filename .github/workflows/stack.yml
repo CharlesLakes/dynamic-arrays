@@ -23,5 +23,5 @@ jobs:
       - name: Run Brodnik (C) Sort Test
         run: python3 check.py test/stack/main_brodnik.c test/stack/ gcc
       
-      - name: Run STL Vector (C++) Sort Test
+      - name: Run STL Stack (C++) Sort Test
         run: python3 check.py test/stack/main_stack.cpp test/stack/

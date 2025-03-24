@@ -60,7 +60,7 @@ def main(code_path, dir_folder, compiler="g++"):
 
             # Run Massif to measure memory usage (heap & stack)
             os.system(
-                f'valgrind --tool=massif --massif-out-file=massif.out ./code.out < "{dir_folder}/{testcase_name}.in" > /dev/null'
+                f'valgrind --tool=massif --stacks=yes --massif-out-file=massif.out ./code.out < "{dir_folder}/{testcase_name}.in" > /dev/null'
             )
 
             heap_used, stack_used = get_memory_usage()
