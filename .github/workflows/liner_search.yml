@@ -1,4 +1,4 @@
-name: Sort testing
+name: Liner Search testing
 
 on:
   push:
