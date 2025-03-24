@@ -19,7 +19,7 @@ def get_memory_usage():
                     stack_usage = max(stack_usage, int(line.split('=')[1]))
     except FileNotFoundError:
         print("Error: massif.out file not found.")
-        exit(1)  # Stop execution if Massif output is missing.
+        exit(1)
     return heap_usage, stack_usage
 
 
@@ -37,9 +37,10 @@ def main(code_path, dir_folder, compiler="g++"):
             start_wall = time()
             start_cpu = process_time()
 
+            # Run Memcheck to detect memory leaks
             error = os.system(
-                f'valgrind --leak-check=full --error-exitcode=1 --quiet '
-                f'--tool=massif --massif-out-file=massif.out ./code.out < "{dir_folder}/{testcase_name}.in" > ans.out')
+                f'valgrind --leak-check=full --error-exitcode=1 --quiet ./code.out < "{dir_folder}/{testcase_name}.in" > ans.out'
+            )
 
             end_wall = time()
             end_cpu = process_time()
@@ -56,6 +57,11 @@ def main(code_path, dir_folder, compiler="g++"):
             if check:
                 print(f"No match ({testcase_name}).")
                 exit(1)
+
+            # Run Massif to measure memory usage (heap & stack)
+            os.system(
+                f'valgrind --tool=massif --massif-out-file=massif.out ./code.out < "{dir_folder}/{testcase_name}.in" > /dev/null'
+            )
 
             heap_used, stack_used = get_memory_usage()
 
