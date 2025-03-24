@@ -11,7 +11,8 @@ def write_testcase(testcase_id, array, queries):
         file.write(f"{len(queries)}\n")
         file.write(f"{' '.join(map(str,queries))}")
 
-    answer = [int(query in array) for query in queries]
+    set_array = set(array)
+    answer = [int(query in set_array) for query in queries]
 
     with open(f"{testcase_id}.out", "w") as file:
         file.write(f"{' '.join(map(str,answer))}")
