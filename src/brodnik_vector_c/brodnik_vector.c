@@ -94,7 +94,7 @@ void shrink(brodnik_vector *this) {
 
     if (!this->sb_size) {
       this->sb_index--;
-      if (this->sb_index % 2)
+      if (this->sb_index % 2 == 0)
         this->db_max_size /= 2;
       else
         this->sb_max_size /= 2;

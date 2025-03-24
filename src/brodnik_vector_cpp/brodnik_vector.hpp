@@ -1,6 +1,7 @@
 #ifndef BRODNIK_VECTOR_HPP
 #define BRODNIK_VECTOR_HPP
 #include <iostream>
+#include "debug.hpp"
 
 template <class T> class brodnik_vector {
 private:
@@ -57,6 +58,7 @@ template <class T> int brodnik_vector<T>::size(){
 }
 
 template <class T> void brodnik_vector<T>::init() {
+  DEBUG_THIS("START-INIT");
   this->db_size = 0;
   this->sb_size = 1;
 
@@ -71,6 +73,8 @@ template <class T> void brodnik_vector<T>::init() {
   this->index_block[0] = new T[1];
 
   this->n_size = 0;
+
+  DEBUG_THIS("END-INIT");
 }
 
 template <class T> brodnik_vector<T>::~brodnik_vector() {
@@ -84,6 +88,7 @@ template <class T> brodnik_vector<T>::~brodnik_vector() {
 }
 
 template <class T> void brodnik_vector<T>::grow() {
+  DEBUG_THIS("START-GROW");
   if (this->db_size == this->db_max_size) {
 
     if (this->sb_size == this->sb_max_size) {
@@ -121,9 +126,12 @@ template <class T> void brodnik_vector<T>::grow() {
 
   this->db_size++;
   this->n_size++;
+
+  DEBUG_THIS("END-GROW");
 }
 
 template <class T> void brodnik_vector<T>::shrink() {
+  DEBUG_THIS("START-SHIRNK");
   // Decrement n
   this->n_size--;
 
@@ -160,7 +168,7 @@ template <class T> void brodnik_vector<T>::shrink() {
     if (!this->sb_size) {
       // Decrement the superblock index
       this->sb_index--;
-      if (this->sb_index % 2)
+      if (this->sb_index % 2 == 0)
         this->db_max_size /= 2;
       else
         this->sb_max_size /= 2;
@@ -169,6 +177,7 @@ template <class T> void brodnik_vector<T>::shrink() {
     // Set the ocuppancy of the last superblock to full
     this->db_size = this->db_max_size;
   }
+  DEBUG_THIS("END-SHIRNK");
 }
 
 template <class T> T &brodnik_vector<T>::locate(int i) {
