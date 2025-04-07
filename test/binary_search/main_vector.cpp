@@ -1,4 +1,5 @@
-#include <bits/stdc++.h>
+#include "../debug.h"
+#include<bits/stdc++.h>
 
 using namespace std;
 
@@ -24,8 +25,9 @@ int main(){
             if(value < num) l = mid + 1;
             else r = mid - 1;
         }
-        cout << flag << " ";
+        PRINT_INT(flag);
     }
 
+    PRINT_CHECK();
     return 0;
 }

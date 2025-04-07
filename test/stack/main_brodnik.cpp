@@ -1,4 +1,5 @@
 #include "../../src/brodnik_vector_cpp/brodnik_vector.hpp"
+#include "../debug.h"
 #include <iostream>
 
 using namespace std;
@@ -23,8 +24,9 @@ int main(){
     }
 
     for (int i = 0; i < vec.size(); i++)
-        cout << vec[i] << " ";
-    cout << endl;
+        PRINT_INT(vec[i]);
+    PRINT_END();
 
+    PRINT_CHECK();
     return 0;
 }

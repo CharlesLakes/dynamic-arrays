@@ -1,4 +1,5 @@
 #include "../../src/brodnik_vector_cpp/brodnik_vector.hpp"
+#include "../debug.h"
 #include <iostream>
 
 using namespace std;
@@ -18,8 +19,9 @@ int main(){
         bool flag = false;
         for(int i = 0; i < n; i++)
             flag |= num == vec[i];
-        cout << flag << " ";
+        PRINT_INT(flag);
     }
 
+    PRINT_CHECK();
     return 0;
 }

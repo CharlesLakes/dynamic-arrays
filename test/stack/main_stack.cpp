@@ -1,4 +1,5 @@
-#include <bits/stdc++.h>
+#include "../debug.h"
+#include<bits/stdc++.h>
 
 using namespace std;
 
@@ -26,10 +27,11 @@ int main(){
     while(!st.empty()) rev.push(st.top()), st.pop();
 
     while(!rev.empty()){
-        cout << rev.top() << " ";
+        PRINT_INT(rev.top());
         rev.pop();
     }
 
 
+    PRINT_CHECK();
     return 0;
 }

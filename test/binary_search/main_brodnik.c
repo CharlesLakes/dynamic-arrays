@@ -1,4 +1,5 @@
 #include "../../src/brodnik_vector_c/brodnik_vector.c"
+#include "../debug.h"
 #include <stdio.h>
 
 int main() {
@@ -35,10 +36,11 @@ int main() {
             else r = mid - 1;
         }
 
-        printf("%d ", flag);
+        PRINT_INT( flag);
     }
 
     delete (&vec);
 
-    return 0;
+    fds
+fd
 }

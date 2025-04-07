@@ -5,9 +5,13 @@ import resource
 from time import perf_counter
 
 
-def compile_code(code, compiler):
+def compile_code(code, compiler, debug_flag=False):
+    compile_args = [compiler, code, "-o", "code.out"]
+    if debug_flag:
+        compile_args.append("-DDEBUG_SO")  # Add -DDEBUG_SO if debug is enabled
+
     result = subprocess.run(
-        [compiler, code, "-o", "code.out"],
+        compile_args,
         stdout=subprocess.PIPE,
         stderr=subprocess.PIPE
     )
@@ -41,7 +45,10 @@ def measure_cpu_time_after(before):
 
 
 def main(code_path, dir_folder, compiler="g++"):
-    if not compile_code(code_path, compiler):
+    # Check if DEBUG_SO is defined in the environment
+    debug_flag = os.getenv('DEBUG_SO') is not None
+
+    if not compile_code(code_path, compiler, debug_flag):
         print("Compilation error.")
         sys.exit(1)
 
@@ -81,14 +88,15 @@ def main(code_path, dir_folder, compiler="g++"):
         wall_end = perf_counter()
         wall_time = wall_end - wall_start
 
-        # Check output correctness
-        result = subprocess.run(
-            ['diff', '-q', '--ignore-trailing-space', output_path, 'ans.out'],
-            stdout=subprocess.DEVNULL
-        )
-        if result.returncode != 0:
-            print(f"No match ({testcase_name}).")
-            sys.exit(1)
+        # Check output correctness only if DEBUG_SO is defined
+        if debug_flag:
+            result = subprocess.run(
+                ['diff', '-q', '--ignore-trailing-space', output_path, 'ans.out'],
+                stdout=subprocess.DEVNULL
+            )
+            if result.returncode != 0:
+                print(f"No match ({testcase_name}).")
+                sys.exit(1)
 
         # Run massif for memory usage
         subprocess.run(
