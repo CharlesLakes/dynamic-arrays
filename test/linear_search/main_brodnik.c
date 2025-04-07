@@ -24,11 +24,11 @@ int main() {
     int flag = 0;
     for(int i = 0; i < n; i++)
       flag |= num == *locate(&vec,i);
-    PRINT_INT( flag);
+    PRINT_INT(flag);
   }
 
   delete (&vec);
 
   PRINT_CHECK();
-    return 0;
+  return 0;
 }

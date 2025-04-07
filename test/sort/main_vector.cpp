@@ -9,7 +9,7 @@ int main(){
     vector<int> nums(n);
     for(int &num: nums) cin >> num;
     sort(nums.begin(),nums.end());
-    for(int num: nums) PRINT_INT(2*num); PRINT_END();
+    for(int num: nums) PRINT_INT(num); PRINT_END();
 
     PRINT_CHECK();
     return 0;

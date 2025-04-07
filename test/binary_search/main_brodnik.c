@@ -41,6 +41,6 @@ int main() {
 
     delete (&vec);
 
-    fds
-fd
+    PRINT_CHECK();
+    return 0;
 }

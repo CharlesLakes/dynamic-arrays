@@ -37,5 +37,5 @@ int main() {
   delete (&vec);
 
   PRINT_CHECK();
-    return 0;
+  return 0;
 }
