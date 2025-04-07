@@ -35,3 +35,44 @@ for n in range(1, 5 if debug_flag else 7):
                    for _ in range(10**n)]
 
         write_testcase(f"{CODE_DIR}/T{n}_{i}", array, queries)
+
+for n in range(1, 5 if debug_flag else 7):
+    for i in range(10):
+        array = [randint(1, 1000000000) for _ in range(10**n)]
+
+        push_queries = [(1, randint(1, 1000000000)) for _ in range(10**n // 2)]
+        random_queries = [
+            (randint(
+                0, 1), randint(
+                1, 1000000000)) for _ in range(
+                10**n // 2)]
+        combined_queries_1 = push_queries + random_queries
+        write_testcase(
+            f"{CODE_DIR}/T{n}_{i}_push_then_random",
+            array,
+            combined_queries_1)
+
+        random_queries = [
+            (randint(
+                0, 1), randint(
+                1, 1000000000)) for _ in range(
+                10**n // 2)]
+        pop_queries = [(0, 0) for _ in range(10**n // 2)]
+        combined_queries_2 = random_queries + pop_queries
+        write_testcase(
+            f"{CODE_DIR}/T{n}_{i}_random_then_pop",
+            array,
+            combined_queries_2)
+
+        push_queries = [(1, randint(1, 1000000000)) for _ in range(10**n // 3)]
+        random_queries = [
+            (randint(
+                0, 1), randint(
+                1, 1000000000)) for _ in range(
+                10**n // 3)]
+        pop_queries = [(0, 0) for _ in range(10**n // 3)]
+        combined_queries_3 = push_queries + random_queries + pop_queries
+        write_testcase(
+            f"{CODE_DIR}/T{n}_{i}_push_random_then_pop",
+            array,
+            combined_queries_3)

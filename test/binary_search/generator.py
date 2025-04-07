@@ -4,6 +4,7 @@ from random import randint
 CODE_DIR = os.path.dirname(os.path.realpath(__file__))
 debug_flag = os.getenv('DEBUG_SO') is not None
 
+
 def write_testcase(testcase_id, array, queries):
     with open(f"{testcase_id}.in", "w") as file:
         file.write(f"{len(array)}\n")
