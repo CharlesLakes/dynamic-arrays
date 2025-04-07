@@ -99,18 +99,20 @@ def main(code_path, dir_folder, compiler="g++"):
                 sys.exit(1)
 
         # Run massif for memory usage
-        subprocess.run(
-            ['valgrind', '--tool=massif', '--stacks=yes', '--massif-out-file=massif.out', './code.out'],
-            stdin=open(input_path, 'r'),
-            stdout=subprocess.DEVNULL,
-            stderr=subprocess.DEVNULL
-        )
+        subprocess.run(['valgrind',
+                        '--tool=massif',
+                        '--stacks=yes',
+                        '--massif-out-file=massif.out',
+                        './code.out'],
+                       stdin=open(input_path,
+                                  'r'),
+                       stdout=subprocess.DEVNULL,
+                       stderr=subprocess.DEVNULL)
         heap_used, stack_used = get_memory_usage()
 
         print(
             f"AC - {testcase_name} | Wall: {wall_time:.6f}s | CPU User: {cpu_user:.6f}s | "
-            f"CPU Sys: {cpu_sys:.6f}s | Heap: {heap_used}B | Stack: {stack_used}B"
-        )
+            f"CPU Sys: {cpu_sys:.6f}s | Heap: {heap_used}B | Stack: {stack_used}B")
 
 
 if __name__ == "__main__":
