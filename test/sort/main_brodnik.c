@@ -1,4 +1,5 @@
 #include "../../src/brodnik_vector_c/brodnik_vector.c"
+#include "../debug.h"
 #include <stdio.h>
 
 void merge(brodnik_vector *vec, int l, int r) {
@@ -57,10 +58,11 @@ int main() {
   merge_sort(&vec, 0, n - 1);
 
   for (int i = 0; i < n; i++) {
-    printf("%d ", *locate(&vec, i));
+    PRINT_INT( *locate(&vec, i));
   }
 
   delete (&vec);
 
+  PRINT_CHECK();
   return 0;
 }

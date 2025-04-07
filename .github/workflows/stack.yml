@@ -6,6 +6,8 @@ on:
 jobs:
   test:
     name: Run Tests
+    env:
+      DEBUG_SO: "1"
     runs-on: ubuntu-latest
     steps:
       - name: Update Package List and Install Dependencies

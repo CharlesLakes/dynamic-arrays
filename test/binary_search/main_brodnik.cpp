@@ -1,4 +1,5 @@
 #include "../../src/brodnik_vector_cpp/brodnik_vector.hpp"
+#include "../debug.h"
 #include <iostream>
 
 using namespace std;
@@ -30,8 +31,9 @@ int main(){
             else r = mid - 1;
         }
 
-        cout << flag << " ";
+        PRINT_INT(flag);
     }
 
+    PRINT_CHECK();
     return 0;
 }

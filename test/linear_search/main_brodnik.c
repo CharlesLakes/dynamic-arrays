@@ -1,4 +1,5 @@
 #include "../../src/brodnik_vector_c/brodnik_vector.c"
+#include "../debug.h"
 #include <stdio.h>
 
 int main() {
@@ -23,10 +24,11 @@ int main() {
     int flag = 0;
     for(int i = 0; i < n; i++)
       flag |= num == *locate(&vec,i);
-    printf("%d ", flag);
+    PRINT_INT(flag);
   }
 
   delete (&vec);
 
+  PRINT_CHECK();
   return 0;
 }

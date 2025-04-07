@@ -1,4 +1,5 @@
-#include <bits/stdc++.h>
+#include "../debug.h"
+#include<bits/stdc++.h>
 
 using namespace std;
 
@@ -14,8 +15,9 @@ int main(){
         bool flag = false;
         for(int i = 0; i < n; i++)
             flag |= num == nums[i];
-        cout << flag << " ";
+        PRINT_INT(flag);
     }
 
+    PRINT_CHECK();
     return 0;
 }

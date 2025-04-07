@@ -1,5 +1,6 @@
 #include "../../src/brodnik_vector_cpp/brodnik_vector.hpp"
-#include <bits/stdc++.h>
+#include "../debug.h"
+#include<bits/stdc++.h>
 
 using namespace std;
 
@@ -49,8 +50,9 @@ int main() {
 
   // Print sorted array
   for (int i = 0; i < n; i++)
-    cout << vec[i] << " ";
-  cout << endl;
+    PRINT_INT(vec[i]);
+  PRINT_END();
 
-  return 0;
+  PRINT_CHECK();
+    return 0;
 }

@@ -1,14 +1,24 @@
 import sys
 import os
-from time import time, process_time
+import subprocess
+import resource
+from time import perf_counter
 
 
-def compile(code, compiler):
-    return os.system(f"{compiler} {code} -o code.out")
+def compile_code(code, compiler, debug_flag=False):
+    compile_args = [compiler, code, "-o", "code.out"]
+    if debug_flag:
+        compile_args.append("-DDEBUG_SO")  # Add -DDEBUG_SO if debug is enabled
+
+    result = subprocess.run(
+        compile_args,
+        stdout=subprocess.PIPE,
+        stderr=subprocess.PIPE
+    )
+    return result.returncode == 0
 
 
 def get_memory_usage():
-    """ Gets the maximum heap and stack memory usage from Massif. """
     heap_usage, stack_usage = 0, 0
     try:
         with open("massif.out", "r") as f:
@@ -19,55 +29,90 @@ def get_memory_usage():
                     stack_usage = max(stack_usage, int(line.split('=')[1]))
     except FileNotFoundError:
         print("Error: massif.out file not found.")
-        exit(1)
+        sys.exit(1)
     return heap_usage, stack_usage
 
 
+def measure_cpu_time_before():
+    return resource.getrusage(resource.RUSAGE_CHILDREN)
+
+
+def measure_cpu_time_after(before):
+    after = resource.getrusage(resource.RUSAGE_CHILDREN)
+    user_time = after.ru_utime - before.ru_utime
+    system_time = after.ru_stime - before.ru_stime
+    return user_time, system_time
+
+
 def main(code_path, dir_folder, compiler="g++"):
-    if compile(code_path, compiler):
+    # Check if DEBUG_SO is defined in the environment
+    debug_flag = os.getenv('DEBUG_SO') is not None
+
+    if not compile_code(code_path, compiler, debug_flag):
         print("Compilation error.")
-        exit(1)
+        sys.exit(1)
 
-    files = os.listdir(dir_folder)
+    for file in os.listdir(dir_folder):
+        if not file.endswith(".in"):
+            continue
 
-    for file in files:
-        if file.endswith(".in"):
-            testcase_name = file[:-3]
+        testcase_name = file[:-3]
+        input_path = os.path.join(dir_folder, f"{testcase_name}.in")
+        output_path = os.path.join(dir_folder, f"{testcase_name}.out")
 
-            start_wall = time()
-            start_cpu = process_time()
-
-            # Run Memcheck to detect memory leaks
-            error = os.system(
-                f'valgrind --leak-check=full --error-exitcode=1 --quiet ./code.out < "{dir_folder}/{testcase_name}.in" > ans.out'
+        # Run valgrind --leak-check
+        try:
+            subprocess.run(
+                ['valgrind', '--leak-check=full', '--error-exitcode=1', '--quiet', './code.out'],
+                stdin=open(input_path, 'r'),
+                stdout=open('ans.out', 'w'),
+                stderr=subprocess.DEVNULL,
+                check=True
             )
+        except subprocess.CalledProcessError:
+            print(f"Error: Memory leak detected in test case {testcase_name}.")
+            sys.exit(1)
 
-            end_wall = time()
-            end_cpu = process_time()
+        # Run again for performance measurement
+        wall_start = perf_counter()
+        cpu_before = measure_cpu_time_before()
 
-            wall_time = round(end_wall - start_wall, 6)
-            cpu_time = round(end_cpu - start_cpu, 6)
+        subprocess.run(
+            ['./code.out'],
+            stdin=open(input_path, 'r'),
+            stdout=open('ans.out', 'w'),
+            stderr=subprocess.DEVNULL
+        )
 
-            if error:
-                print(f"Error: Memory leak detected.")
-                exit(1)
+        cpu_user, cpu_sys = measure_cpu_time_after(cpu_before)
+        wall_end = perf_counter()
+        wall_time = wall_end - wall_start
 
-            check = os.system(
-                f'diff -q --ignore-trailing-space "{dir_folder}/{testcase_name}.out" ans.out')
-            if check:
+        # Check output correctness only if DEBUG_SO is defined
+        if debug_flag:
+            result = subprocess.run(
+                ['diff', '-q', '--ignore-trailing-space', output_path, 'ans.out'],
+                stdout=subprocess.DEVNULL
+            )
+            if result.returncode != 0:
                 print(f"No match ({testcase_name}).")
-                exit(1)
+                sys.exit(1)
 
-            # Run Massif to measure memory usage (heap & stack)
-            os.system(
-                f'valgrind --tool=massif --stacks=yes --massif-out-file=massif.out ./code.out < "{dir_folder}/{testcase_name}.in" > /dev/null'
-            )
+        # Run massif for memory usage
+        subprocess.run(['valgrind',
+                        '--tool=massif',
+                        '--stacks=yes',
+                        '--massif-out-file=massif.out',
+                        './code.out'],
+                       stdin=open(input_path,
+                                  'r'),
+                       stdout=subprocess.DEVNULL,
+                       stderr=subprocess.DEVNULL)
+        heap_used, stack_used = get_memory_usage()
 
-            heap_used, stack_used = get_memory_usage()
-
-            print(
-                f"AC - {testcase_name} | Wall Time: {wall_time}s | CPU Time: {cpu_time}s | "
-                f"Heap: {heap_used}B | Stack: {stack_used}B")
+        print(
+            f"AC - {testcase_name} | Wall: {wall_time:.6f}s | CPU User: {cpu_user:.6f}s | "
+            f"CPU Sys: {cpu_sys:.6f}s | Heap: {heap_used}B | Stack: {stack_used}B")
 
 
 if __name__ == "__main__":
