@@ -1,6 +1,21 @@
 #!/bin/bash
 
-# Run Brodnik (C++) Sort Test
+
+echo "Running Brodnik (C++) Stack Test..."
+python3 check.py test/stack/main_brodnik.cpp test/stack/
+
+echo "Running Brodnik (C) Stack Test..."
+python3 check.py test/stack/main_brodnik.c test/stack/ gcc
+
+echo "Running STL Stack Deque (C++) Stack Test..."
+python3 check.py test/stack/main_stack_deque.cpp test/stack/
+
+echo "Running STL Stack Vector (C++) Stack Test..."
+python3 check.py test/stack/main_stack_vector.cpp test/stack/
+
+echo "Running STL Stack List (C++) Stack Test..."
+python3 check.py test/stack/main_stack_list.cpp test/stack/
+
 echo "Running Brodnik (C++) Sort Test..."
 python3 check.py test/sort/main_brodnik.cpp test/sort/
 
@@ -27,14 +42,5 @@ python3 check.py test/linear_search/main_brodnik.c test/linear_search/ gcc
 
 echo "Running STL Vector (C++) Linear Search Test..."
 python3 check.py test/linear_search/main_vector.cpp test/linear_search/
-
-echo "Running Brodnik (C++) Stack Test..."
-python3 check.py test/stack/main_brodnik.cpp test/stack/
-
-echo "Running Brodnik (C) Stack Test..."
-python3 check.py test/stack/main_brodnik.c test/stack/ gcc
-
-echo "Running STL Stack (C++) Stack Test..."
-python3 check.py test/stack/main_stack.cpp test/stack/
 
 echo "All tests completed."
