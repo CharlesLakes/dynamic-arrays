@@ -19,7 +19,7 @@ def write_testcase(testcase_id, array, queries):
         file.write(f"{' '.join(map(str,answer))}")
 
 
-for n in range(1, 4 if debug_flag else 10):
+for n in range(1, 3 if debug_flag else 10):
     for i in range(10 if debug_flag else 1):
         array = [randint(1, 10**n) for _ in range(10**n)]
         array.sort()
