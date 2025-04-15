@@ -104,7 +104,7 @@ template <class T> void brodnik_vector<T>::grow() {
       if (this->ib_size == this->ib_max_size) {
 
         // TODO: utilizar realloc y abstraerlo
-        T **new_index_block = new T *[this->ib_size + 1];
+        T **new_index_block = new T *[2 * this->ib_size];
         for (int i = 0; i < this->ib_size; i++)
           new_index_block[i] = this->index_block[i];
 
@@ -112,7 +112,7 @@ template <class T> void brodnik_vector<T>::grow() {
         this->index_block = nullptr;
         this->index_block = new_index_block;
 
-        this->ib_max_size++;
+        this->ib_max_size *= 2;
       }
       this->index_block[this->ib_size] = new T[this->db_max_size];
       this->ib_size++;

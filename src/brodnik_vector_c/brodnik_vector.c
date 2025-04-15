@@ -37,8 +37,8 @@ void grow(brodnik_vector *this) {
       if (this->ib_size == this->ib_max_size) {
 
         // TODO: utilizar realloc y abstraerlo
-        int **new_index_block = (int **)malloc(
-            (this->ib_size + 1) * sizeof(int *)); // new T*[this->ib_size + 1];
+        int **new_index_block = (int **) malloc(this->ib_size * 2 * sizeof(int *));
+        
         for (int i = 0; i < this->ib_size; i++)
           new_index_block[i] = this->index_block[i];
 
@@ -47,10 +47,9 @@ void grow(brodnik_vector *this) {
         this->index_block = NULL;
         this->index_block = new_index_block;
 
-        this->ib_max_size++;
+        this->ib_max_size *= 2;
       }
-      this->index_block[this->ib_size] = (int *)malloc(
-          this->db_max_size * this->size_value); // new T[this->db_max_size];
+      this->index_block[this->ib_size] = (int *)malloc(this->db_max_size * this->size_value);
       this->ib_size++;
     }
 
