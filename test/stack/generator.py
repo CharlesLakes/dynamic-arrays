@@ -28,16 +28,16 @@ def write_testcase(testcase_id, array, queries):
         file.write(f"{' '.join(map(str,array))}")
 
 
-for n in range(1, 4 if debug_flag else 7):
-    for i in range(10 if debug_flag else 1):
+for n in range(1, 3 if debug_flag else 10):
+    for i in range(2 if debug_flag else 1):
         array = [randint(1, 1000000000) for _ in range(10**n)]
         queries = [(randint(0, 1), randint(1, 1000000000))
                    for _ in range(10**n)]
 
         write_testcase(f"{CODE_DIR}/T{n}_{i}", array, queries)
 
-for n in range(1, 4 if debug_flag else 9):
-    for i in range(10 if debug_flag else 1):
+for n in range(1, 3 if debug_flag else 10):
+    for i in range(2 if debug_flag else 1):
         array = [randint(1, 1000000000) for _ in range(10**n)]
 
         push_queries = [(1, randint(1, 1000000000)) for _ in range(10**n // 2)]
