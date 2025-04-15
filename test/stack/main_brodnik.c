@@ -34,7 +34,6 @@ int main() {
     PRINT_INT(*locate(&vec, vec.n_size - 1));
     pop_back(&vec);
   }  
-  PRINT_END();
   delete (&vec);
 
   PRINT_CHECK();

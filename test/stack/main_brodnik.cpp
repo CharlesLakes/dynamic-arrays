@@ -28,7 +28,6 @@ int main(){
         PRINT_INT(vec[vec.size() - 1]);
         vec.pop_back();
     }
-    PRINT_END();
 
     PRINT_CHECK();
     return 0;
