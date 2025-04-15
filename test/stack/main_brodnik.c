@@ -30,10 +30,11 @@ int main() {
     }
   }
 
-  for (int i = 0; i < vec.n_size; i++) {
-    PRINT_INT( *locate(&vec, i));
-  }
-
+  while(vec.n_size > 0){
+    PRINT_INT(*locate(&vec, vec.n_size - 1));
+    pop_back(&vec);
+  }  
+  PRINT_END();
   delete (&vec);
 
   PRINT_CHECK();
