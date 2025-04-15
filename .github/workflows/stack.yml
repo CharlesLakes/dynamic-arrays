@@ -25,5 +25,11 @@ jobs:
       - name: Run Brodnik (C) Sort Test
         run: python3 check.py test/stack/main_brodnik.c test/stack/ gcc
       
-      - name: Run STL Stack (C++) Sort Test
-        run: python3 check.py test/stack/main_stack.cpp test/stack/
+      - name: Run STL Stack Deque (C++) Sort Test
+        run: python3 check.py test/stack/main_stack_deque.cpp test/stack/
+      
+      - name: Run STL Stack Vector (C++) Sort Test
+        run: python3 check.py test/stack/main_stack_vector.cpp test/stack/
+      
+      - name: Run STL Stack list (C++) Sort Test
+        run: python3 check.py test/stack/main_stack_list.cpp test/stack/
