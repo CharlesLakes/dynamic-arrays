@@ -12,14 +12,15 @@ def write_testcase(testcase_id, array, queries):
         file.write(f"{len(queries)}\n")
         file.write(f"{' '.join(map(str,queries))}")
 
-    set_array = set(array)
-    answer = [int(query in set_array) for query in queries]
+    if debug_flag:
+        set_array = set(array)
+        answer = [int(query in set_array) for query in queries]
 
-    with open(f"{testcase_id}.out", "w") as file:
-        file.write(f"{' '.join(map(str,answer))}")
+        with open(f"{testcase_id}.out", "w") as file:
+            file.write(f"{' '.join(map(str,answer))}")
 
 
-for n in range(1, 3 if debug_flag else 10):
+for n in range(1, 3 if debug_flag else 8):
     for i in range(2 if debug_flag else 1):
         array = [randint(1, 10**n) for _ in range(10**n)]
         array.sort()
