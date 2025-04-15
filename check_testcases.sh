@@ -1,5 +1,8 @@
 #!/bin/bash
 
+ulimit -s unlimited
+ulimit -v unlimited
+ulimit -t unlimited
 
 echo "Running Brodnik (C++) Stack Test..."
 python3 check.py test/stack/main_brodnik.cpp test/stack/

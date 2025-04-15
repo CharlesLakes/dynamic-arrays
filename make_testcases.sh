@@ -1,5 +1,9 @@
 #!/bin/bash
 
+ulimit -s unlimited
+ulimit -v unlimited
+ulimit -t unlimited
+
 # Sort
 echo "Generating test data for Sort..."
 python3 test/sort/generator.py
