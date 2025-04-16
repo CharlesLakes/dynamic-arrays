@@ -1,5 +1,7 @@
+import matplotlib.pyplot as plt
 import re
 import sys
+
 
 def extract_metrics(line):
     pattern = re.compile(
@@ -26,9 +28,10 @@ def extract_metrics(line):
     else:
         return None
 
-import matplotlib.pyplot as plt
 
 # Function to plot metrics for each execution
+
+
 def plot_metrics(stats_by_execution):
     for execution_name, metrics_list in stats_by_execution.items():
         ns = [entry["n"] for entry in metrics_list]
@@ -49,7 +52,6 @@ def plot_metrics(stats_by_execution):
         plt.savefig(f"{execution_name.strip()}_wall_time.png")
         """
 
-
         # Plot CPU user time
         plt.figure(figsize=(14, 8))
         plt.plot(ns, cpu_users, marker='o', color='orange')
@@ -60,7 +62,6 @@ def plot_metrics(stats_by_execution):
         plt.xlim(0, 10**7)
         plt.grid(True)
         plt.savefig(f"{execution_name.strip()}_cpu_user.png")
-
 
         # Plot Heap usage
         plt.figure(figsize=(14, 8))
@@ -86,9 +87,10 @@ def plot_metrics(stats_by_execution):
         plt.savefig(f"{execution_name.strip()}_stack.png")
         """
 
+
 def main(stage_path):
     stats_by_execution = {}
-    
+
     with open(stage_path) as file:
         current_execution = ""
         for line in file:
@@ -99,7 +101,7 @@ def main(stage_path):
             metrics = extract_metrics(line)
             if metrics:
                 type_execution = metrics["type_testcase"]
-                
+
                 key_group = f"{current_execution} - {type_execution}"
 
                 if key_group not in stats_by_execution:
@@ -110,12 +112,13 @@ def main(stage_path):
                 )
             else:
                 line = line \
-                    .replace("Running ","") \
-                    .replace("...","")
-                
+                    .replace("Running ", "") \
+                    .replace("...", "")
+
                 current_execution = line
 
     plot_metrics(stats_by_execution)
+
 
 if __name__ == "__main__":
     main(*sys.argv[1:])

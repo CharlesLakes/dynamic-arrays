@@ -7,7 +7,7 @@ CODE_DIR = os.path.dirname(os.path.realpath(__file__))
 def write_testcase(testcase_id, array, queries):
     with open(f"{testcase_id}.in", "w") as file:
         file.write(f"{len(array)}\n")
-        file.write(f"{' '.join(map(str,array))}\n")
+        file.write(f"{' '.join(map(str, array))}\n")
         file.write(f"{len(queries)}\n")
         for query in queries:
             op, value = query
@@ -27,7 +27,7 @@ def write_testcase(testcase_id, array, queries):
     array.reverse()
 
     with open(f"{testcase_id}.out", "w") as file:
-        file.write(f"{' '.join(map(str,array))}")
+        file.write(f"{' '.join(map(str, array))}")
 
 
 for n in range(1, 3):
