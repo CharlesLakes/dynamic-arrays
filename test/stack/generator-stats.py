@@ -3,11 +3,17 @@ from random import randint
 
 CODE_DIR = os.path.dirname(os.path.realpath(__file__))
 
+file_cleaned = set()
+
 def create_or_clear(filename):
     with open(f"{CODE_DIR}/{filename}.in","w") as file:
         file.write("") 
 
 def write(filename,content):
+    if filename not in file_cleaned:
+        create_or_clear(filename)
+        file_cleaned.add(filename)
+
     with open(f"{CODE_DIR}/{filename}.in","a") as file:
         file.write(content)
 
@@ -15,7 +21,7 @@ def write(filename,content):
 
 # --- push then random ---
 
-for n in range(1,10):
+for n in range(1,2):
     size = 10**n
 
     write(
@@ -54,7 +60,7 @@ for n in range(1,10):
 
 # -- random then pop --
 
-for n in range(1,10):
+for n in range(1,2):
     size = 10**n
 
     write(
@@ -93,7 +99,7 @@ for n in range(1,10):
 
 # --- push random then pop ---
 
-for n in range(1,10):
+for n in range(1,2):
     size = 10**n
 
     write(

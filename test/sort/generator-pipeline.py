@@ -17,7 +17,7 @@ def write_testcase(testcase_id, array):
             file.write(f"{' '.join(map(str,array))}")
 
 
-for n in range(1, 3 if debug_flag else 8):
+for n in range(1, 3):
     for i in range(2 if debug_flag else 1):
         array = [randint(1, 1000000000) for _ in range(10**n)]
         write_testcase(f"{CODE_DIR}/T{n}_{i}", array)
