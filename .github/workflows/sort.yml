@@ -17,7 +17,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Testcases generator
-        run: python3 test/sort/generator.py
+        run: python3 test/sort/generator-pipeline.py
 
       - name: Run Brodnik (C++) Sort Test
         run: python3 check.py test/sort/main_brodnik.cpp test/sort/
