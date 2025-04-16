@@ -13,7 +13,7 @@ def create_or_clear(filename):
         file.write("")
 
 
-def write(filename,content):
+def write(filename, content):
     global count_write
     global write_acumulation
 
@@ -24,12 +24,12 @@ def write(filename,content):
 
     if count_write != 0:
         return
-    
+
     if filename not in file_cleaned:
         create_or_clear(filename)
         file_cleaned.add(filename)
 
-    with open(f"{CODE_DIR}/{filename}.in","a") as file:
+    with open(f"{CODE_DIR}/{filename}.in", "a") as file:
         file.write(write_acumulation)
 
     write_acumulation = ""
@@ -50,4 +50,4 @@ for n in range(1, 10):
         )
 
     count_write = -1
-    write(f"T{n}","")
+    write(f"T{n}", "")
