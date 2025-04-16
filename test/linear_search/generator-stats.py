@@ -8,8 +8,8 @@ count_write = 0
 write_acumulation = ""
 
 def create_or_clear(filename):
-    with open(f"{CODE_DIR}/{filename}.in","w") as file:
-        file.write("") 
+    with open(f"{CODE_DIR}/{filename}.in", "w") as file:
+        file.write("")
 
 def write(filename,content):
     global count_write
@@ -32,6 +32,7 @@ def write(filename,content):
 
     write_acumulation = ""
 
+
 for n in range(1, 5):
 
     size = 10**n
@@ -44,7 +45,7 @@ for n in range(1, 5):
     for i in range(size):
         write(
             f"T{n}",
-            str(randint(1,1000000000)) + (" " if size > i + 1 else "\n")
+            str(randint(1, 1000000000)) + (" " if size > i + 1 else "\n")
         )
 
     write(
@@ -55,7 +56,7 @@ for n in range(1, 5):
     for i in range(size):
         write(
             f"T{n}",
-            str(randint(1,1000000000)) + (" " if size > i + 1 else "\n")
+            str(randint(1, 1000000000)) + (" " if size > i + 1 else "\n")
         )
 
     count_write = -1
