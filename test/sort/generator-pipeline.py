@@ -8,13 +8,13 @@ debug_flag = os.getenv('DEBUG_SO') is not None
 def write_testcase(testcase_id, array):
     with open(f"{testcase_id}.in", "w") as file:
         file.write(f"{len(array)}\n")
-        file.write(f"{' '.join(map(str,array))}")
+        file.write(f"{' '.join(map(str, array))}")
 
     if debug_flag:
         array.sort()
 
         with open(f"{testcase_id}.out", "w") as file:
-            file.write(f"{' '.join(map(str,array))}")
+            file.write(f"{' '.join(map(str, array))}")
 
 
 for n in range(1, 3):
