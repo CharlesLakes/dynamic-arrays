@@ -17,7 +17,7 @@ def write(filename,content):
     with open(f"{CODE_DIR}/{filename}.in","a") as file:
         file.write(content)
 
-for n in range(1, 2):
+for n in range(1, 10):
     size = 10**n
 
     write(

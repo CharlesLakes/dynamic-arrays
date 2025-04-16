@@ -19,9 +19,36 @@ def write(filename,content):
 
 
 
+# --- random ---
+
+for n in range(1,10):
+    size = 10**n
+
+    write(
+        f"T{n}_random",
+        f"{size}\n"
+    )
+
+    for i in range(size):
+        write(
+            f"T{n}_random",
+            str(randint(1,1000000000)) + (" " if size > i + 1 else "\n")
+        )
+
+    write(
+        f"T{n}_random",
+        f"{size}\n"
+    )
+
+    for i in range(size):
+        write(
+            f"T{n}_random",
+            f"{randint(0, 1)} {randint(1, 1000000000)}\n"
+        )
+
 # --- push then random ---
 
-for n in range(1,2):
+for n in range(1,10):
     size = 10**n
 
     write(
@@ -60,7 +87,7 @@ for n in range(1,2):
 
 # -- random then pop --
 
-for n in range(1,2):
+for n in range(1,10):
     size = 10**n
 
     write(
@@ -99,7 +126,7 @@ for n in range(1,2):
 
 # --- push random then pop ---
 
-for n in range(1,2):
+for n in range(1,10):
     size = 10**n
 
     write(
