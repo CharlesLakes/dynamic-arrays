@@ -67,7 +67,7 @@ def get_memory_usage_all(binary_path, input_path):
         max_memory_usage = max(max_memory_usage, mem_info.rss)
 
     except psutil.NoSuchProcess:
-        print(f"The process with PID {pid} has already finished.")
+        pass
 
     return max_memory_usage
 
