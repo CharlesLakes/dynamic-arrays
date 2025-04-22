@@ -11,9 +11,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Update Package List and Install Dependencies
-        run:
-          - sudo apt-get update && sudo apt-get install -y valgrind
-          - pip install psutil
+        run: sudo apt-get update && sudo apt-get install -y valgrind
+
+      - name: Install psutil 
+        run: pip install psutil
 
       - name: Clone Repository
         uses: actions/checkout@v4
