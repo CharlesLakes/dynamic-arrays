@@ -12,7 +12,8 @@ jobs:
     steps:
       - name: Update Package List and Install Dependencies
         run: sudo apt-get update && sudo apt-get install -y valgrind
-
+        run: pip install psutil
+        
       - name: Clone Repository
         uses: actions/checkout@v4
 
