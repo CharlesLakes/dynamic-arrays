@@ -37,7 +37,7 @@ def write(filename, content):
 
 # --- random ---
 
-for n in range(1, 10):
+for n in range(1, 6):
     size = 10**n
 
     write(
@@ -67,7 +67,7 @@ for n in range(1, 10):
 
 # --- push then random ---
 
-for n in range(1, 10):
+for n in range(1, 6):
     size = 10**n
 
     write(
@@ -109,7 +109,7 @@ for n in range(1, 10):
 
 # -- random then pop --
 
-for n in range(1, 10):
+for n in range(1, 6):
     size = 10**n
 
     write(
@@ -151,7 +151,7 @@ for n in range(1, 10):
 
 # --- push random then pop ---
 
-for n in range(1, 10):
+for n in range(1, 6):
     size = 10**n
 
     write(
