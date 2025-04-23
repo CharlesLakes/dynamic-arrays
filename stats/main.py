@@ -1,7 +1,7 @@
 import matplotlib.pyplot as plt
 import re
 import sys
-import json
+import math
 
 
 def extract_metrics(line):
@@ -37,59 +37,75 @@ def extract_metrics(line):
 def plot_metrics(stats_by_category):
     for category in stats_by_category:
         for type_execution in stats_by_category[category]:
-            fig, axs = plt.subplots(2, 2, figsize=(14, 8))
+            executions = list(
+                stats_by_category[category][type_execution].keys())
+            n = len(executions)
+            rows = math.ceil(n / 2)
+            cols = 2 if n > 1 else 1
 
-            i = 0
+            fig, axs = plt.subplots(rows, cols, figsize=(7 * cols, 4 * rows))
+            axs = axs.flatten() if n > 1 else [axs]
 
-            for current_execution in stats_by_category[category][type_execution]:
-
+            for i, current_execution in enumerate(executions):
                 executions_data = stats_by_category[category][type_execution][current_execution]
                 ns = [execution_data["n"]
                       for execution_data in executions_data]
                 cpu_users = [execution_data["cpu_user"]
                              for execution_data in executions_data]
 
-                x, y = i // 2, i % 2
+                axs[i].plot(ns, cpu_users, marker='o', color='orange')
+                axs[i].set_title(f"{current_execution} - CPU User Time")
+                axs[i].set_xlabel("n")
+                axs[i].set_ylabel("CPU User Time (s)")
+                axs[i].set_xscale('log')
+                axs[i].ticklabel_format(
+                    axis='y',
+                    style='sci',
+                    scilimits=(0, 0))
+                axs[i].grid(True, which='both')
 
-                axs[x, y].plot(ns, cpu_users, marker='o', color='orange')
-                axs[x, y].set_title(f"{current_execution} - CPU User Time")
-                axs[x, y].set_xlabel("n")
-                axs[x, y].set_ylabel("CPU User Time (s)")
-                axs[x, y].set_xscale('log')
-                axs[x, y].grid(True)
-
-                i += 1
+            for j in range(i + 1, len(axs)):
+                fig.delaxes(axs[j])
 
             plt.tight_layout()
             plt.savefig(f"{current_execution}_cpu_user.png")
+            plt.close()
 
     for category in stats_by_category:
         for type_execution in stats_by_category[category]:
-            fig, axs = plt.subplots(2, 2, figsize=(14, 8))
+            executions = list(
+                stats_by_category[category][type_execution].keys())
+            n = len(executions)
+            rows = math.ceil(n / 2)
+            cols = 2 if n > 1 else 1
 
-            i = 0
+            fig, axs = plt.subplots(rows, cols, figsize=(7 * cols, 4 * rows))
+            axs = axs.flatten() if n > 1 else [axs]
 
-            for current_execution in stats_by_category[category][type_execution]:
-
+            for i, current_execution in enumerate(executions):
                 executions_data = stats_by_category[category][type_execution][current_execution]
                 ns = [execution_data["n"]
                       for execution_data in executions_data]
-                cpu_users = [execution_data["heap"]
-                             for execution_data in executions_data]
+                heaps = [execution_data["heap"]
+                         for execution_data in executions_data]
 
-                x, y = i // 2, i % 2
+                axs[i].plot(ns, heaps, marker='o', color='orange')
+                axs[i].set_title(f"{current_execution} - Heap Usage")
+                axs[i].set_xlabel("n")
+                axs[i].set_ylabel("Heap (Bytes)")
+                axs[i].set_xscale('log')
+                axs[i].ticklabel_format(
+                    axis='y',
+                    style='sci',
+                    scilimits=(0, 0))
+                axs[i].grid(True, which='both')
 
-                axs[x, y].plot(ns, cpu_users, marker='o', color='orange')
-                axs[x, y].set_title(f"{current_execution} - CPU User Time")
-                axs[x, y].set_xlabel("n")
-                axs[x, y].set_ylabel("Heap (Bytes)")
-                axs[x, y].set_xscale('log')
-                axs[x, y].grid(True)
-
-                i += 1
+            for j in range(i + 1, len(axs)):
+                fig.delaxes(axs[j])
 
             plt.tight_layout()
             plt.savefig(f"{current_execution}_heap.png")
+            plt.close()
 
 
 def get_category(line, categories):
