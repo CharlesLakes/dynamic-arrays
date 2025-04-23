@@ -60,7 +60,7 @@ def plot_metrics(stats_by_category):
                              for execution_data in executions_data]
 
                 axs[i].plot(ns, cpu_users, marker='o', color='orange')
-                axs[i].set_title(f"{current_execution} - CPU User Time")
+                axs[i].set_title(f"{current_execution} - {type_execution} - CPU User Time")
                 axs[i].set_xlabel("n")
                 axs[i].set_ylabel("CPU User Time (s)")
                 # Use log scale on x-axis
@@ -80,7 +80,7 @@ def plot_metrics(stats_by_category):
             # Optimize spacing between subplots
             plt.tight_layout()
             # Save figure
-            plt.savefig(f"{current_execution}_cpu_user.png")
+            plt.savefig(f"{category}_{type_execution}_cpu_user.png")
             # Close the figure to free memory
             plt.close()
 
@@ -104,7 +104,7 @@ def plot_metrics(stats_by_category):
                          for execution_data in executions_data]
 
                 axs[i].plot(ns, memorys, marker='o', color='orange')
-                axs[i].set_title(f"{current_execution} - Memory Usage")
+                axs[i].set_title(f"{current_execution} - {type_execution} - Memory Usage")
                 axs[i].set_xlabel("n")
                 axs[i].set_ylabel("Memory (Bytes)")
                 axs[i].set_xscale('log')
@@ -118,7 +118,7 @@ def plot_metrics(stats_by_category):
                 fig.delaxes(axs[j])
 
             plt.tight_layout()
-            plt.savefig(f"{current_execution}_memory.png")
+            plt.savefig(f"{category}_{type_execution}_memory.png")
             plt.close()
 
 
