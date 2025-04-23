@@ -6,8 +6,8 @@ import math
 
 def extract_metrics(line):
     pattern = re.compile(
-        # r"AC - T(\d+)_(.*) \| Wall: ([\d.]+)s \| CPU User: ([\d.]+)s \| CPU Sys: ([\d.]+)s \| Max Memory:(\d+)B"
-        r"AC - T(\d+)_?(.*) \| Wall: ([\d.]+)s \| CPU User: ([\d.]+)s \| CPU Sys: ([\d.]+)s \| Heap: (\d+)B \| Stack: (\d+)B"
+        r"AC - T(\d+)_?(.*) \| Wall: ([\d.]+)s \| CPU User: ([\d.]+)s \| CPU Sys: ([\d.]+)s \| Max Memory: (\d+)B"
+        #r"AC - T(\d+)_?(.*) \| Wall: ([\d.]+)s \| CPU User: ([\d.]+)s \| CPU Sys: ([\d.]+)s \| Heap: (\d+)B \| Stack: (\d+)B"
     )
     match = pattern.search(line)
     if match:
@@ -16,16 +16,18 @@ def extract_metrics(line):
         wall_time = float(match.group(3))
         cpu_user = float(match.group(4))
         cpu_sys = float(match.group(5))
-        heap_usage = int(match.group(6))
-        stack_usage = int(match.group(7))
+        memory_usage = int(match.group(6))
+        #heap_usage = int(match.group(6))
+        #stack_usage = int(match.group(7))
         return {
             "n": 10 ** n_exp,
             "type_testcase": type_testcase,
             "wall_time": wall_time,
             "cpu_user": cpu_user,
             "cpu_sys": cpu_sys,
-            "heap": heap_usage,
-            "stack": stack_usage
+            "memory": memory_usage
+            #"heap": heap_usage,
+            #"stack": stack_usage
         }
     else:
         return None
@@ -98,13 +100,13 @@ def plot_metrics(stats_by_category):
                 executions_data = stats_by_category[category][type_execution][current_execution]
                 ns = [execution_data["n"]
                       for execution_data in executions_data]
-                heaps = [execution_data["heap"]
+                memorys = [execution_data["memory"]
                          for execution_data in executions_data]
 
-                axs[i].plot(ns, heaps, marker='o', color='orange')
-                axs[i].set_title(f"{current_execution} - Heap Usage")
+                axs[i].plot(ns, memorys, marker='o', color='orange')
+                axs[i].set_title(f"{current_execution} - Memory Usage")
                 axs[i].set_xlabel("n")
-                axs[i].set_ylabel("Heap (Bytes)")
+                axs[i].set_ylabel("Memory (Bytes)")
                 axs[i].set_xscale('log')
                 axs[i].ticklabel_format(
                     axis='y',
@@ -116,7 +118,7 @@ def plot_metrics(stats_by_category):
                 fig.delaxes(axs[j])
 
             plt.tight_layout()
-            plt.savefig(f"{current_execution}_heap.png")
+            plt.savefig(f"{current_execution}_memory.png")
             plt.close()
 
 
