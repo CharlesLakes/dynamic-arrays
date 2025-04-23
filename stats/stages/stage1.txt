@@ -27,35 +27,6 @@ AC - T7_0 | Wall: 46.850934s | CPU User: 5.978167s | CPU Sys: 2.148404s | Heap: 
 AC - T7_0_push_random_then_pop | Wall: 46.358289s | CPU User: 5.803389s | CPU Sys: 2.096242s | Heap: 53485052B | Stack: 760B
 AC - T7_0_push_then_random | Wall: 54.042138s | CPU User: 6.590435s | CPU Sys: 2.634006s | Heap: 60153340B | Stack: 752B
 AC - T7_0_random_then_pop | Wall: 40.211274s | CPU User: 4.845930s | CPU Sys: 1.968658s | Heap: 40148476B | Stack: 760B
-Running Brodnik (C) Stack Test...
-AC - T1_0 | Wall: 0.007004s | CPU User: 0.000733s | CPU Sys: 0.000000s | Heap: 4608B | Stack: 7736B
-AC - T1_0_push_random_then_pop | Wall: 0.010486s | CPU User: 0.000741s | CPU Sys: 0.000000s | Heap: 4608B | Stack: 7736B
-AC - T1_0_push_then_random | Wall: 0.006736s | CPU User: 0.000687s | CPU Sys: 0.000000s | Heap: 4608B | Stack: 7736B
-AC - T1_0_random_then_pop | Wall: 0.006770s | CPU User: 0.000703s | CPU Sys: 0.000000s | Heap: 4608B | Stack: 7736B
-AC - T2_0 | Wall: 0.010190s | CPU User: 0.000772s | CPU Sys: 0.000000s | Heap: 4608B | Stack: 7736B
-AC - T2_0_push_random_then_pop | Wall: 0.011005s | CPU User: 0.000782s | CPU Sys: 0.000000s | Heap: 4608B | Stack: 7736B
-AC - T2_0_push_then_random | Wall: 0.007742s | CPU User: 0.000740s | CPU Sys: 0.000000s | Heap: 4608B | Stack: 7736B
-AC - T2_0_random_then_pop | Wall: 0.009557s | CPU User: 0.000802s | CPU Sys: 0.000000s | Heap: 4608B | Stack: 7736B
-AC - T3_0 | Wall: 0.010466s | CPU User: 0.001168s | CPU Sys: 0.000000s | Heap: 5116B | Stack: 2688B
-AC - T3_0_push_random_then_pop | Wall: 0.011340s | CPU User: 0.001189s | CPU Sys: 0.000000s | Heap: 7036B | Stack: 2688B
-AC - T3_0_push_then_random | Wall: 0.011726s | CPU User: 0.001376s | CPU Sys: 0.000000s | Heap: 7676B | Stack: 2688B
-AC - T3_0_random_then_pop | Wall: 0.013211s | CPU User: 0.001182s | CPU Sys: 0.000000s | Heap: 5244B | Stack: 2688B
-AC - T4_0 | Wall: 0.052037s | CPU User: 0.002651s | CPU Sys: 0.002651s | Heap: 43004B | Stack: 2688B
-AC - T4_0_push_random_then_pop | Wall: 0.049702s | CPU User: 0.000000s | CPU Sys: 0.005424s | Heap: 56316B | Stack: 2688B
-AC - T4_0_push_then_random | Wall: 0.054526s | CPU User: 0.005790s | CPU Sys: 0.000000s | Heap: 62972B | Stack: 2688B
-AC - T4_0_random_then_pop | Wall: 0.044326s | CPU User: 0.000000s | CPU Sys: 0.004661s | Heap: 43004B | Stack: 2688B
-AC - T5_0 | Wall: 0.422560s | CPU User: 0.023231s | CPU Sys: 0.023231s | Heap: 409084B | Stack: 2688B
-AC - T5_0_push_random_then_pop | Wall: 0.412612s | CPU User: 0.031821s | CPU Sys: 0.012728s | Heap: 545276B | Stack: 2688B
-AC - T5_0_push_then_random | Wall: 0.490468s | CPU User: 0.025662s | CPU Sys: 0.025662s | Heap: 610812B | Stack: 2688B
-AC - T5_0_random_then_pop | Wall: 0.379359s | CPU User: 0.000000s | CPU Sys: 0.039171s | Heap: 409084B | Stack: 2688B
-AC - T6_0 | Wall: 4.417808s | CPU User: 0.179830s | CPU Sys: 0.269746s | Heap: 4022780B | Stack: 2688B
-AC - T6_0_push_random_then_pop | Wall: 4.385414s | CPU User: 0.222642s | CPU Sys: 0.222642s | Heap: 5370364B | Stack: 2688B
-AC - T6_0_push_then_random | Wall: 5.046207s | CPU User: 0.211078s | CPU Sys: 0.306062s | Heap: 6038012B | Stack: 2688B
-AC - T6_0_random_then_pop | Wall: 3.816508s | CPU User: 0.132134s | CPU Sys: 0.249587s | Heap: 4018684B | Stack: 2688B
-AC - T7_0 | Wall: 42.883874s | CPU User: 2.342737s | CPU Sys: 2.100021s | Heap: 40092156B | Stack: 2688B
-AC - T7_0_push_random_then_pop | Wall: 43.857965s | CPU User: 2.157991s | CPU Sys: 2.309810s | Heap: 53412348B | Stack: 2688B
-AC - T7_0_push_then_random | Wall: 51.985695s | CPU User: 2.645589s | CPU Sys: 2.599778s | Heap: 60080636B | Stack: 2688B
-AC - T7_0_random_then_pop | Wall: 37.571496s | CPU User: 1.881611s | CPU Sys: 1.952425s | Heap: 40075772B | Stack: 2688B
 Running STL Stack Deque (C++) Stack Test...
 AC - T1_0 | Wall: 0.008270s | CPU User: 0.001357s | CPU Sys: 0.000000s | Heap: 77888B | Stack: 7736B
 AC - T1_0_push_random_then_pop | Wall: 0.008456s | CPU User: 0.001356s | CPU Sys: 0.000000s | Heap: 77888B | Stack: 7736B
@@ -151,14 +122,6 @@ AC - T4_0 | Wall: 0.046309s | CPU User: 0.014660s | CPU Sys: 0.000000s | Heap: 1
 AC - T5_0 | Wall: 0.376404s | CPU User: 0.124680s | CPU Sys: 0.026717s | Heap: 890360B | Stack: 1456B
 AC - T6_0 | Wall: 4.005657s | CPU User: 1.500736s | CPU Sys: 0.210294s | Heap: 8109560B | Stack: 1368B
 AC - T7_0 | Wall: 41.303692s | CPU User: 17.748652s | CPU Sys: 1.337227s | Heap: 8109560B | Stack: 1368B
-Running Brodnik (C) Sort Test...
-AC - T1_0 | Wall: 0.007051s | CPU User: 0.000756s | CPU Sys: 0.000000s | Heap: 728B | Stack: 7736B
-AC - T2_0 | Wall: 0.007069s | CPU User: 0.000771s | CPU Sys: 0.000000s | Heap: 4608B | Stack: 7736B
-AC - T3_0 | Wall: 0.010071s | CPU User: 0.000000s | CPU Sys: 0.001675s | Heap: 9720B | Stack: 2672B
-AC - T4_0 | Wall: 0.040411s | CPU User: 0.011627s | CPU Sys: 0.000000s | Heap: 85496B | Stack: 2672B
-AC - T5_0 | Wall: 0.364897s | CPU User: 0.094679s | CPU Sys: 0.034429s | Heap: 817656B | Stack: 2672B
-AC - T6_0 | Wall: 3.707841s | CPU User: 1.206231s | CPU Sys: 0.223737s | Heap: 8036856B | Stack: 2392B
-AC - T7_0 | Wall: 37.256883s | CPU User: 14.643659s | CPU Sys: 1.205115s | Heap: 8036856B | Stack: 2392B
 Running STL Vector (C++) Sort Test...
 AC - T1_0 | Wall: 0.008991s | CPU User: 0.001449s | CPU Sys: 0.000000s | Heap: 77352B | Stack: 7736B
 AC - T2_0 | Wall: 0.008751s | CPU User: 0.001523s | CPU Sys: 0.000000s | Heap: 77712B | Stack: 7736B
@@ -175,14 +138,6 @@ AC - T4_0 | Wall: 0.037666s | CPU User: 0.008632s | CPU Sys: 0.000000s | Heap: 1
 AC - T5_0 | Wall: 0.380674s | CPU User: 0.029082s | CPU Sys: 0.058162s | Heap: 481788B | Stack: 2088B
 AC - T6_0 | Wall: 4.261337s | CPU User: 0.893860s | CPU Sys: 0.166300s | Heap: 4091388B | Stack: 752B
 AC - T7_0 | Wall: 51.498894s | CPU User: 12.523892s | CPU Sys: 2.126150s | Heap: 40148476B | Stack: 752B
-Running Brodnik (C) Binary Search Test...
-AC - T1_0 | Wall: 0.006562s | CPU User: 0.000709s | CPU Sys: 0.000000s | Heap: 4608B | Stack: 7736B
-AC - T2_0 | Wall: 0.007158s | CPU User: 0.000731s | CPU Sys: 0.000000s | Heap: 4608B | Stack: 7736B
-AC - T3_0 | Wall: 0.008879s | CPU User: 0.001093s | CPU Sys: 0.000000s | Heap: 5116B | Stack: 2704B
-AC - T4_0 | Wall: 0.032375s | CPU User: 0.005495s | CPU Sys: 0.000000s | Heap: 43004B | Stack: 2704B
-AC - T5_0 | Wall: 0.348798s | CPU User: 0.037914s | CPU Sys: 0.022749s | Heap: 409084B | Stack: 2704B
-AC - T6_0 | Wall: 3.881536s | CPU User: 0.533568s | CPU Sys: 0.205218s | Heap: 4018684B | Stack: 2704B
-AC - T7_0 | Wall: 47.968089s | CPU User: 9.064639s | CPU Sys: 2.019088s | Heap: 40075772B | Stack: 2704B
 Running STL Vector (C++) Binary Search Test...
 AC - T1_0 | Wall: 0.008409s | CPU User: 0.001735s | CPU Sys: 0.000000s | Heap: 77352B | Stack: 7736B
 AC - T2_0 | Wall: 0.007962s | CPU User: 0.001395s | CPU Sys: 0.000000s | Heap: 77712B | Stack: 7736B
@@ -195,10 +150,6 @@ Running Brodnik (C++) Linear Search Test...
 AC - T1_0 | Wall: 0.008040s | CPU User: 0.000000s | CPU Sys: 0.001370s | Heap: 77420B | Stack: 7736B
 AC - T2_0 | Wall: 0.008187s | CPU User: 0.001459s | CPU Sys: 0.000000s | Heap: 77980B | Stack: 2984B
 AC - T3_0 | Wall: 0.019836s | CPU User: 0.011545s | CPU Sys: 0.000000s | Heap: 81916B | Stack: 2432B
-Running Brodnik (C) Linear Search Test...
-AC - T1_0 | Wall: 0.007096s | CPU User: 0.000690s | CPU Sys: 0.000000s | Heap: 4608B | Stack: 7736B
-AC - T2_0 | Wall: 0.006897s | CPU User: 0.000785s | CPU Sys: 0.000000s | Heap: 1180B | Stack: 7736B
-AC - T3_0 | Wall: 0.018484s | CPU User: 0.009356s | CPU Sys: 0.000000s | Heap: 5116B | Stack: 2688B
 Running STL Vector (C++) Linear Search Test...
 AC - T1_0 | Wall: 0.008079s | CPU User: 0.001512s | CPU Sys: 0.000000s | Heap: 77352B | Stack: 7736B
 AC - T2_0 | Wall: 0.007870s | CPU User: 0.001404s | CPU Sys: 0.000000s | Heap: 77712B | Stack: 7736B
