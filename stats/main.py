@@ -32,20 +32,24 @@ def extract_metrics(line):
 
 
 # Function to plot metrics for each execution
-
-
 def plot_metrics(stats_by_category):
+    # Loop through each category (e.g., algorithm type)
     for category in stats_by_category:
         for type_execution in stats_by_category[category]:
+            # Get all execution names under this type
             executions = list(
                 stats_by_category[category][type_execution].keys())
             n = len(executions)
+
+            # Determine subplot grid size dynamically
             rows = math.ceil(n / 2)
             cols = 2 if n > 1 else 1
 
+            # Create subplots with appropriate size
             fig, axs = plt.subplots(rows, cols, figsize=(7 * cols, 4 * rows))
             axs = axs.flatten() if n > 1 else [axs]
 
+            # Plot CPU user time for each execution
             for i, current_execution in enumerate(executions):
                 executions_data = stats_by_category[category][type_execution][current_execution]
                 ns = [execution_data["n"]
@@ -57,20 +61,28 @@ def plot_metrics(stats_by_category):
                 axs[i].set_title(f"{current_execution} - CPU User Time")
                 axs[i].set_xlabel("n")
                 axs[i].set_ylabel("CPU User Time (s)")
+                # Use log scale on x-axis
                 axs[i].set_xscale('log')
+                # Scientific notation on y-axis
                 axs[i].ticklabel_format(
                     axis='y',
                     style='sci',
                     scilimits=(0, 0))
+                # Show major and minor grid lines
                 axs[i].grid(True, which='both')
 
+            # Remove unused subplots if any
             for j in range(i + 1, len(axs)):
                 fig.delaxes(axs[j])
 
+            # Optimize spacing between subplots
             plt.tight_layout()
+            # Save figure
             plt.savefig(f"{current_execution}_cpu_user.png")
+            # Close the figure to free memory
             plt.close()
 
+    # Repeat the same process for Heap usage metric
     for category in stats_by_category:
         for type_execution in stats_by_category[category]:
             executions = list(
