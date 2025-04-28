@@ -7,7 +7,7 @@ import math
 def extract_metrics(line):
     pattern = re.compile(
         r"AC - T(\d+)_?(.*) \| Wall: ([\d.]+)s \| CPU User: ([\d.]+)s \| CPU Sys: ([\d.]+)s \| Max Memory: (\d+)B"
-        #r"AC - T(\d+)_?(.*) \| Wall: ([\d.]+)s \| CPU User: ([\d.]+)s \| CPU Sys: ([\d.]+)s \| Heap: (\d+)B \| Stack: (\d+)B"
+        # r"AC - T(\d+)_?(.*) \| Wall: ([\d.]+)s \| CPU User: ([\d.]+)s \| CPU Sys: ([\d.]+)s \| Heap: (\d+)B \| Stack: (\d+)B"
     )
     match = pattern.search(line)
     if match:
@@ -17,8 +17,8 @@ def extract_metrics(line):
         cpu_user = float(match.group(4))
         cpu_sys = float(match.group(5))
         memory_usage = int(match.group(6))
-        #heap_usage = int(match.group(6))
-        #stack_usage = int(match.group(7))
+        # heap_usage = int(match.group(6))
+        # stack_usage = int(match.group(7))
         return {
             "n": 10 ** n_exp,
             "type_testcase": type_testcase,
@@ -26,8 +26,8 @@ def extract_metrics(line):
             "cpu_user": cpu_user,
             "cpu_sys": cpu_sys,
             "memory": memory_usage
-            #"heap": heap_usage,
-            #"stack": stack_usage
+            # "heap": heap_usage,
+            # "stack": stack_usage
         }
     else:
         return None
@@ -38,87 +38,30 @@ def plot_metrics(stats_by_category):
     # Loop through each category (e.g., algorithm type)
     for category in stats_by_category:
         for type_execution in stats_by_category[category]:
-            # Get all execution names under this type
             executions = list(
                 stats_by_category[category][type_execution].keys())
-            n = len(executions)
 
-            # Determine subplot grid size dynamically
-            rows = math.ceil(n / 2)
-            cols = 2 if n > 1 else 1
+            fig, ax = plt.subplots(figsize=(10, 6))
 
-            # Create subplots with appropriate size
-            fig, axs = plt.subplots(rows, cols, figsize=(7 * cols, 4 * rows))
-            axs = axs.flatten() if n > 1 else [axs]
-
-            # Plot CPU user time for each execution
-            for i, current_execution in enumerate(executions):
+            for current_execution in executions:
                 executions_data = stats_by_category[category][type_execution][current_execution]
                 ns = [execution_data["n"]
                       for execution_data in executions_data]
                 cpu_users = [execution_data["cpu_user"]
                              for execution_data in executions_data]
 
-                axs[i].plot(ns, cpu_users, marker='o', color='orange')
-                axs[i].set_title(f"{current_execution} - {type_execution} - CPU User Time")
-                axs[i].set_xlabel("n")
-                axs[i].set_ylabel("CPU User Time (s)")
-                # Use log scale on x-axis
-                axs[i].set_xscale('log')
-                # Scientific notation on y-axis
-                axs[i].ticklabel_format(
-                    axis='y',
-                    style='sci',
-                    scilimits=(0, 0))
-                # Show major and minor grid lines
-                axs[i].grid(True, which='both')
+                ax.plot(ns, cpu_users, marker='o', label=current_execution)
 
-            # Remove unused subplots if any
-            for j in range(i + 1, len(axs)):
-                fig.delaxes(axs[j])
+            ax.set_title(f"{category} - {type_execution} - CPU User Time")
+            ax.set_xlabel("n")
+            ax.set_ylabel("CPU User Time (s)")
+            ax.set_xscale('log')
+            ax.ticklabel_format(axis='y', style='sci', scilimits=(0, 0))
+            ax.grid(True, which='both')
+            ax.legend()
 
-            # Optimize spacing between subplots
             plt.tight_layout()
-            # Save figure
             plt.savefig(f"{category}_{type_execution}_cpu_user.png")
-            # Close the figure to free memory
-            plt.close()
-
-    # Repeat the same process for Heap usage metric
-    for category in stats_by_category:
-        for type_execution in stats_by_category[category]:
-            executions = list(
-                stats_by_category[category][type_execution].keys())
-            n = len(executions)
-            rows = math.ceil(n / 2)
-            cols = 2 if n > 1 else 1
-
-            fig, axs = plt.subplots(rows, cols, figsize=(7 * cols, 4 * rows))
-            axs = axs.flatten() if n > 1 else [axs]
-
-            for i, current_execution in enumerate(executions):
-                executions_data = stats_by_category[category][type_execution][current_execution]
-                ns = [execution_data["n"]
-                      for execution_data in executions_data]
-                memorys = [execution_data["memory"]
-                         for execution_data in executions_data]
-
-                axs[i].plot(ns, memorys, marker='o', color='orange')
-                axs[i].set_title(f"{current_execution} - {type_execution} - Memory Usage")
-                axs[i].set_xlabel("n")
-                axs[i].set_ylabel("Memory (Bytes)")
-                axs[i].set_xscale('log')
-                axs[i].ticklabel_format(
-                    axis='y',
-                    style='sci',
-                    scilimits=(0, 0))
-                axs[i].grid(True, which='both')
-
-            for j in range(i + 1, len(axs)):
-                fig.delaxes(axs[j])
-
-            plt.tight_layout()
-            plt.savefig(f"{category}_{type_execution}_memory.png")
             plt.close()
 
 
