@@ -34,14 +34,15 @@ def extract_metrics(line):
 
 
 # Function to plot metrics for each execution
+
 def plot_metrics(stats_by_category):
-    # Loop through each category (e.g., algorithm type)
+    # Plot CPU User Time
     for category in stats_by_category:
         for type_execution in stats_by_category[category]:
             executions = list(
                 stats_by_category[category][type_execution].keys())
 
-            fig, ax = plt.subplots(figsize=(10, 6))
+            _, ax = plt.subplots(figsize=(10, 6))
 
             for current_execution in executions:
                 executions_data = stats_by_category[category][type_execution][current_execution]
@@ -59,9 +60,36 @@ def plot_metrics(stats_by_category):
             ax.ticklabel_format(axis='y', style='sci', scilimits=(0, 0))
             ax.grid(True, which='both')
             ax.legend()
-
             plt.tight_layout()
             plt.savefig(f"{category}_{type_execution}_cpu_user.png")
+            plt.close()
+
+    # Plot Memory Usage
+    for category in stats_by_category:
+        for type_execution in stats_by_category[category]:
+            executions = list(
+                stats_by_category[category][type_execution].keys())
+
+            _, ax = plt.subplots(figsize=(10, 6))
+
+            for current_execution in executions:
+                executions_data = stats_by_category[category][type_execution][current_execution]
+                ns = [execution_data["n"]
+                      for execution_data in executions_data]
+                memorys = [execution_data["memory"]
+                           for execution_data in executions_data]
+
+                ax.plot(ns, memorys, marker='o', label=current_execution)
+
+            ax.set_title(f"{category} - {type_execution} - Memory Usage")
+            ax.set_xlabel("n")
+            ax.set_ylabel("Memory (Bytes)")
+            ax.set_xscale('log')
+            ax.ticklabel_format(axis='y', style='sci', scilimits=(0, 0))
+            ax.grid(True, which='both')
+            ax.legend()
+            plt.tight_layout()
+            plt.savefig(f"{category}_{type_execution}_memory.png")
             plt.close()
 
 
