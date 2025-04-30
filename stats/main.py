@@ -46,10 +46,14 @@ def plot_metrics(stats_by_category):
 
             for current_execution in executions:
                 executions_data = stats_by_category[category][type_execution][current_execution]
-                ns = [execution_data["n"]
-                      for execution_data in executions_data]
-                cpu_users = [execution_data["cpu_user"]
-                             for execution_data in executions_data]
+                aux_ns = [(execution_data["n"], i)
+                          for i, execution_data in enumerate(executions_data)]
+                aux_cpu_users = [execution_data["cpu_user"]
+                                 for execution_data in executions_data]
+                aux_ns.sort()
+
+                ns = [execution_data for execution_data, _ in aux_ns]
+                cpu_users = [aux_cpu_users[i] for _, i in aux_ns]
 
                 ax.plot(ns, cpu_users, marker='o', label=current_execution)
 
@@ -74,10 +78,14 @@ def plot_metrics(stats_by_category):
 
             for current_execution in executions:
                 executions_data = stats_by_category[category][type_execution][current_execution]
-                ns = [execution_data["n"]
-                      for execution_data in executions_data]
-                memorys = [execution_data["memory"]
-                           for execution_data in executions_data]
+                aux_ns = [(execution_data["n"], i)
+                          for i, execution_data in enumerate(executions_data)]
+                aux_memorys = [execution_data["memory"]
+                               for execution_data in executions_data]
+                aux_ns.sort()
+
+                ns = [execution_data for execution_data, _ in aux_ns]
+                memorys = [aux_memorys[i] for _, i in aux_ns]
 
                 ax.plot(ns, memorys, marker='o', label=current_execution)
 
