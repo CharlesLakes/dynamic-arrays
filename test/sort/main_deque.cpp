@@ -3,8 +3,8 @@
 
 using namespace std;
 
-void merge(vector<int> &vec, int l, int r) {
-  vector<int> aux;
+void merge(deque<int> &vec, int l, int r) {
+  deque<int> aux;
   int mid = (l + r) / 2;
   int i = l, j = mid + 1;
 
@@ -27,7 +27,7 @@ void merge(vector<int> &vec, int l, int r) {
     vec[k] = aux[k - l];
 }
 
-void merge_sort(vector<int> &vec, int l, int r) {
+void merge_sort(deque<int> &vec, int l, int r) {
   if (l >= r)
     return;
   int mid = (l + r) / 2;
@@ -38,13 +38,13 @@ void merge_sort(vector<int> &vec, int l, int r) {
 }
 
 int main(){
-    int n;
-    cin >> n;
-    vector<int> nums(n);
-    for(int &num: nums) cin >> num;
-    merge_sort(nums,0,n - 1);
-    for(int num: nums) PRINT_INT(num); PRINT_END();
+  int n;
+  cin >> n;
+  deque<int> nums(n);
+  for(int &num: nums) cin >> num;
+  merge_sort(nums,0,n - 1);
+  for(int num: nums) PRINT_INT(num); PRINT_END();
 
-    PRINT_CHECK();
-    return 0;
+  PRINT_CHECK();
+  return 0;
 }
