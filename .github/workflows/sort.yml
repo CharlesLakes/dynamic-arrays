@@ -30,3 +30,6 @@ jobs:
       
       - name: Run STL Vector (C++) Sort Test
         run: python3 check.py test/sort/main_vector.cpp test/sort/
+
+      - name: Run STL Deque (C++) Sort Test
+        run: python3 check.py test/sort/main_deque.cpp test/sort/
