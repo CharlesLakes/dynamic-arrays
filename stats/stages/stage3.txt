@@ -214,8 +214,35 @@ AC - T5 | Wall: 0.069748s | CPU User: 0.066916s | CPU Sys: 0.001998s | Max Memor
 AC - T4 | Wall: 0.017698s | CPU User: 0.014076s | CPU Sys: 0.003017s | Max Memory: 3407872B
 AC - T1 | Wall: 0.002223s | CPU User: 0.000000s | CPU Sys: 0.001676s | Max Memory: 2490368B
 Running Brodnik (C++) Binary Search Test...
+AC - T8 | Wall: 104.661188s | CPU User: 104.105510s | CPU Sys: 0.552038s | Max Memory: 404094976B
+AC - T2 | Wall: 0.002141s | CPU User: 0.000000s | CPU Sys: 0.001357s | Max Memory: 2621440B
+AC - T3 | Wall: 0.028267s | CPU User: 0.005836s | CPU Sys: 0.001168s | Max Memory: 3276800B
+AC - T7 | Wall: 10.009030s | CPU User: 9.939798s | CPU Sys: 0.068006s | Max Memory: 43646976B
+AC - T6 | Wall: 0.961506s | CPU User: 0.951611s | CPU Sys: 0.008996s | Max Memory: 7471104B
+AC - T9 | Wall: 1103.953836s | CPU User: 1098.564416s | CPU Sys: 5.357531s | Max Memory: 4005101568B
+AC - T5 | Wall: 0.093318s | CPU User: 0.088472s | CPU Sys: 0.003978s | Max Memory: 3801088B
+AC - T4 | Wall: 0.019114s | CPU User: 0.017349s | CPU Sys: 0.001021s | Max Memory: 3407872B
+AC - T1 | Wall: 0.002677s | CPU User: 0.000993s | CPU Sys: 0.000993s | Max Memory: 2883584B
 Running Brodnik (C) Binary Search Test...
+AC - T8 | Wall: 54.722821s | CPU User: 54.187385s | CPU Sys: 0.530980s | Max Memory: 402128896B
+AC - T2 | Wall: 0.001524s | CPU User: 0.000730s | CPU Sys: 0.000000s | Max Memory: 131072B
+AC - T3 | Wall: 0.003672s | CPU User: 0.002051s | CPU Sys: 0.001025s | Max Memory: 1572864B
+AC - T7 | Wall: 5.105271s | CPU User: 5.050517s | CPU Sys: 0.053929s | Max Memory: 41811968B
+AC - T6 | Wall: 0.460618s | CPU User: 0.450672s | CPU Sys: 0.008994s | Max Memory: 5636096B
+AC - T9 | Wall: 584.169838s | CPU User: 578.597775s | CPU Sys: 5.559800s | Max Memory: 4003241984B
+AC - T5 | Wall: 0.044187s | CPU User: 0.042355s | CPU Sys: 0.000985s | Max Memory: 1966080B
+AC - T4 | Wall: 0.012863s | CPU User: 0.011233s | CPU Sys: 0.001021s | Max Memory: 1703936B
+AC - T1 | Wall: 0.001225s | CPU User: 0.000000s | CPU Sys: 0.000706s | Max Memory: 655360B
 Running STL Vector (C++) Binary Search Test...
+AC - T8 | Wall: 80.750633s | CPU User: 80.128689s | CPU Sys: 0.617999s | Max Memory: 403439616B
+AC - T2 | Wall: 0.002197s | CPU User: 0.001398s | CPU Sys: 0.000000s | Max Memory: 2752512B
+AC - T3 | Wall: 0.007333s | CPU User: 0.003296s | CPU Sys: 0.003296s | Max Memory: 3276800B
+AC - T7 | Wall: 7.878790s | CPU User: 7.815594s | CPU Sys: 0.061976s | Max Memory: 43253760B
+AC - T6 | Wall: 0.791508s | CPU User: 0.786481s | CPU Sys: 0.004003s | Max Memory: 7471104B
+AC - T9 | Wall: 823.355180s | CPU User: 818.235461s | CPU Sys: 5.114077s | Max Memory: 4003332096B
+AC - T5 | Wall: 0.077336s | CPU User: 0.073349s | CPU Sys: 0.003014s | Max Memory: 3670016B
+AC - T4 | Wall: 0.019162s | CPU User: 0.016109s | CPU Sys: 0.002014s | Max Memory: 3276800B
+AC - T1 | Wall: 0.002726s | CPU User: 0.001032s | CPU Sys: 0.001032s | Max Memory: 2752512B
 Running Brodnik (C++) Linear Search Test...
 Running Brodnik (C) Linear Search Test...
 Running STL Vector (C++) Linear Search Test...
