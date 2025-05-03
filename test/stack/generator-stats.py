@@ -41,29 +41,29 @@ for n in range(1, 10):
     size = 10**n
 
     write(
-        f"T{n}_0_random",
+        f"T{n}_random",
         f"{size}\n"
     )
 
     for i in range(size):
         write(
-            f"T{n}_0_random",
+            f"T{n}_random",
             str(randint(1, 1000000000)) + (" " if size > i + 1 else "\n")
         )
 
     write(
-        f"T{n}_0_random",
+        f"T{n}_random",
         f"{size}\n"
     )
 
     for i in range(size):
         write(
-            f"T{n}_0_random",
+            f"T{n}_random",
             f"{randint(0, 1)} {randint(1, 1000000000)}\n"
         )
 
     count_write = -1
-    write(f"T{n}_0_random", "")
+    write(f"T{n}_random", "")
 
 # --- push then random ---
 
@@ -71,20 +71,20 @@ for n in range(1, 10):
     size = 10**n
 
     write(
-        f"T{n}_0_push_then_random",
+        f"T{n}_push_then_random",
         f"{size}\n"
     )
 
     for i in range(size):
         write(
-            f"T{n}_0_push_then_random",
+            f"T{n}_push_then_random",
             str(randint(1, 1000000000)) + (" " if size > i + 1 else "\n")
         )
 
     queries = (size // 2) * 2
 
     write(
-        f"T{n}_0_push_then_random",
+        f"T{n}_push_then_random",
         f"{queries}\n"
     )
 
@@ -92,7 +92,7 @@ for n in range(1, 10):
 
     for i in range(size // 2):
         write(
-            f"T{n}_0_push_then_random",
+            f"T{n}_push_then_random",
             f"{1} {randint(1, 1000000000)}\n"
         )
 
@@ -100,12 +100,12 @@ for n in range(1, 10):
 
     for i in range(size // 2):
         write(
-            f"T{n}_0_push_then_random",
+            f"T{n}_push_then_random",
             f"{randint(0, 1)} {randint(1, 1000000000)}\n"
         )
 
     count_write = -1
-    write(f"T{n}_0_push_then_random", "")
+    write(f"T{n}_push_then_random", "")
 
 # -- random then pop --
 
@@ -113,20 +113,20 @@ for n in range(1, 10):
     size = 10**n
 
     write(
-        f"T{n}_0_random_then_pop",
+        f"T{n}_random_then_pop",
         f"{size}\n"
     )
 
     for i in range(size):
         write(
-            f"T{n}_0_random_then_pop",
+            f"T{n}_random_then_pop",
             str(randint(1, 1000000000)) + (" " if size > i + 1 else "\n")
         )
 
     queries = (size // 2) * 2
 
     write(
-        f"T{n}_0_random_then_pop",
+        f"T{n}_random_then_pop",
         f"{queries}\n"
     )
 
@@ -134,7 +134,7 @@ for n in range(1, 10):
 
     for i in range(size // 2):
         write(
-            f"T{n}_0_random_then_pop",
+            f"T{n}_random_then_pop",
             f"{randint(0, 1)} {randint(1, 1000000000)}\n"
         )
 
@@ -142,12 +142,12 @@ for n in range(1, 10):
 
     for i in range(size // 2):
         write(
-            f"T{n}_0_random_then_pop",
+            f"T{n}_random_then_pop",
             f"{0} {0}\n"
         )
 
     count_write = -1
-    write(f"T{n}_0_random_then_pop", "")
+    write(f"T{n}_random_then_pop", "")
 
 # --- push random then pop ---
 
@@ -155,20 +155,20 @@ for n in range(1, 10):
     size = 10**n
 
     write(
-        f"T{n}_0_push_random_then_pop",
+        f"T{n}_push_random_then_pop",
         f"{size}\n"
     )
 
     for i in range(size):
         write(
-            f"T{n}_0_push_random_then_pop",
+            f"T{n}_push_random_then_pop",
             str(randint(1, 1000000000)) + (" " if size > i + 1 else "\n")
         )
 
     queries = (size // 3) * 3
 
     write(
-        f"T{n}_0_push_random_then_pop",
+        f"T{n}_push_random_then_pop",
         f"{queries}\n"
     )
 
@@ -176,7 +176,7 @@ for n in range(1, 10):
 
     for i in range(size // 3):
         write(
-            f"T{n}_0_push_random_then_pop",
+            f"T{n}_push_random_then_pop",
             f"{1} {randint(1, 1000000000)}\n"
         )
 
@@ -184,7 +184,7 @@ for n in range(1, 10):
 
     for i in range(size // 3):
         write(
-            f"T{n}_0_push_random_then_pop",
+            f"T{n}_push_random_then_pop",
             f"{randint(0, 1)} {randint(1, 1000000000)}\n"
         )
 
@@ -192,9 +192,43 @@ for n in range(1, 10):
 
     for i in range(size // 3):
         write(
-            f"T{n}_0_push_random_then_pop",
+            f"T{n}_push_random_then_pop",
             f"{0} {0}\n"
         )
 
     count_write = -1
-    write(f"T{n}_0_push_random_then_pop", "")
+    write(f"T{n}_push_random_then_pop", "")
+
+# n/2 push + n/2 pop
+
+for n in range(1, 10):
+    size = 10**n
+
+    write(
+        f"T{n}_push_then_pop",
+        f"{size}\n"
+    )
+
+    for i in range(size):
+        write(
+            f"T{n}_push_then_pop",
+            str(randint(1, 1000000000)) + (" " if size > i + 1 else "\n")
+        )
+
+    queries = (size // 2) * 2
+
+    # -- push --
+
+    for i in range(size // 3):
+        write(
+            f"T{n}_push_then_pop",
+            f"{1} {randint(1, 1000000000)}\n"
+        )
+
+    # -- pop --
+
+    for i in range(size // 3):
+        write(
+            f"T{n}_push_then_pop",
+            f"{0} {0}\n"
+        )
