@@ -156,7 +156,6 @@ AC - T3_0_random | Wall: 0.019124s | CPU User: 0.003266s | CPU Sys: 0.000000s | 
 AC - T8_0_random_then_pop | Wall: 83.175486s | CPU User: 79.069438s | CPU Sys: 3.052973s | Max Memory: 4803395584B
 AC - T5_0_push_then_random | Wall: 0.177706s | CPU User: 0.167951s | CPU Sys: 0.006998s | Max Memory: 10223616B
 AC - T3_0_random_then_pop | Wall: 0.006060s | CPU User: 0.001886s | CPU Sys: 0.001887s | Max Memory: 3276800B
-AC - T9_0_random | Wall: 498.523430s | CPU User: 456.168114s | CPU Sys: 25.742175s | Max Memory: 32205307904B
 AC - T5_0_random_then_pop | Wall: 0.244608s | CPU User: 0.132390s | CPU Sys: 0.009027s | Max Memory: 8257536B
 AC - T3_0_push_then_random | Wall: 0.068447s | CPU User: 0.005293s | CPU Sys: 0.003175s | Max Memory: 3407872B
 AC - T2_0_push_then_random | Wall: 0.017733s | CPU User: 0.004794s | CPU Sys: 0.000000s | Max Memory: 2490368B
@@ -166,15 +165,12 @@ AC - T6_0_random | Wall: 1.211936s | CPU User: 1.063131s | CPU Sys: 0.032938s | 
 AC - T4_0_random_then_pop | Wall: 0.067212s | CPU User: 0.021766s | CPU Sys: 0.002073s | Max Memory: 3801088B
 AC - T1_0_random | Wall: 0.003193s | CPU User: 0.000000s | CPU Sys: 0.001354s | Max Memory: 2359296B
 AC - T7_0_push_then_random | Wall: 10.945983s | CPU User: 10.190512s | CPU Sys: 0.378123s | Max Memory: 643432448B
-AC - T9_0_push_then_random | Wall: 482.959425s | CPU User: 452.035014s | CPU Sys: 20.751874s | Max Memory: 32202948608B
 AC - T6_0_random_then_pop | Wall: 1.036229s | CPU User: 0.821421s | CPU Sys: 0.048086s | Max Memory: 51511296B
 AC - T6_0_push_then_random | Wall: 1.686172s | CPU User: 1.577804s | CPU Sys: 0.058996s | Max Memory: 67371008B
 AC - T8_0_push_then_random | Wall: 105.665765s | CPU User: 101.381959s | CPU Sys: 3.605872s | Max Memory: 6403522560B
 AC - T1_0_push_then_random | Wall: 0.003588s | CPU User: 0.000000s | CPU Sys: 0.001616s | Max Memory: 2752512B
 AC - T4_0_push_then_random | Wall: 0.046485s | CPU User: 0.024072s | CPU Sys: 0.002093s | Max Memory: 3932160B
 AC - T7_0_random | Wall: 10.748863s | CPU User: 10.255361s | CPU Sys: 0.355065s | Max Memory: 643563520B
-AC - T9_0_random_then_pop | Wall: 524.041052s | CPU User: 457.567562s | CPU Sys: 25.439352s | Max Memory: 32252100608B
-AC - T9_0_push_random_then_pop | Wall: 513.775576s | CPU User: 460.478566s | CPU Sys: 24.441165s | Max Memory: 32248299520B
 AC - T8_0_push_random_then_pop | Wall: 90.617511s | CPU User: 86.452739s | CPU Sys: 3.241739s | Max Memory: 5336858624B
 AC - T2_0_push_random_then_pop | Wall: 0.028586s | CPU User: 0.002011s | CPU Sys: 0.003017s | Max Memory: 3014656B
 AC - T1_0_push_random_then_pop | Wall: 0.004736s | CPU User: 0.000000s | CPU Sys: 0.003649s | Max Memory: 2490368B
