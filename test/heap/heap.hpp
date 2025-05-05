@@ -1,4 +1,6 @@
 #include <iostream>
+#include <algorithm>
+
 #define HEAP_PARENT(position) (position + 1)/2 - 1
 #define HEAP_LEFT_CHILD(position) 2*(position + 1) - 1
 #define HEAP_RIGHT_CHILD(position) 2*(position + 1)
@@ -17,7 +19,7 @@ class heap {
         heap();
 
         // destructor
-        ~heap();
+        //~heap();
 
         void push(T value);
         void pop();
@@ -25,67 +27,67 @@ class heap {
 };
 
 template <class t_darray,class T> 
-heap<class t_darray,class T>::heap(){
+heap<t_darray, T>::heap(){
     this->n_size = 0;
 }
 
 template <class t_darray,class T> 
-void heap<class t_darray,class T>::heapify_up(int position){
-    while(poistion){
+void heap<t_darray, T>::heapify_up(int position){
+    while(position){
         int parent = HEAP_PARENT(position);
-        if(arr[parante] < arr[position]){ 
-            swap(arr[parent],arr[position]);
+        if(arr[parent] < arr[position]){ 
+            std::swap(arr[parent],arr[position]);
         } else {
             return;
         }
-        position = parentl
+        position = parent;
     }
 }
 
 template <class t_darray,class T> 
-void heap<class t_darray,class T>::heapify_down(int position){
-    while(poistion < n){
+void heap<t_darray, T>::heapify_down(int position){
+    while(position < this->n_size){
         int left_child = HEAP_LEFT_CHILD(position);
         int right_child = HEAP_RIGHT_CHILD(position);
 
         
-        if(left_child >= n) 
+        if(left_child >= this->n_size) 
             return;
         
         int max_child = left_child;
 
-        if(right_child < n && arr[right_child] > arr[left_child])
+        if(right_child < this->n_size && arr[right_child] > arr[left_child])
             max_child = right_child;
 
         if(arr[max_child] <= arr[position]){
             return;
         }
 
-        swap(arr[right_child],arr[position]);
+        std::swap(arr[right_child],arr[position]);
         position = max_child;
     }
 }
 
 template <class t_darray,class T> 
-void heap<class t_darray,class T>::push(T value){
-    arr.push_back(value);
+void heap<t_darray, T>::push(T value){
+    this->arr.push_back(value);
     heapify_up(n_size);
-    n_size++;
+    this->n_size++;
 }
 
 template <class t_darray,class T> 
-void heap<class t_darray,class T>::pop(){
-    n_size--;
-    swap(arr[n_size],arr[0]);
-    arr.pop_back();
+void heap<t_darray, T>::pop(){
+    this->n_size--;
+    std::swap(arr[n_size],arr[0]);
+    this->arr.pop_back();
     heapify_down(0);
 }
 
 template <class t_darray,class T> 
-T heap<class t_darray,class T>::top(){
-    if(n_size == 0){
+T heap<t_darray, T>::top(){
+    if(this->n_size == 0){
         std::cerr << "Error: HEAP empty." << std::endl;
         exit(1);
     }
-    return arr[0];
+    return this->arr[0];
 }
