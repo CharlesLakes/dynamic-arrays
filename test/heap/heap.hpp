@@ -63,7 +63,7 @@ void heap<t_darray, T>::heapify_down(int position){
             return;
         }
 
-        std::swap(arr[right_child],arr[position]);
+        std::swap(arr[max_child],arr[position]);
         position = max_child;
     }
 }
@@ -71,7 +71,7 @@ void heap<t_darray, T>::heapify_down(int position){
 template <class t_darray,class T> 
 void heap<t_darray, T>::push(T value){
     this->arr.push_back(value);
-    heapify_up(n_size);
+    this->heapify_up(this->n_size);
     this->n_size++;
 }
 
@@ -80,7 +80,7 @@ void heap<t_darray, T>::pop(){
     this->n_size--;
     std::swap(arr[n_size],arr[0]);
     this->arr.pop_back();
-    heapify_down(0);
+    this->heapify_down(0);
 }
 
 template <class t_darray,class T> 
