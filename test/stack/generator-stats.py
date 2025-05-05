@@ -219,7 +219,7 @@ for n in range(1, 10):
 
     # -- push --
 
-    for i in range(size // 3):
+    for i in range(size // 2):
         write(
             f"T{n}_push_then_pop",
             f"{1} {randint(1, 1000000000)}\n"
@@ -227,8 +227,11 @@ for n in range(1, 10):
 
     # -- pop --
 
-    for i in range(size // 3):
+    for i in range(size // 2):
         write(
             f"T{n}_push_then_pop",
             f"{0} {0}\n"
         )
+    
+    count_write = -1
+    write(f"T{n}_push_then_pop", "")
