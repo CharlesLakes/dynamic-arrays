@@ -126,6 +126,26 @@ marp: true
 
 ---
 
+### Resultados: Stack (push then pop) (CPU)
+
+<div align="center">
+
+<img src="stack_push_then_pop_cpu_user.png">
+
+</div>
+
+---
+
+### Resultados: Stack (push then pop) (Memory)
+
+<div align="center">
+
+<img src="stack_push_then_pop_memory.png">
+
+</div>
+
+---
+
 ### Heap
 
 <style scoped>
