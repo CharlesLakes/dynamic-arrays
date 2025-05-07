@@ -174,15 +174,6 @@ AC - T6_push_then_pop | Wall: 1.089349s | CPU User: 1.061759s | CPU Sys: 0.02699
 AC - T2_push_then_pop | Wall: 0.004859s | CPU User: 0.000887s | CPU Sys: 0.003549s | Max Memory: 655360B
 AC - T5_push_then_pop | Wall: 0.081851s | CPU User: 0.080387s | CPU Sys: 0.001005s | Max Memory: 6815744B
 AC - T8_push_then_pop | Wall: 70.308873s | CPU User: 68.758581s | CPU Sys: 1.548013s | Max Memory: 3203923968B
-Running Brodnik (C) Stack Test...
-AC - T4_push_then_pop | Wall: 0.007916s | CPU User: 0.007433s | CPU Sys: 0.000000s | Max Memory: 1703936B
-AC - T3_push_then_pop | Wall: 0.002841s | CPU User: 0.002486s | CPU Sys: 0.000000s | Max Memory: 262144B
-AC - T7_push_then_pop | Wall: 2.819378s | CPU User: 2.720504s | CPU Sys: 0.096948s | Max Memory: 41811968B
-AC - T1_push_then_pop | Wall: 0.002319s | CPU User: 0.001896s | CPU Sys: 0.000000s | Max Memory: 131072B
-AC - T6_push_then_pop | Wall: 0.204355s | CPU User: 0.197738s | CPU Sys: 0.005992s | Max Memory: 5636096B
-AC - T2_push_then_pop | Wall: 0.002349s | CPU User: 0.000984s | CPU Sys: 0.001009s | Max Memory: 1572864B
-AC - T5_push_then_pop | Wall: 0.027701s | CPU User: 0.025430s | CPU Sys: 0.001956s | Max Memory: 2097152B
-AC - T8_push_then_pop | Wall: 19.108297s | CPU User: 18.578546s | CPU Sys: 0.519775s | Max Memory: 402259968B
 Running Brodnik (C++) Sort Test...
 AC - T8 | Wall: 267.110076s | CPU User: 264.939958s | CPU Sys: 2.042055s | Max Memory: 804175872B
 AC - T2 | Wall: 0.033779s | CPU User: 0.002798s | CPU Sys: 0.001865s | Max Memory: 3014656B
