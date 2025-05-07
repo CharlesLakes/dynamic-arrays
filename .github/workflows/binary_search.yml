@@ -2,6 +2,9 @@ name: Binary Search testing
 
 on:
   push:
+    paths:
+      - src/*
+      - test/binary_search/*
 
 jobs:
   test:
