@@ -2,6 +2,10 @@ name: Sort testing
 
 on:
   push:
+    paths:
+      - .github/workflows/sort.yml
+      - src/*
+      - test/sort/*
 
 jobs:
   test:

@@ -3,6 +3,7 @@ name: Binary Search testing
 on:
   push:
     paths:
+      - .github/workflows/binary_search.yml
       - src/*
       - test/binary_search/*
 

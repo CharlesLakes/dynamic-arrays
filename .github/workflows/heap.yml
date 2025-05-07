@@ -2,6 +2,10 @@ name: Heap testing
 
 on:
   push:
+    paths:
+      - .github/workflows/heap.yml
+      - src/*
+      - test/heap/*
 
 jobs:
   test:

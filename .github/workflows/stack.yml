@@ -2,6 +2,10 @@ name: Stack testing
 
 on:
   push:
+    paths:
+      - .github/workflows/stack.yml
+      - src/*
+      - test/stack/*
 
 jobs:
   test:

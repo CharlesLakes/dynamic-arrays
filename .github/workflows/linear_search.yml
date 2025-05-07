@@ -2,6 +2,10 @@ name: Linear Search testing
 
 on:
   push:
+    paths:
+      - .github/workflows/linear_search.yml
+      - src/*
+      - test/linear_search/*
 
 jobs:
   test:
