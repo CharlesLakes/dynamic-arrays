@@ -1,0 +1,32 @@
+name: Heap testing
+
+on:
+  push:
+
+jobs:
+  test:
+    name: Run Tests
+    env:
+      DEBUG_SO: "1"
+    runs-on: ubuntu-latest
+    steps:
+      - name: Update Package List and Install Dependencies
+        run: sudo apt-get update && sudo apt-get install -y valgrind
+
+      - name: Install psutil 
+        run: pip install psutil
+
+      - name: Clone Repository
+        uses: actions/checkout@v4
+
+      - name: Testcases generator
+        run: python3 test/heap/generator-pipeline.py
+
+      - name: Run Brodnik (C++) Heap Test
+        run: python3 check.py test/heap/main_brodnik.cpp test/heap/
+
+      - name: Run STL Deque (C) Heap Test
+        run: python3 check.py test/heap/main_deque.cpp test/heap/
+  
+      - name: Run STL Vector (C++) Heap Test
+        run: python3 check.py test/heap/main_vector.cpp test/heap/
