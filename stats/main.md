@@ -123,3 +123,46 @@ marp: true
 <img src="stack_random_then_pop_memory.png">
 
 </div>
+
+---
+
+### Heap
+
+<style scoped>
+pre,code{
+    font-size:15px;
+}
+</style>
+
+El heap fue implementado de forma personalizada, ya que el uso de la API de la STL resultaba demasiado complejo.
+
+```c++
+template <class t_darray,class T> 
+class heap {
+    private:
+        int n_size;
+        t_darray arr;
+
+        void heapify_up(int position);
+        void heapify_down(int position);
+
+    public:
+        // constructor
+        heap();
+
+        // destructor
+        //~heap();
+
+        void push(T value);
+        void pop();
+        T top();
+};
+```
+
+---
+
+### Heap
+
+Ya fue testeado, pero aún no se ha ejecutado en casos de gran tamaño.
+
+TODO: Implementar Dijkstra. Como la ejecución actual ya está en curso, puedo aprovechar el tiempo para comenzar con esta implementación.
