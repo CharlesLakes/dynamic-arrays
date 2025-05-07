@@ -28,6 +28,9 @@ python3 check.py test/sort/main_brodnik.c test/sort/ gcc
 echo "Running STL Vector (C++) Sort Test..."
 python3 check.py test/sort/main_vector.cpp test/sort/
 
+echo "Running STL Deque (C++) Sort Test..."
+python3 check.py test/sort/main_deque.cpp test/sort/
+
 echo "Running Brodnik (C++) Binary Search Test..."
 python3 check.py test/binary_search/main_brodnik.cpp test/binary_search/
 

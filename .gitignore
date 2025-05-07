@@ -10,3 +10,5 @@ main.c*
 
 .venv
 *.png
+
+__pycache__

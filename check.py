@@ -49,8 +49,8 @@ def get_memory_usage_all(binary_path, input_path):
     process = subprocess.Popen(
         [binary_path],
         stdin=open(input_path, 'r'),
-        stdout=subprocess.PIPE,
-        stderr=subprocess.PIPE)
+        stdout=subprocess.DEVNULL,
+        stderr=subprocess.DEVNULL)
 
     pid = process.pid
     p = psutil.Process(pid)
@@ -132,10 +132,10 @@ def normal_mode(testcase_name, input_path, output_path):
     wall_start = perf_counter()
     cpu_before = measure_cpu_time_before()
 
-    subprocess.run(
+    result = subprocess.run(
         ['./code.out'],
         stdin=open(input_path, 'r'),
-        stdout=open('ans.out', 'w'),
+        stdout=subprocess.DEVNULL,
         stderr=subprocess.DEVNULL
     )
 
@@ -143,22 +143,10 @@ def normal_mode(testcase_name, input_path, output_path):
     wall_end = perf_counter()
     wall_time = wall_end - wall_start
 
-    """
-    TODO: DISCUSS THIS
-    # Run massif for memory usage
-    subprocess.run(['valgrind',
-                    '--tool=massif',
-                    '--stacks=yes',
-                    '--massif-out-file=massif.out',
-                    './code.out'],
-                    stdin=open(input_path,
-                                'r'),
-                    stdout=subprocess.DEVNULL,
-                    stderr=subprocess.DEVNULL)
-    heap_used, stack_used = get_memory_usage()
-    """
-
     max_memory_usage = get_memory_usage_all('./code.out', input_path)
+
+    if result.returncode != 0:
+        print("Return code: ", result.returncode)
 
     print(
         f"AC - {testcase_name} | Wall: {wall_time:.6f}s | CPU User: {cpu_user:.6f}s | "
