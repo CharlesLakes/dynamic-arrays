@@ -35,43 +35,6 @@ AC - T5_push_random_then_pop | Wall: 0.131599s | CPU User: 0.087131s | CPU Sys: 
 AC - T7_push_random_then_pop | Wall: 7.175953s | CPU User: 6.856597s | CPU Sys: 0.164972s | Max Memory: 70254592B
 AC - T3_push_random_then_pop | Wall: 0.037821s | CPU User: 0.003570s | CPU Sys: 0.003570s | Max Memory: 3276800B
 AC - T6_push_random_then_pop | Wall: 0.761169s | CPU User: 0.689345s | CPU Sys: 0.017984s | Max Memory: 10092544B
-Running Brodnik (C) Stack Test...
-AC - T5_random | Wall: 0.095458s | CPU User: 0.038732s | CPU Sys: 0.001936s | Max Memory: 2490368B
-AC - T7_random_then_pop | Wall: 3.706024s | CPU User: 3.315336s | CPU Sys: 0.171078s | Max Memory: 61865984B
-AC - T2_random | Wall: 0.004405s | CPU User: 0.002298s | CPU Sys: 0.000000s | Max Memory: 131072B
-AC - T2_random_then_pop | Wall: 0.036761s | CPU User: 0.000961s | CPU Sys: 0.000961s | Max Memory: 131072B
-AC - T8_random | Wall: 30.099398s | CPU User: 27.602239s | CPU Sys: 1.718848s | Max Memory: 802422784B
-AC - T3_random | Wall: 0.003814s | CPU User: 0.001363s | CPU Sys: 0.000000s | Max Memory: 1572864B
-AC - T8_random_then_pop | Wall: 25.267736s | CPU User: 21.804653s | CPU Sys: 1.310336s | Max Memory: 602275840B
-AC - T5_push_then_random | Wall: 0.035459s | CPU User: 0.029869s | CPU Sys: 0.000000s | Max Memory: 2490368B
-AC - T3_random_then_pop | Wall: 0.004185s | CPU User: 0.001495s | CPU Sys: 0.000000s | Max Memory: 1572864B
-AC - T9_random | Wall: 297.728334s | CPU User: 276.761331s | CPU Sys: 14.982572s | Max Memory: 8003952640B
-AC - T5_random_then_pop | Wall: 0.116123s | CPU User: 0.037391s | CPU Sys: 0.001968s | Max Memory: 2228224B
-AC - T3_push_then_random | Wall: 0.045787s | CPU User: 0.001495s | CPU Sys: 0.000737s | Max Memory: 1572864B
-AC - T2_push_then_random | Wall: 0.025124s | CPU User: 0.000000s | CPU Sys: 0.002067s | Max Memory: 131072B
-AC - T1_random_then_pop | Wall: 0.024713s | CPU User: 0.002050s | CPU Sys: 0.000000s | Max Memory: 262144B
-AC - T4_random | Wall: 0.055855s | CPU User: 0.010863s | CPU Sys: 0.001975s | Max Memory: 1703936B
-AC - T6_random | Wall: 0.394684s | CPU User: 0.288565s | CPU Sys: 0.027048s | Max Memory: 9699328B
-AC - T4_random_then_pop | Wall: 0.067092s | CPU User: 0.007504s | CPU Sys: 0.003216s | Max Memory: 1703936B
-AC - T1_random | Wall: 0.002632s | CPU User: 0.000000s | CPU Sys: 0.000922s | Max Memory: 131072B
-AC - T7_push_then_random | Wall: 5.164353s | CPU User: 4.280349s | CPU Sys: 0.226824s | Max Memory: 81920000B
-AC - T9_push_then_random | Wall: 296.475108s | CPU User: 274.814711s | CPU Sys: 15.152475s | Max Memory: 8003948544B
-AC - T6_random_then_pop | Wall: 0.403549s | CPU User: 0.332908s | CPU Sys: 0.020056s | Max Memory: 7733248B
-AC - T6_push_then_random | Wall: 0.634295s | CPU User: 0.446884s | CPU Sys: 0.024995s | Max Memory: 9699328B
-AC - T8_push_then_random | Wall: 32.615622s | CPU User: 29.769347s | CPU Sys: 1.770469s | Max Memory: 802291712B
-AC - T1_push_then_random | Wall: 0.023037s | CPU User: 0.002084s | CPU Sys: 0.000000s | Max Memory: 131072B
-AC - T4_push_then_random | Wall: 0.052078s | CPU User: 0.010698s | CPU Sys: 0.001070s | Max Memory: 1703936B
-AC - T7_random | Wall: 3.037258s | CPU User: 2.766396s | CPU Sys: 0.171249s | Max Memory: 81920000B
-AC - T9_random_then_pop | Wall: 288.452916s | CPU User: 235.035418s | CPU Sys: 12.986822s | Max Memory: 6003433472B
-AC - T9_push_random_then_pop | Wall: 298.348829s | CPU User: 246.954676s | CPU Sys: 13.355413s | Max Memory: 6670278656B
-AC - T8_push_random_then_pop | Wall: 27.759103s | CPU User: 23.649559s | CPU Sys: 1.460697s | Max Memory: 668991488B
-AC - T2_push_random_then_pop | Wall: 0.036285s | CPU User: 0.000000s | CPU Sys: 0.001111s | Max Memory: 131072B
-AC - T1_push_random_then_pop | Wall: 0.002983s | CPU User: 0.000000s | CPU Sys: 0.001896s | Max Memory: 131072B
-AC - T4_push_random_then_pop | Wall: 0.069116s | CPU User: 0.008355s | CPU Sys: 0.002089s | Max Memory: 1703936B
-AC - T5_push_random_then_pop | Wall: 0.097847s | CPU User: 0.041784s | CPU Sys: 0.002985s | Max Memory: 2359296B
-AC - T7_push_random_then_pop | Wall: 4.387329s | CPU User: 3.641233s | CPU Sys: 0.246859s | Max Memory: 68550656B
-AC - T3_push_random_then_pop | Wall: 0.024412s | CPU User: 0.002177s | CPU Sys: 0.001088s | Max Memory: 1572864B
-AC - T6_push_random_then_pop | Wall: 0.313559s | CPU User: 0.241504s | CPU Sys: 0.014908s | Max Memory: 8388608B
 Running STL Stack Deque (C++) Stack Test...
 AC - T5_random | Wall: 0.262759s | CPU User: 0.140555s | CPU Sys: 0.004949s | Max Memory: 4194304B
 AC - T7_random_then_pop | Wall: 7.782843s | CPU User: 7.504978s | CPU Sys: 0.127911s | Max Memory: 66101248B
@@ -189,16 +152,6 @@ AC - T9 | Wall: 2939.282414s | CPU User: 2914.813490s | CPU Sys: 23.416505s | Ma
 AC - T5 | Wall: 0.368915s | CPU User: 0.294602s | CPU Sys: 0.003994s | Max Memory: 4063232B
 AC - T4 | Wall: 0.064444s | CPU User: 0.032189s | CPU Sys: 0.001951s | Max Memory: 3407872B
 AC - T1 | Wall: 0.003564s | CPU User: 0.000000s | CPU Sys: 0.001735s | Max Memory: 1703936B
-Running Brodnik (C) Sort Test...
-AC - T8 | Wall: 217.082040s | CPU User: 215.195925s | CPU Sys: 1.865640s | Max Memory: 802611200B
-AC - T2 | Wall: 0.001749s | CPU User: 0.000000s | CPU Sys: 0.000945s | Max Memory: 1572864B
-AC - T3 | Wall: 0.004667s | CPU User: 0.001490s | CPU Sys: 0.000746s | Max Memory: 1572864B
-AC - T7 | Wall: 19.163618s | CPU User: 19.009049s | CPU Sys: 0.149981s | Max Memory: 81965056B
-AC - T6 | Wall: 1.689446s | CPU User: 1.647219s | CPU Sys: 0.017004s | Max Memory: 9678848B
-AC - T9 | Wall: 2394.935238s | CPU User: 2374.018138s | CPU Sys: 20.795165s | Max Memory: 8004845568B
-AC - T5 | Wall: 0.145002s | CPU User: 0.143128s | CPU Sys: 0.001001s | Max Memory: 2490368B
-AC - T4 | Wall: 0.025134s | CPU User: 0.023555s | CPU Sys: 0.000982s | Max Memory: 1703936B
-AC - T1 | Wall: 0.001557s | CPU User: 0.000000s | CPU Sys: 0.000994s | Max Memory: 131072B
 Running STL Vector (C++) Sort Test...
 AC - T8 | Wall: 86.229743s | CPU User: 85.837100s | CPU Sys: 0.387003s | Max Memory: 403308544B
 AC - T2 | Wall: 0.005136s | CPU User: 0.003232s | CPU Sys: 0.001078s | Max Memory: 1441792B
@@ -219,16 +172,6 @@ AC - T9 | Wall: 1103.953836s | CPU User: 1098.564416s | CPU Sys: 5.357531s | Max
 AC - T5 | Wall: 0.093318s | CPU User: 0.088472s | CPU Sys: 0.003978s | Max Memory: 3801088B
 AC - T4 | Wall: 0.019114s | CPU User: 0.017349s | CPU Sys: 0.001021s | Max Memory: 3407872B
 AC - T1 | Wall: 0.002677s | CPU User: 0.000993s | CPU Sys: 0.000993s | Max Memory: 2883584B
-Running Brodnik (C) Binary Search Test...
-AC - T8 | Wall: 54.722821s | CPU User: 54.187385s | CPU Sys: 0.530980s | Max Memory: 402128896B
-AC - T2 | Wall: 0.001524s | CPU User: 0.000730s | CPU Sys: 0.000000s | Max Memory: 131072B
-AC - T3 | Wall: 0.003672s | CPU User: 0.002051s | CPU Sys: 0.001025s | Max Memory: 1572864B
-AC - T7 | Wall: 5.105271s | CPU User: 5.050517s | CPU Sys: 0.053929s | Max Memory: 41811968B
-AC - T6 | Wall: 0.460618s | CPU User: 0.450672s | CPU Sys: 0.008994s | Max Memory: 5636096B
-AC - T9 | Wall: 584.169838s | CPU User: 578.597775s | CPU Sys: 5.559800s | Max Memory: 4003241984B
-AC - T5 | Wall: 0.044187s | CPU User: 0.042355s | CPU Sys: 0.000985s | Max Memory: 1966080B
-AC - T4 | Wall: 0.012863s | CPU User: 0.011233s | CPU Sys: 0.001021s | Max Memory: 1703936B
-AC - T1 | Wall: 0.001225s | CPU User: 0.000000s | CPU Sys: 0.000706s | Max Memory: 655360B
 Running STL Vector (C++) Binary Search Test...
 AC - T8 | Wall: 80.750633s | CPU User: 80.128689s | CPU Sys: 0.617999s | Max Memory: 403439616B
 AC - T2 | Wall: 0.002197s | CPU User: 0.001398s | CPU Sys: 0.000000s | Max Memory: 2752512B
@@ -240,6 +183,5 @@ AC - T5 | Wall: 0.077336s | CPU User: 0.073349s | CPU Sys: 0.003014s | Max Memor
 AC - T4 | Wall: 0.019162s | CPU User: 0.016109s | CPU Sys: 0.002014s | Max Memory: 3276800B
 AC - T1 | Wall: 0.002726s | CPU User: 0.001032s | CPU Sys: 0.001032s | Max Memory: 2752512B
 Running Brodnik (C++) Linear Search Test...
-Running Brodnik (C) Linear Search Test...
 Running STL Vector (C++) Linear Search Test...
 All tests completed.

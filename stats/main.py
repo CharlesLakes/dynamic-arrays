@@ -55,7 +55,7 @@ def plot_metrics(stats_by_category):
                 ns = [execution_data for execution_data, _ in aux_ns]
                 cpu_users = [aux_cpu_users[i] for _, i in aux_ns]
 
-                ax.plot(ns, cpu_users, marker='o', label=current_execution)
+                ax.plot(ns, cpu_users, marker='o', label=current_execution, alpha=0.5)
 
             ax.set_title(f"{category} - {type_execution} - CPU User Time")
             ax.set_xlabel("n")
@@ -87,7 +87,7 @@ def plot_metrics(stats_by_category):
                 ns = [execution_data for execution_data, _ in aux_ns]
                 memorys = [aux_memorys[i] for _, i in aux_ns]
 
-                ax.plot(ns, memorys, marker='o', label=current_execution)
+                ax.plot(ns, memorys, marker='o', label=current_execution, alpha=0.5)
 
             ax.set_title(f"{category} - {type_execution} - Memory Usage")
             ax.set_xlabel("n")
