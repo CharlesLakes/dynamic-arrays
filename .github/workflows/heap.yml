@@ -6,6 +6,7 @@ on:
       - .github/workflows/heap.yml
       - src/*
       - test/heap/*
+      - check.py
 
 jobs:
   test:

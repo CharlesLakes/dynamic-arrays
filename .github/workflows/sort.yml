@@ -6,6 +6,7 @@ on:
       - .github/workflows/sort.yml
       - src/*
       - test/sort/*
+      - check.py
 
 jobs:
   test:
