@@ -4,7 +4,6 @@ ulimit -s unlimited
 ulimit -v unlimited
 ulimit -t unlimited
 
-# Sort
 echo "Generating test data for Sort..."
 python3 test/sort/generator-stats.py
 
@@ -16,3 +15,6 @@ python3 test/linear_search/generator-stats.py
 
 echo "Generating test data for Binary Search..."
 python3 test/binary_search/generator-stats.py
+
+echo "Generating test data for Heap"
+python3 test/heap/generator-stats.py

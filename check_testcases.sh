@@ -66,4 +66,17 @@ python3 check.py test/linear_search/main_vector.cpp test/linear_search/
 
 # --- End:Linear Search
 
+# --- Begin:Heap ---
+
+echo "Running Brodnik (C++) Heap Test..."
+python3 check.py test/heap/main_brodnik.cpp test/heap/
+
+echo "Running STL Vector (C++) Heap Test..."
+python3 check.py test/heap/main_vector.cpp test/heap/
+
+echo "Running STL Deque (C++) Heap Test..."
+python3 check.py test/heap/main_deque.cpp test/heap/
+
+# --- End:Heap
+
 echo "All tests completed."
