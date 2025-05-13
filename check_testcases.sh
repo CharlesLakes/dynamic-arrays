@@ -4,6 +4,8 @@ ulimit -s unlimited
 ulimit -v unlimited
 ulimit -t unlimited
 
+# --- Begin:Stack ---
+
 echo "Running Brodnik (C++) Stack Test..."
 python3 check.py test/stack/main_brodnik.cpp test/stack/
 
@@ -19,6 +21,11 @@ python3 check.py test/stack/main_stack_vector.cpp test/stack/
 echo "Running STL Stack List (C++) Stack Test..."
 python3 check.py test/stack/main_stack_list.cpp test/stack/
 
+
+# --- End:Stack ---
+
+# --- Begin:Sort ---
+
 echo "Running Brodnik (C++) Sort Test..."
 python3 check.py test/sort/main_brodnik.cpp test/sort/
 
@@ -31,6 +38,10 @@ python3 check.py test/sort/main_vector.cpp test/sort/
 echo "Running STL Deque (C++) Sort Test..."
 python3 check.py test/sort/main_deque.cpp test/sort/
 
+# --- End:Sort ---
+
+# --- Begin:Binary Search ---
+
 echo "Running Brodnik (C++) Binary Search Test..."
 python3 check.py test/binary_search/main_brodnik.cpp test/binary_search/
 
@@ -40,6 +51,10 @@ python3 check.py test/binary_search/main_brodnik.c test/binary_search/ gcc
 echo "Running STL Vector (C++) Binary Search Test..."
 python3 check.py test/binary_search/main_vector.cpp test/binary_search/
 
+# --- End:Binary Search
+
+# --- Begin:Linear Search ---
+
 echo "Running Brodnik (C++) Linear Search Test..."
 python3 check.py test/linear_search/main_brodnik.cpp test/linear_search/
 
@@ -48,5 +63,7 @@ python3 check.py test/linear_search/main_brodnik.c test/linear_search/ gcc
 
 echo "Running STL Vector (C++) Linear Search Test..."
 python3 check.py test/linear_search/main_vector.cpp test/linear_search/
+
+# --- End:Linear Search
 
 echo "All tests completed."
