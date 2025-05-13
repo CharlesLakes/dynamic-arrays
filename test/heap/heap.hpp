@@ -24,11 +24,23 @@ class heap {
         void push(T value);
         void pop();
         T top();
+        int size();
+        bool empty();
 };
 
 template <class t_darray,class T> 
 heap<t_darray, T>::heap(){
     this->n_size = 0;
+}
+
+template <class t_darray,class T> 
+int heap<t_darray, T>::size(){
+    return this->n_size;
+}
+
+template <class t_darray,class T> 
+bool heap<t_darray, T>::empty(){
+    return !(this->n_size);
 }
 
 template <class t_darray,class T> 
