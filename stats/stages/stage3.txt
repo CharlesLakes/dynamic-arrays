@@ -228,6 +228,31 @@ AC - T9 | Wall: 823.355180s | CPU User: 818.235461s | CPU Sys: 5.114077s | Max M
 AC - T5 | Wall: 0.077336s | CPU User: 0.073349s | CPU Sys: 0.003014s | Max Memory: 3670016B
 AC - T4 | Wall: 0.019162s | CPU User: 0.016109s | CPU Sys: 0.002014s | Max Memory: 3276800B
 AC - T1 | Wall: 0.002726s | CPU User: 0.001032s | CPU Sys: 0.001032s | Max Memory: 2752512B
-Running Brodnik (C++) Linear Search Test...
-Running STL Vector (C++) Linear Search Test...
+Running Brodnik (C++) Heap Test...
+AC - T8 | Wall: 159.989467s | CPU User: 146.776213s | CPU Sys: 13.200303s | Max Memory: 203816960B
+AC - T2 | Wall: 0.001837s | CPU User: 0.001331s | CPU Sys: 0.000000s | Max Memory: 2228224B
+AC - T3 | Wall: 0.007754s | CPU User: 0.003707s | CPU Sys: 0.003707s | Max Memory: 3407872B
+AC - T7 | Wall: 14.375933s | CPU User: 12.992897s | CPU Sys: 1.380829s | Max Memory: 23592960B
+AC - T6 | Wall: 1.284489s | CPU User: 1.149848s | CPU Sys: 0.133968s | Max Memory: 5373952B
+AC - T5 | Wall: 0.121701s | CPU User: 0.107153s | CPU Sys: 0.014020s | Max Memory: 3670016B
+AC - T4 | Wall: 0.020970s | CPU User: 0.015701s | CPU Sys: 0.004906s | Max Memory: 3407872B
+AC - T1 | Wall: 0.001982s | CPU User: 0.000000s | CPU Sys: 0.001677s | Max Memory: 655360B
+Running STL Vector (C++) Heap Test...
+AC - T8 | Wall: 109.462792s | CPU User: 96.461112s | CPU Sys: 12.997672s | Max Memory: 271667200B
+AC - T2 | Wall: 0.001796s | CPU User: 0.001340s | CPU Sys: 0.000000s | Max Memory: 2490368B
+AC - T3 | Wall: 0.007896s | CPU User: 0.005364s | CPU Sys: 0.002146s | Max Memory: 3276800B
+AC - T7 | Wall: 10.284303s | CPU User: 8.917934s | CPU Sys: 1.364930s | Max Memory: 36524032B
+AC - T6 | Wall: 0.947523s | CPU User: 0.792652s | CPU Sys: 0.154105s | Max Memory: 5595136B
+AC - T5 | Wall: 0.095676s | CPU User: 0.076060s | CPU Sys: 0.019015s | Max Memory: 3801088B
+AC - T4 | Wall: 0.020366s | CPU User: 0.015723s | CPU Sys: 0.003930s | Max Memory: 3538944B
+AC - T1 | Wall: 0.004292s | CPU User: 0.000968s | CPU Sys: 0.002906s | Max Memory: 393216B
+Running STL Deque (C++) Heap Test...
+AC - T8 | Wall: 253.392171s | CPU User: 239.841642s | CPU Sys: 13.541778s | Max Memory: 212738048B
+AC - T2 | Wall: 0.004786s | CPU User: 0.001082s | CPU Sys: 0.003247s | Max Memory: 1179648B
+AC - T3 | Wall: 0.009527s | CPU User: 0.006140s | CPU Sys: 0.003070s | Max Memory: 3407872B
+AC - T7 | Wall: 22.413842s | CPU User: 21.029572s | CPU Sys: 1.383955s | Max Memory: 24428544B
+AC - T6 | Wall: 2.221535s | CPU User: 2.056735s | CPU Sys: 0.163947s | Max Memory: 5505024B
+AC - T5 | Wall: 0.180948s | CPU User: 0.167289s | CPU Sys: 0.013025s | Max Memory: 3670016B
+AC - T4 | Wall: 0.026448s | CPU User: 0.020858s | CPU Sys: 0.005215s | Max Memory: 3276800B
+AC - T1 | Wall: 0.003985s | CPU User: 0.001841s | CPU Sys: 0.001840s | Max Memory: 2228224B
 All tests completed.
