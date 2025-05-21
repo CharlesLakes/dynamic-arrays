@@ -149,13 +149,13 @@ private:
 
   bool empty() const;
 
-  T& back();
+  reference back();
 
-  T& front();
+  reference front();
 
-  T& back() const;
+  const_reference back() const;
 
-  T& front() const;
+  const_reference front() const;
 
   T &operator[](int index);
 };
@@ -392,11 +392,11 @@ template<class T> T& brodnik_vector<T>::front() {
   return this->locate(n_size - 1);
 }
 
-template<class T> T& brodnik_vector<T>::back() const {
+template<class T> const T& brodnik_vector<T>::back() const {
   return this->locate(n_size - 1);
 }
 
-template<class T> T& brodnik_vector<T>::front() const {
+template<class T> const T& brodnik_vector<T>::front() const {
 return this->locate(n_size - 1);
 }
 
