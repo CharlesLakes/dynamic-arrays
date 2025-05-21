@@ -5,6 +5,7 @@ on:
     paths:
       - .github/workflows/linear_search.yml
       - src/*
+      - src/**/*
       - test/linear_search/*
       - check.py
 
