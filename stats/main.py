@@ -146,10 +146,12 @@ def print_diff(stats_by_category):
                             (x for x in target_execution_data if x["n"] == data["n"]), None)
                         if not target_data:
                             continue
+                        
                         if data["n"] < 1e7:
                             continue
 
-                        print(f"\tN = {data["n"]}:")
+                        N = data["n"]
+                        print(f"\tN = {N}:")
 
                         if "cpu_user" in target_data and data["cpu_user"] > 0:
                             cnt_cpu += 1
@@ -171,6 +173,7 @@ def print_diff(stats_by_category):
                     print(f"\tMemory avg: {100 * acum_memo / cnt_memo}%")
                     print(f"\tCPU user min: {100 * min_cpu}%")
                     print(f"\tMemory min: {100 * min_memo}%")
+
 
 def main(stage_path):
     stats_by_category = {}
