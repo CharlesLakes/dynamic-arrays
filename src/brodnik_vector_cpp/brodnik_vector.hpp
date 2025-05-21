@@ -65,7 +65,7 @@ private:
   using value_type = T;
   using reference = T&;
   using const_reference = const T&;
-  using size_type = int;
+  using size_type = unsigned int;
   using difference_type = std::ptrdiff_t;
 
   /**
@@ -145,7 +145,7 @@ private:
 
   void pop_back();
 
-  int size();
+  size_type size() const;
 
   bool empty() const;
 
@@ -174,7 +174,7 @@ template <class T> brodnik_vector<T>::brodnik_vector(int n) {
 }
 
 // Returns the current number of elements in the vector.
-template <class T> int brodnik_vector<T>::size(){
+template <class T> typename brodnik_vector<T>::size_type brodnik_vector<T>::size() const {
   return this->n_size;
 }
 
@@ -389,7 +389,7 @@ template<class T> T& brodnik_vector<T>::back() {
 }
 
 template<class T> T& brodnik_vector<T>::front() {
-  return this->locate(n_size - 1);
+  return this->locate(0);
 }
 
 template<class T> const T& brodnik_vector<T>::back() const {
@@ -397,7 +397,7 @@ template<class T> const T& brodnik_vector<T>::back() const {
 }
 
 template<class T> const T& brodnik_vector<T>::front() const {
-return this->locate(n_size - 1);
+return this->locate(0);
 }
 
 template <class T> T& brodnik_vector<T>::operator[](int index) {
