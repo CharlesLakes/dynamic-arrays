@@ -5,6 +5,7 @@ on:
     paths:
       - .github/workflows/stack.yml
       - src/*
+      - src/**/*
       - test/stack/*
       - check.py
 

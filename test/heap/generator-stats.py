@@ -51,10 +51,10 @@ for n in range(1, 5):
 
     write(
         f"T{n}",
-        f"{size}\n"
+        f"{size - 1}\n"
     )
 
-    for i in range(size):
+    for i in range(size - 1):
         op = randint(0,1)
         write(
             f"T{n}",

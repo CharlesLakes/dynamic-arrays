@@ -5,6 +5,7 @@ on:
     paths:
       - .github/workflows/heap.yml
       - src/*
+      - src/**/*
       - test/heap/*
       - check.py
 

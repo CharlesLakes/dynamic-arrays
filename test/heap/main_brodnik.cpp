@@ -1,6 +1,5 @@
 #include <bits/stdc++.h>
 #include "../../src/brodnik_vector_cpp/brodnik_vector.hpp"
-#include "heap.hpp"
 
 using namespace std;
 
@@ -8,7 +7,7 @@ int main(){
     int operations;
     cin >> operations;
 
-    heap<brodnik_vector<int>,int> pq;
+    priority_queue<int,brodnik_vector<int>> pq;
 
     while(operations--){
         int op;

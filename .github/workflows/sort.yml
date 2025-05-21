@@ -5,6 +5,7 @@ on:
     paths:
       - .github/workflows/sort.yml
       - src/*
+      - src/**/*
       - test/sort/*
       - check.py
 

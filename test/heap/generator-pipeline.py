@@ -37,6 +37,6 @@ for n in range(1, 5):
     for i in range(2):
         array = [randint(1, 1000000000) for _ in range(10**n)]
         queries = [(randint(0, 1), randint(1, 1000000000))
-                   for _ in range(10**n)]
+                   for _ in range(10**n - 1)]
 
         write_testcase(f"{CODE_DIR}/T{n}_{i}", array, queries)
