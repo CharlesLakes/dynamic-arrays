@@ -4,7 +4,7 @@ on:
   push:
     paths:
       - .github/workflows/binary_search.yml
-      - src/*
+      - src/**/*
       - test/binary_search/*
       - check.py
 
