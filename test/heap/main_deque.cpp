@@ -1,5 +1,4 @@
 #include <bits/stdc++.h>
-#include "heap.hpp"
 
 using namespace std;
 
@@ -7,7 +6,7 @@ int main(){
     int operations;
     cin >> operations;
 
-    heap<deque<int>,int> pq;
+    priority_queue<int,deque<int>> pq;
 
     while(operations--){
         int op;

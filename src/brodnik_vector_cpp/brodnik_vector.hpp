@@ -59,7 +59,9 @@ private:
   
   T &locate(int i);
 
-public:
+  T &locate(int i) const;
+
+  public:
   using value_type = T;
   using reference = T&;
   using const_reference = const T&;
@@ -148,6 +150,12 @@ public:
   bool empty() const;
 
   T& back();
+
+  T& front();
+
+  T& back() const;
+
+  T& front() const;
 
   T &operator[](int index);
 };
@@ -341,6 +349,15 @@ template <class T> T &brodnik_vector<T>::locate(int i) {
   return this->index_block[p + b][e];
 }
 
+template <class T> T &brodnik_vector<T>::locate(int i) const {
+  int r = i + 1;
+  int k = fast_log2(i + 1);
+  int b = (r >> ((k + 1) / 2)) - (1 << (k / 2));
+  int e = (r & ((1 << ((k + 1) / 2)) - 1));
+  int p = (1 << ((k + 1) / 2)) + (1 << ((k) / 2)) - 2;
+  return this->index_block[p + b][e];
+}
+
 /**
  * @brief Adds an element to the end of the vector.
  *
@@ -369,6 +386,18 @@ template<class T> bool brodnik_vector<T>::empty() const {
 
 template<class T> T& brodnik_vector<T>::back() {
     return this->locate(n_size - 1);
+}
+
+template<class T> T& brodnik_vector<T>::front() {
+  return this->locate(n_size - 1);
+}
+
+template<class T> T& brodnik_vector<T>::back() const {
+  return this->locate(n_size - 1);
+}
+
+template<class T> T& brodnik_vector<T>::front() const {
+return this->locate(n_size - 1);
 }
 
 template <class T> T& brodnik_vector<T>::operator[](int index) {
