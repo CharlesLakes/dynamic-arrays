@@ -55,8 +55,8 @@ private:
    * Deallocates data blocks and superblocks if they become empty.
    */
 
-  void grow();
   void shrink();
+  
   T &locate(int i);
 
 public:
