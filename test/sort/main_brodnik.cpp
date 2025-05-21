@@ -46,8 +46,8 @@ int main() {
   for (int i = 0; i < n; i++)
     cin >> vec[i];
 
-  merge_sort(vec, 0, n - 1);
-
+  //merge_sort(vec, 0, n - 1);
+  sort(vec.begin(),vec.end());
   // Print sorted array
   for (int i = 0; i < n; i++)
     PRINT_INT(vec[i]);
