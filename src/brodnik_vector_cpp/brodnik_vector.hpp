@@ -142,6 +142,10 @@ public:
    * @param n Initial number of elements to allocate.
    */
   brodnik_vector(int n);
+  brodnik_vector(const brodnik_vector& other);
+  brodnik_vector(brodnik_vector&& other) noexcept;
+  brodnik_vector& operator=(const brodnik_vector& other);
+  brodnik_vector& operator=(brodnik_vector&& other) noexcept;
 
   /**
    * @brief Destructor. Frees all allocated memory.
@@ -208,6 +212,46 @@ template <class T> brodnik_vector<T>::brodnik_vector(int n) {
   init();
   while (n--)
     this->grow();
+}
+
+template <class T> brodnik_vector<T>::brodnik_vector(const brodnik_vector& other) {
+  init();
+  for (size_type i = 0; i < other.n_size; ++i) {
+    push_back(other.locate(i));
+  }
+}
+
+template <class T> brodnik_vector<T>::brodnik_vector(brodnik_vector&& other) noexcept {
+  n_size = other.n_size;
+  sb_index = other.sb_index; sb_size = other.sb_size; sb_max_size = other.sb_max_size;
+  db_index = other.db_index; db_size = other.db_size; db_max_size = other.db_max_size;
+  ib_size = other.ib_size; ib_max_size = other.ib_max_size;
+  index_block = other.index_block;
+  other.index_block = nullptr;
+}
+
+template <class T> brodnik_vector<T>& brodnik_vector<T>::operator=(const brodnik_vector& other) {
+  if (this != &other) {
+    this->~brodnik_vector();
+    init();
+    for (size_type i = 0; i < other.n_size; ++i) {
+      push_back(other.locate(i));
+    }
+  }
+  return *this;
+}
+
+template <class T> brodnik_vector<T>& brodnik_vector<T>::operator=(brodnik_vector&& other) noexcept {
+  if (this != &other) {
+    this->~brodnik_vector();
+    n_size = other.n_size;
+    sb_index = other.sb_index; sb_size = other.sb_size; sb_max_size = other.sb_max_size;
+    db_index = other.db_index; db_size = other.db_size; db_max_size = other.db_max_size;
+    ib_size = other.ib_size; ib_max_size = other.ib_max_size;
+    index_block = other.index_block;
+    other.index_block = nullptr;
+  }
+  return *this;
 }
 
 // Return size

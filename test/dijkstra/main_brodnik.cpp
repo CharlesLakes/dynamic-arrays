@@ -16,8 +16,7 @@ using std::greater;
 // Define the type of priority queue to be used
 using MinHeap = priority_queue<
     pair<int, int>,
-    brodnik_vector<pair<int, int>>,
-    greater<pair<int, int>>>;
+    brodnik_vector<pair<int, int>>>;
 
 int main() {
     int num_nodes, num_edges;

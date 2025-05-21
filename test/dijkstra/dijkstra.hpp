@@ -17,8 +17,7 @@ using std::vector;
 // Graph is represented as an adjacency list of pairs (neighbor, weight)
 template <typename PriorityQueue = priority_queue<
               pair<int, int>,
-              vector<pair<int, int>>,
-              greater<pair<int, int>>>>
+              vector<pair<int, int>>>>
 vector<int> dijkstra(const vector<vector<pair<int, int>>> &graph, int source)
 {
     using pii = pair<int, int>; // (distance, node)
@@ -38,6 +37,8 @@ vector<int> dijkstra(const vector<vector<pair<int, int>>> &graph, int source)
         auto [dist_u, u] = pq.top();
         pq.pop();
 
+        dist_u *= -1;
+
         // If the distance is outdated, skip
         if (dist_u != distance[u])
             continue;
@@ -48,7 +49,7 @@ vector<int> dijkstra(const vector<vector<pair<int, int>>> &graph, int source)
             if (dist_u + weight < distance[v])
             {
                 distance[v] = dist_u + weight;
-                pq.push({distance[v], v});
+                pq.push({-distance[v], v});
             }
         }
     }
