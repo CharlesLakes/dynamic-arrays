@@ -1,56 +1,33 @@
+// Include necessary headers
+#include <algorithm>
+#include <iostream>
 #include "../../src/brodnik_vector_cpp/brodnik_vector.hpp"
 #include "../debug.h"
-#include<bits/stdc++.h>
 
 using namespace std;
 
-void merge(brodnik_vector<int> &vec, int l, int r) {
-  brodnik_vector<int> aux;
-  int mid = (l + r) / 2;
-  int i = l, j = mid + 1;
+int main() {
+  // Declare an integer to store the number of elements
+  int numberOfElements;
 
-  // Merge two sorted subarrays
-  while (i <= mid && j <= r) {
-    if (vec[i] <= vec[j])
-      aux.push_back(vec[i++]);
-    else
-      aux.push_back(vec[j++]);
+  // Read the number of elements from standard input
+  cin >> numberOfElements;
+
+  // Declare a brodnik_vector of integers with the specified number of elements
+  brodnik_vector<int> integerVector(numberOfElements);
+
+  // Read the elements into the vector
+  for (int i = 0; i < numberOfElements; ++i) {
+    cin >> integerVector[i];
   }
 
-  // Add remaining elements from left and right subarrays
-  while (i <= mid)
-    aux.push_back(vec[i++]);
-  while (j <= r)
-    aux.push_back(vec[j++]);
+  // Sort the elements in the vector
+  sort(integerVector.begin(), integerVector.end());
 
-  // Copy sorted elements back to the original array
-  for (int k = l; k <= r; k++)
-    vec[k] = aux[k - l];
-}
-
-void merge_sort(brodnik_vector<int> &vec, int l, int r) {
-  if (l >= r)
-    return;
-  int mid = (l + r) / 2;
-
-  merge_sort(vec, l, mid);     // Sort left half
-  merge_sort(vec, mid + 1, r); // Sort right half
-  merge(vec, l, r);            // Merge both halves
-}
-
-int main() {
-  int n;
-  cin >> n;
-
-  brodnik_vector<int> vec(n);
-  for (int i = 0; i < n; i++)
-    cin >> vec[i];
-
-  //merge_sort(vec, 0, n - 1);
-  sort(vec.begin(),vec.end());
-  // Print sorted array
-  for (int i = 0; i < n; i++)
-    PRINT_INT(vec[i]);
+  // Print the sorted elements
+  for (int i = 0; i < numberOfElements; ++i) {
+    PRINT_INT(integerVector[i]);
+  }
   PRINT_END();
 
   PRINT_CHECK();
