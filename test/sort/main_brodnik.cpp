@@ -1,4 +1,3 @@
-// Include necessary headers
 #include <algorithm>
 #include <iostream>
 #include "../../src/brodnik_vector_cpp/brodnik_vector.hpp"
@@ -31,5 +30,6 @@ int main() {
   PRINT_END();
 
   PRINT_CHECK();
-    return 0;
+  
+  return 0;
 }
