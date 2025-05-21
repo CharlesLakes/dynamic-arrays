@@ -29,6 +29,51 @@ private:
   T &locate(int i);
 
 public:
+  using value_type = T;
+  using reference = T&;
+  using const_reference = const T&;
+  using size_type = int;
+  using difference_type = std::ptrdiff_t;
+
+  class iterator {
+    public:
+      using iterator_category = std::random_access_iterator_tag;
+      using value_type = T;
+      using difference_type = std::ptrdiff_t;
+      using pointer = T*;
+      using reference = T&;
+
+      iterator(brodnik_vector* vec, size_type pos) : vec_(vec), pos_(pos) {}
+
+      reference operator*() const { return (*vec_)[pos_]; }
+      pointer operator->() const { return &(*vec_)[pos_]; }
+
+      iterator& operator++() { ++pos_; return *this; }
+      iterator operator++(int) { iterator tmp = *this; ++(*this); return tmp; }
+
+      iterator& operator--() { --pos_; return *this; }
+      iterator operator--(int) { iterator tmp = *this; --(*this); return tmp; }
+
+      iterator operator+(difference_type n) const { return iterator(vec_, pos_ + n); }
+      iterator operator-(difference_type n) const { return iterator(vec_, pos_ - n); }
+      difference_type operator-(const iterator& other) const { return pos_ - other.pos_; }
+
+      bool operator==(const iterator& other) const { return pos_ == other.pos_; }
+      bool operator!=(const iterator& other) const { return pos_ != other.pos_; }
+      bool operator<(const iterator& other) const { return pos_ < other.pos_; }
+      bool operator>(const iterator& other) const { return pos_ > other.pos_; }
+      bool operator<=(const iterator& other) const { return pos_ <= other.pos_; }
+      bool operator>=(const iterator& other) const { return pos_ >= other.pos_; }
+
+    private:
+      brodnik_vector* vec_;
+      size_type pos_;
+
+  };
+
+  iterator begin() { return iterator(this, 0); }
+  iterator end() { return iterator(this, size()); }
+
   brodnik_vector();
   brodnik_vector(int n);
 
