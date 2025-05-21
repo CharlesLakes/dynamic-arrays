@@ -145,6 +145,10 @@ public:
 
   int size();
 
+  bool empty() const;
+
+  T& back();
+
   T &operator[](int index);
 };
 
@@ -359,7 +363,15 @@ template <class T> void brodnik_vector<T>::push_back(T value) {
  */
 template <class T> void brodnik_vector<T>::pop_back() { this->shrink(); }
 
-template <class T> T &brodnik_vector<T>::operator[](int index) {
+template<class T> bool brodnik_vector<T>::empty() const {
+    return n_size == 0;
+}
+
+template<class T> T& brodnik_vector<T>::back() {
+    return this->locate(n_size - 1);
+}
+
+template <class T> T& brodnik_vector<T>::operator[](int index) {
   return this->locate(index);
 }
 
