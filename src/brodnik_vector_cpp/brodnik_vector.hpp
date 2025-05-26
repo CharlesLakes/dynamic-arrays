@@ -299,13 +299,27 @@ template <class T> void brodnik_vector<T>::grow() {
     }
 
     if (this->db_index + 2 > this->ib_size) {
-      if (this->ib_size == this->ib_max_size) {
-        T **new_index_block = new T *[2 * this->ib_size];
-        for (int i = 0; i < this->ib_size; i++)
+      if (this->ib_size == this->ib_max_size) { // If index_block is full
+        int old_ib_max_size = this->ib_max_size; // Current max size
+        int new_ib_max_size = (old_ib_max_size == 0) ? 1 : old_ib_max_size * 2; // Double it, or set to 1 if it was 0
+
+        T **new_index_block = new T *[new_ib_max_size];
+        
+        // Copy old pointers from index_block to new_index_block
+        for (int i = 0; i < this->ib_size; i++) { // Iterate up to current number of active elements
           new_index_block[i] = this->index_block[i];
-        delete[] this->index_block;
+        }
+        
+        // Initialize new pointer slots in new_index_block to nullptr
+        for (int i = this->ib_size; i < new_ib_max_size; i++) { // Iterate from current number of elements to new max size
+          new_index_block[i] = nullptr;
+        }
+        
+        if (this->index_block != nullptr) { // Check before deleting, though it should be non-null if ib_size == ib_max_size > 0
+            delete[] this->index_block;
+        }
         this->index_block = new_index_block;
-        this->ib_max_size *= 2;
+        this->ib_max_size = new_ib_max_size; // Update ib_max_size
       }
       this->index_block[this->ib_size] = new T[this->db_max_size];
       this->ib_size++;
@@ -334,13 +348,43 @@ template <class T> void brodnik_vector<T>::shrink() {
       this->ib_size--;
     }
 
-    if (this->ib_size * 4 <= this->ib_max_size) {
-      this->ib_max_size = this->ib_size;
-      T **new_index_block = new T *[this->ib_size];
-      for (int i = 0; i < this->ib_size; i++)
-        new_index_block[i] = this->index_block[i];
-      delete[] this->index_block;
-      this->index_block = new_index_block;
+    // Shrink index_block if necessary
+    if (this->ib_size * 4 <= this->ib_max_size && this->ib_max_size > 1) {
+        int old_ib_max_size = this->ib_max_size;
+        int new_ib_max_size = old_ib_max_size / 2;
+        // Ensure new_ib_max_size is not smaller than current number of elements or 1
+        if (new_ib_max_size < this->ib_size) {
+            new_ib_max_size = this->ib_size;
+        }
+        if (new_ib_max_size < 1) {
+            new_ib_max_size = 1;
+        }
+
+        T **new_index_block = new T *[new_ib_max_size];
+
+        // Copy active elements to the new_index_block
+        for (int i = 0; i < this->ib_size; i++) {
+            new_index_block[i] = this->index_block[i];
+        }
+
+        // Initialize remaining pointers in new_index_block to nullptr
+        for (int i = this->ib_size; i < new_ib_max_size; i++) {
+            new_index_block[i] = nullptr;
+        }
+
+        // Deallocate data blocks that are in the old index_block but not carried over.
+        // These are the pointers from this->index_block[this->ib_size] 
+        // up to this->index_block[old_ib_max_size-1].
+        for (int i = this->ib_size; i < old_ib_max_size; ++i) {
+            if (this->index_block[i] != nullptr) {
+                delete[] this->index_block[i];
+                // this->index_block[i] = nullptr; // Not strictly necessary as old array is deleted
+            }
+        }
+        
+        delete[] this->index_block; // Delete the old array of pointers
+        this->index_block = new_index_block;
+        this->ib_max_size = new_ib_max_size;
     }
 
     this->db_index--;
