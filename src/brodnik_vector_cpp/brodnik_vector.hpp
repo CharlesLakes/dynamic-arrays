@@ -2,6 +2,7 @@
 #define BRODNIK_VECTOR_HPP
 
 #include <iostream>
+#include <cassert>
 #include "debug.hpp"
 
 //
@@ -152,7 +153,7 @@ public:
    * @brief Adds an element to the end of the vector.
    * @param value The value to be added.
    */
-  void push_back(T value);
+  void push_back(const T& value);
 
   /**
    * @brief Removes the last element of the vector.
@@ -291,9 +292,9 @@ template <class T> void brodnik_vector<T>::shrink() {
     }
 
     if (this->ib_size * 4 <= this->ib_max_size) {
-      this->ib_max_size = this->ib_size;
-      T **new_index_block = new T *[this->ib_size];
-      for (int i = 0; i < this->ib_size; i++)
+      this->ib_max_size /= 2; 
+      T **new_index_block = new T *[this->ib_max_size];
+      for (int i = 0; i < this->ib_max_size; i++)
         new_index_block[i] = this->index_block[i];
       delete[] this->index_block;
       this->index_block = new_index_block;
@@ -302,7 +303,7 @@ template <class T> void brodnik_vector<T>::shrink() {
     this->db_index--;
     this->sb_size--;
 
-    if (!this->sb_size) {
+    if (!this->sb_size && this->sb_index) {
       this->sb_index--;
       if (this->sb_index % 2 == 0)
         this->db_max_size /= 2;
@@ -337,7 +338,7 @@ template <class T> T &brodnik_vector<T>::locate(int i) const {
 }
 
 // Push back
-template <class T> void brodnik_vector<T>::push_back(T value) {
+template <class T> void brodnik_vector<T>::push_back(const T& value) {
   this->grow();
   T &current_cell = this->locate(this->n_size - 1);
   current_cell = value;
