@@ -146,7 +146,7 @@ def print_diff(stats_by_category):
                             (x for x in target_execution_data if x["n"] == data["n"]), None)
                         if not target_data:
                             continue
-                        
+
                         if data["n"] < 1e7:
                             continue
 
@@ -195,6 +195,12 @@ def main(stage_path):
 
             metrics = extract_metrics(line)
             if metrics:
+
+                """
+                if metrics["n"] < 10**6:
+                    continue
+                """
+
                 category = get_category(current_execution, testcases_category)
 
                 type_execution = metrics["type_testcase"]
