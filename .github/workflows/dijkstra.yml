@@ -36,6 +36,3 @@ jobs:
 
       - name: Run Dijkstra Brodnik (C++) Test
         run: python3 check.py test/dijkstra/main_brodnik.cpp test/dijkstra/
-
-      - name: Run Dijkstra Stats Generator
-        run: python3 test/dijkstra/generator-stats.py 
