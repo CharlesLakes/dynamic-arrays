@@ -199,12 +199,28 @@ for n in range(1, 10):
     count_write = -1
     write(f"T{n}_push_random_then_pop", "")
 
-# n/2 push + n/2 pop
+# A_0 push + A_1 pop ...
 
-for n in range(1, 9):
+for n in range(1, 10):
     size = 10**n
 
-    block_size = int(size**0.5)
+    blocks_size = []
+
+    temporal_size = size
+    max_block_size = size // (2 * n)
+    while temporal_size > 0:
+        left = min(int(size**2 / 3), temporal_size)
+        right = min(max_block_size, temporal_size)
+
+        if left > right:
+            pivot = left
+            left = right
+            right = pivot
+
+        block = randint(left, right)
+        blocks_size.append(block)
+
+        temporal_size -= block
 
     write(
         f"T{n}_push_then_pop",
@@ -217,19 +233,17 @@ for n in range(1, 9):
             str(randint(1, 1000000000)) + (" " if size > i + 1 else "\n")
         )
 
-    queries = (size // block_size) * block_size
-
     write(
         f"T{n}_push_then_pop",
-        f"{queries}\n"
+        f"{sum(blocks_size)}\n"
     )
 
-    for i in range(size // block_size):
+    for i, block in enumerate(blocks_size):
 
         if i % 2 == 0:
             # -- push --
 
-            for i in range(block_size):
+            for i in range(block):
                 write(
                     f"T{n}_push_then_pop",
                     f"{1} {randint(1, 1000000000)}\n"
@@ -237,7 +251,7 @@ for n in range(1, 9):
         else:
             # -- pop --
 
-            for i in range(block_size):
+            for i in range(block):
                 write(
                     f"T{n}_push_then_pop",
                     f"{0} {0}\n"
