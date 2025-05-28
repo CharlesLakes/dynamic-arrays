@@ -36,7 +36,7 @@ def write(filename, content):
 
 
 # Generate graphs with different densities
-for n in range(1, 3):
+for n in range(1, 10):
     num_nodes = 10**n
 
     # Sparse graph (O(n) edges)
