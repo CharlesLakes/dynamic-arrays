@@ -1,5 +1,5 @@
 import os
-from random import randint
+from numpy.random import randint
 
 CODE_DIR = os.path.dirname(os.path.realpath(__file__))
 
@@ -18,7 +18,7 @@ def write(filename, content):
     global write_acumulation
 
     count_write += 1
-    count_write %= 100000
+    count_write %= 100
 
     write_acumulation += content
 
