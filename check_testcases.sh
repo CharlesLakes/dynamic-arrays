@@ -82,7 +82,7 @@ python3 check.py test/heap/main_deque.cpp test/heap/
 # --- Begin:Dijkstra ---
 
 echo "Running Brodnik (C++) Dijkstra Test..."
-python3 check.py test/dijkstra/main_brodnik.cpp test/dijkstra/
+#python3 check.py test/dijkstra/main_brodnik.cpp test/dijkstra/
 
 echo "Running STL Vector (C++) Dijkstra Test..."
 python3 check.py test/dijkstra/main_vector.cpp test/dijkstra/

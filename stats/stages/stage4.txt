@@ -39,6 +39,11 @@ AC - T6_random | Wall: 0.824303s | CPU User: 0.816524s | CPU Sys: 0.006996s | Ma
 AC - T8_push_then_random | Wall: 81.735946s | CPU User: 80.983917s | CPU Sys: 0.744962s | Max Memory: 803995648B
 AC - T2_random | Wall: 0.001905s | CPU User: 0.001427s | CPU Sys: 0.000000s | Max Memory: 2490368B
 AC - T4_random_then_pop | Wall: 0.017303s | CPU User: 0.015079s | CPU Sys: 0.002011s | Max Memory: 3538944B
+AC - T9_random | Wall: 876.684338s | CPU User: 811.247281s | CPU Sys: 18.451691s | Max Memory: 4468103577B
+AC - T9_push_then_random | Wall: 870.462897s | CPU User: 811.705554s | CPU Sys: 19.110827s | Max Memory: 4467728711B
+AC - T9_random_then_pop | Wall: 677.740031s | CPU User: 634.923218s | CPU Sys: 13.861302s | Max Memory: 4811806146B
+AC - T9_push_random_then_pop | Wall: 741.392878s | CPU User: 700.132938s | CPU Sys: 15.538633s | Max Memory: 6014628659B
+AC - T9_push_then_pop | Wall: 576.334439s | CPU User: 564.655216s | CPU Sys: 6.175798s | Max Memory: 2363721113B
 Running STL Stack Deque (C++) Stack Test...
 AC - T7_push_random_then_pop | Wall: 7.572923s | CPU User: 7.501107s | CPU Sys: 0.071004s | Max Memory: 73048064B
 AC - T7_random | Wall: 8.345343s | CPU User: 8.268979s | CPU Sys: 0.075016s | Max Memory: 87207936B

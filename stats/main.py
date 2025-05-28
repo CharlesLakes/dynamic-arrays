@@ -183,7 +183,8 @@ def main(stage_path):
         "binary search",
         "linear search",
         "sort",
-        "heap"
+        "heap",
+        "dijkstra"
     ]
 
     with open(stage_path) as file:
