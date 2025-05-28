@@ -35,7 +35,7 @@ def write(filename, content):
     write_acumulation = ""
 
 
-for n in range(1, 5):
+for n in range(1, 10):
 
     size = int(10**n)
 
