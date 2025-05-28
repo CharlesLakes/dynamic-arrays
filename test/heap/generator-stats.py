@@ -1,5 +1,5 @@
 import os
-from random import randint
+from numpy.random import randint
 
 CODE_DIR = os.path.dirname(os.path.realpath(__file__))
 
@@ -18,7 +18,7 @@ def write(filename, content):
     global write_acumulation
 
     count_write += 1
-    count_write %= 100000
+    count_write %= 100
 
     write_acumulation += content
 
@@ -34,8 +34,9 @@ def write(filename, content):
 
     write_acumulation = ""
 
-for n in range(1, 5):
-    
+
+for n in range(1, 10):
+
     size = int(10**n)
 
     write(
@@ -55,7 +56,7 @@ for n in range(1, 5):
     )
 
     for i in range(size - 1):
-        op = randint(0,1)
+        op = randint(0, 1)
         write(
             f"T{n}",
             f"{op}"
