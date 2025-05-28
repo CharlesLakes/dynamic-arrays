@@ -66,8 +66,7 @@ def plot_metrics(stats_by_category):
             ax.set_xlabel("n")
             ax.set_ylabel("CPU User Time (s)")
             ax.set_xscale('log')
-            # ax.set_yscale('log')
-            ax.ticklabel_format(axis='y', style='sci', scilimits=(0, 0))
+            ax.set_yscale('log')
             ax.grid(True, which='both')
             ax.legend()
             plt.tight_layout()
@@ -104,8 +103,7 @@ def plot_metrics(stats_by_category):
             ax.set_xlabel("n")
             ax.set_ylabel("Memory (Bytes)")
             ax.set_xscale('log')
-            # ax.set_yscale('log')
-            ax.ticklabel_format(axis='y', style='sci', scilimits=(0, 0))
+            ax.set_yscale('log')
             ax.grid(True, which='both')
             ax.legend()
             plt.tight_layout()
@@ -147,7 +145,7 @@ def print_diff(stats_by_category):
                         if not target_data:
                             continue
 
-                        if data["n"] < 1e7:
+                        if data["n"] < 1e8:
                             continue
 
                         N = data["n"]
@@ -197,10 +195,8 @@ def main(stage_path):
             metrics = extract_metrics(line)
             if metrics:
 
-                """
                 if metrics["n"] < 10**6:
                     continue
-                """
 
                 category = get_category(current_execution, testcases_category)
 
