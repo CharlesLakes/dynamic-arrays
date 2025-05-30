@@ -223,26 +223,6 @@ int main() {
     for (int n = 1; n < 10; n++) {
         int size = static_cast<int>(pow(10, n));
         
-        vector<int> blocks_size;
-        
-        int temporal_size = size;
-        int max_block_size = size / (2 * n);
-        while (temporal_size > 0) {
-            int left = min(static_cast<int>(pow(size, 2.0/3.0)), temporal_size);
-            int right = min(max_block_size, temporal_size);
-            
-            if (left > right) {
-                int pivot = left;
-                left = right;
-                right = pivot;
-            }
-            
-            int block = randint(left, right);
-            blocks_size.push_back(block);
-            
-            temporal_size -= block;
-        }
-        
         write(
             "T" + to_string(n) + "_push_then_pop",
             to_string(size) + "\n"
@@ -254,31 +234,29 @@ int main() {
                 to_string(randint(1, 1000000000)) + (size > i + 1 ? " " : "\n")
             );
         }
-        
-        int sum_blocks = 0;
-        for (int block : blocks_size) {
-            sum_blocks += block;
+
+        vector<int> blocks;
+        int queries = 0;
+        for(int j = 0; j < 20; j++){
+            int random_number = randint(max(size/10,1),size); 
+            blocks.push_back(random_number);
+            queries += random_number;
         }
-        
+
         write(
-            "T" + to_string(n) + "_push_then_pop",
-            to_string(sum_blocks) + "\n"
-        );
-        
-        for (int i = 0; i < static_cast<int>(blocks_size.size()); i++) {
-            int block = blocks_size[i];
-            
-            if (i % 2 == 0) {
-                // -- push --
-                for (int j = 0; j < block; j++) {
+                "T" + to_string(n) + "_push_then_pop",
+                to_string(queries) + "\n"
+            );
+
+        for(int j = 0; j < blocks.size(); j++){
+            int block = blocks[j];
+            for(int k = 0; k < block; k++){
+                if(j % 2 == 0){
                     write(
                         "T" + to_string(n) + "_push_then_pop",
                         "1 " + to_string(randint(1, 1000000000)) + "\n"
                     );
-                }
-            } else {
-                // -- pop --
-                for (int j = 0; j < block; j++) {
+                }else{
                     write(
                         "T" + to_string(n) + "_push_then_pop",
                         "0 0\n"
@@ -286,7 +264,7 @@ int main() {
                 }
             }
         }
-        
+
         count_write = -1;
         write("T" + to_string(n) + "_push_then_pop", "");
     }
