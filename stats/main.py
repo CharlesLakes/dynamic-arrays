@@ -67,7 +67,6 @@ def plot_metrics(stats_by_category):
             ax.set_ylabel("CPU User Time (s)")
             ax.set_xscale('log')
             # ax.set_yscale('log')
-            ax.ticklabel_format(axis='y', style='sci', scilimits=(0, 0))
             ax.grid(True, which='both')
             ax.legend()
             plt.tight_layout()
@@ -105,7 +104,6 @@ def plot_metrics(stats_by_category):
             ax.set_ylabel("Memory (Bytes)")
             ax.set_xscale('log')
             # ax.set_yscale('log')
-            ax.ticklabel_format(axis='y', style='sci', scilimits=(0, 0))
             ax.grid(True, which='both')
             ax.legend()
             plt.tight_layout()
@@ -146,10 +144,12 @@ def print_diff(stats_by_category):
                             (x for x in target_execution_data if x["n"] == data["n"]), None)
                         if not target_data:
                             continue
-                        if data["n"] < 1e7:
+
+                        if data["n"] < 1e8:
                             continue
 
-                        print(f"\tN = {data["n"]}:")
+                        N = data["n"]
+                        print(f"\tN = {N}:")
 
                         if "cpu_user" in target_data and data["cpu_user"] > 0:
                             cnt_cpu += 1
@@ -172,6 +172,7 @@ def print_diff(stats_by_category):
                     print(f"\tCPU user min: {100 * min_cpu}%")
                     print(f"\tMemory min: {100 * min_memo}%")
 
+
 def main(stage_path):
     stats_by_category = {}
 
@@ -180,7 +181,8 @@ def main(stage_path):
         "binary search",
         "linear search",
         "sort",
-        "heap"
+        "heap",
+        "dijkstra"
     ]
 
     with open(stage_path) as file:
@@ -192,6 +194,10 @@ def main(stage_path):
 
             metrics = extract_metrics(line)
             if metrics:
+
+                if metrics["n"] < 1e7:
+                    continue
+
                 category = get_category(current_execution, testcases_category)
 
                 type_execution = metrics["type_testcase"]

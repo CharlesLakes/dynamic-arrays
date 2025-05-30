@@ -1,5 +1,5 @@
 import os
-from numpy.random import randint
+from random import randint
 
 CODE_DIR = os.path.dirname(os.path.realpath(__file__))
 

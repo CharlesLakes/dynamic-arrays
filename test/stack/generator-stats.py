@@ -1,8 +1,9 @@
 import os
-from numpy.random import randint
+from random import randint
 
 CODE_DIR = os.path.dirname(os.path.realpath(__file__))
 
+files_object = {}
 file_cleaned = set()
 count_write = 0
 write_acumulation = ""
@@ -18,7 +19,7 @@ def write(filename, content):
     global write_acumulation
 
     count_write += 1
-    count_write %= 100
+    count_write %= 1
 
     write_acumulation += content
 
@@ -29,8 +30,13 @@ def write(filename, content):
         create_or_clear(filename)
         file_cleaned.add(filename)
 
-    with open(f"{CODE_DIR}/{filename}.in", "a") as file:
-        file.write(write_acumulation)
+    if filename not in files_object:
+        file = open(f"{CODE_DIR}/{filename}.in", "a")
+        files_object[filename] = file
+    else:
+        file = files_object[filename]
+
+    file.write(write_acumulation)
 
     write_acumulation = ""
 
