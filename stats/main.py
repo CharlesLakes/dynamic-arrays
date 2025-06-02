@@ -167,8 +167,8 @@ def print_diff(stats_by_category):
                             min_memo = min(min_memo, diff_memo)
                             print(f"\t\tMemory: {diff_memo}")
 
-                    print(f"\tCPU user avg: {100 * acum_cpu / cnt_cpu}%")
-                    print(f"\tMemory avg: {100 * acum_memo / cnt_memo}%")
+                    print(f"\tCPU user avg: {100 * acum_cpu / cnt_cpu if cnt_cpu else 0}%")
+                    print(f"\tMemory avg: {100 * acum_memo / cnt_memo if cnt_memo else 0}%")
                     print(f"\tCPU user min: {100 * min_cpu}%")
                     print(f"\tMemory min: {100 * min_memo}%")
 
@@ -195,9 +195,11 @@ def main(stage_path):
             metrics = extract_metrics(line)
             if metrics:
 
+                """
                 if metrics["n"] < 1e7:
                     continue
-
+                """
+                    
                 category = get_category(current_execution, testcases_category)
 
                 type_execution = metrics["type_testcase"]
