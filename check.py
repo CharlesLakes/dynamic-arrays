@@ -2,7 +2,6 @@ import sys
 import os
 import subprocess
 import resource
-import psutil
 from time import perf_counter, sleep
 
 
