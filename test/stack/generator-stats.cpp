@@ -236,9 +236,15 @@ int main() {
         }
 
         vector<int> blocks;
-        int queries = 0;
+        int queries = 0, temporal_size = size;
         for(int j = 0; j < 20; j++){
             int random_number = randint(max(size/10,1),size); 
+            if(j % 2 == 0)
+                temporal_size += random_number;
+            else {
+                random_number = min(random_number, temporal_size);
+                temporal_size -= random_number;
+            }
             blocks.push_back(random_number);
             queries += random_number;
         }
