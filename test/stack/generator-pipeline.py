@@ -14,7 +14,7 @@ def write_testcase(testcase_id, array, queries):
             if op:
                 file.write(f"{op} {value}\n")
             else:
-                file.write(f"{op}\n")
+                file.write(f"{op} {0}\n")
 
     array = list(array)
     for query in queries:
