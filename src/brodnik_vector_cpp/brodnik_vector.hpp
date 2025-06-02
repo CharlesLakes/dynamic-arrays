@@ -249,20 +249,20 @@ template <class T> inline void brodnik_vector<T>::grow() {
     if (this->sb_size == this->sb_max_size) {
       this->sb_index++;
       if (this->sb_index % 2)
-        this->db_max_size *= 2;
+        this->db_max_size <<= 1;
       else
-        this->sb_max_size *= 2;
+        this->sb_max_size <<= 1;
       this->sb_size = 0;
     }
 
     if (this->db_index + 2 > this->ib_size) {
       if (this->ib_size == this->ib_max_size) {
-        T **new_index_block = new T *[2 * this->ib_size];
+        T **new_index_block = new T *[this->ib_size << 1];
         for (int i = 0; i < this->ib_size; i++)
           new_index_block[i] = this->index_block[i];
         delete[] this->index_block;
         this->index_block = new_index_block;
-        this->ib_max_size *= 2;
+        this->ib_max_size <<= 1;
       }
       this->index_block[this->ib_size] = new T[this->db_max_size];
       this->ib_size++;
@@ -291,8 +291,8 @@ template <class T> inline void brodnik_vector<T>::shrink() {
       this->ib_size--;
     }
 
-    if (this->ib_size * 4 <= this->ib_max_size) {
-      this->ib_max_size /= 2; 
+    if ((this->ib_size << 2) <= this->ib_max_size) {
+      this->ib_max_size >>= 1; 
       T **new_index_block = new T *[this->ib_max_size];
       for (int i = 0; i < this->ib_max_size; i++)
         new_index_block[i] = this->index_block[i];
@@ -306,9 +306,9 @@ template <class T> inline void brodnik_vector<T>::shrink() {
     if (!this->sb_size && this->sb_index) {
       this->sb_index--;
       if (this->sb_index % 2 == 0)
-        this->db_max_size /= 2;
+        this->db_max_size >>= 1;
       else
-        this->sb_max_size /= 2;
+        this->sb_max_size >>= 1;
       this->sb_size = this->sb_max_size;
     }
 
@@ -322,18 +322,18 @@ template <class T> inline void brodnik_vector<T>::shrink() {
 template <class T> inline T &brodnik_vector<T>::locate(int i) {
   int r = i + 1;
   int k = fast_log2(i + 1);
-  int b = (r >> ((k + 1) / 2)) - (1 << (k / 2));
-  int e = (r & ((1 << ((k + 1) / 2)) - 1));
-  int p = (1 << ((k + 1) / 2)) + (1 << ((k) / 2)) - 2;
+  int b = (r >> ((k + 1) >> 1)) - (1 << (k >> 1));
+  int e = (r & ((1 << ((k + 1) >> 1)) - 1));
+  int p = (1 << ((k + 1) >> 1)) + (1 << ((k) >> 1)) - 2;
   return this->index_block[p + b][e];
 }
 
 template <class T> inline T &brodnik_vector<T>::locate(int i) const {
   int r = i + 1;
   int k = fast_log2(i + 1);
-  int b = (r >> ((k + 1) / 2)) - (1 << (k / 2));
-  int e = (r & ((1 << ((k + 1) / 2)) - 1));
-  int p = (1 << ((k + 1) / 2)) + (1 << ((k) / 2)) - 2;
+  int b = (r >> ((k + 1) >> 1)) - (1 << (k >> 1));
+  int e = (r & ((1 << ((k + 1) >> 1)) - 1));
+  int p = (1 << ((k + 1) >> 1)) + (1 << ((k) >> 1)) - 2;
   return this->index_block[p + b][e];
 }
 
