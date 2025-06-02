@@ -6,7 +6,11 @@ from time import perf_counter
 
 
 def compile_code(code, compiler, debug_flag=False):
-    compile_args = [compiler, code, "-O2", "-march=native", "-o", "code.out"]
+    compile_args = [compiler, code, 
+                    # "-O2", 
+                    # "-march=native", 
+                    "-o", 
+                    "code.out"]
     if debug_flag:
         compile_args.append("-DDEBUG_SO")  # Add -DDEBUG_SO if debug is enabled
 
