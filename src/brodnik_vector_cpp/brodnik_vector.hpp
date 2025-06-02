@@ -212,7 +212,7 @@ template <class T> brodnik_vector<T>::brodnik_vector(int n) {
 }
 
 // Return size
-template <class T> inline brodnik_vector<T>::size_type brodnik_vector<T>::size() const {
+template <class T> inline typename brodnik_vector<T>::size_type brodnik_vector<T>::size() const {
   return this->n_size;
 }
 
