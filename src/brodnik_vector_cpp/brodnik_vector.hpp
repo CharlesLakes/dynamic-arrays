@@ -212,7 +212,7 @@ template <class T> brodnik_vector<T>::brodnik_vector(int n) {
 }
 
 // Return size
-template <class T> typename brodnik_vector<T>::size_type brodnik_vector<T>::size() const {
+template <class T> inline brodnik_vector<T>::size_type brodnik_vector<T>::size() const {
   return this->n_size;
 }
 
@@ -243,7 +243,7 @@ template <class T> brodnik_vector<T>::~brodnik_vector() {
 }
 
 // Grow
-template <class T> void brodnik_vector<T>::grow() {
+template <class T> inline void brodnik_vector<T>::grow() {
   DEBUG_THIS("START-GROW");
   if (this->db_size == this->db_max_size) {
     if (this->sb_size == this->sb_max_size) {
@@ -279,7 +279,7 @@ template <class T> void brodnik_vector<T>::grow() {
 }
 
 // Shrink
-template <class T> void brodnik_vector<T>::shrink() {
+template <class T> inline void brodnik_vector<T>::shrink() {
   DEBUG_THIS("START-SHIRNK");
   this->n_size--;
   this->db_size--;
@@ -319,7 +319,7 @@ template <class T> void brodnik_vector<T>::shrink() {
 }
 
 // Locate
-template <class T> T &brodnik_vector<T>::locate(int i) {
+template <class T> inline T &brodnik_vector<T>::locate(int i) {
   int r = i + 1;
   int k = fast_log2(i + 1);
   int b = (r >> ((k + 1) / 2)) - (1 << (k / 2));
@@ -328,7 +328,7 @@ template <class T> T &brodnik_vector<T>::locate(int i) {
   return this->index_block[p + b][e];
 }
 
-template <class T> T &brodnik_vector<T>::locate(int i) const {
+template <class T> inline T &brodnik_vector<T>::locate(int i) const {
   int r = i + 1;
   int k = fast_log2(i + 1);
   int b = (r >> ((k + 1) / 2)) - (1 << (k / 2));
@@ -350,7 +350,7 @@ template <class T> void brodnik_vector<T>::pop_back() {
 }
 
 // Check if empty
-template <class T> bool brodnik_vector<T>::empty() const {
+template <class T> inline bool brodnik_vector<T>::empty() const {
   return n_size == 0;
 }
 
