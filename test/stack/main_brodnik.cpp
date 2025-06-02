@@ -21,13 +21,10 @@ int main(){
     int queries;
     cin >> queries;
     while(queries--){
-        int operation; 
-        cin >> operation;
-        
+        int operation, value; 
+        cin >> operation; 
+        cin >> value;
         if(operation){
-            int value; 
-            cin >> value;
-            
             st.push(value);
         }else{
             st.pop();
