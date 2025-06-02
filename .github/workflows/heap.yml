@@ -28,7 +28,7 @@ jobs:
       - name: Run Brodnik (C++) Heap Test
         run: python3 check.py test/heap/main_brodnik.cpp test/heap/
 
-      - name: Run STL Deque (C) Heap Test
+      - name: Run STL Deque (C++) Heap Test
         run: python3 check.py test/heap/main_deque.cpp test/heap/
   
       - name: Run STL Vector (C++) Heap Test
