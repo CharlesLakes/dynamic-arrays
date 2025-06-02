@@ -2,7 +2,7 @@ import sys
 import os
 import subprocess
 import resource
-from time import perf_counter, sleep
+from time import perf_counter
 
 
 def compile_code(code, compiler, debug_flag=False):
