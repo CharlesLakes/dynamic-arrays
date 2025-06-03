@@ -1,8 +1,12 @@
 #ifndef BRODNIK_VECTOR_HPP
 #define BRODNIK_VECTOR_HPP
 
-#include <iostream>
-#include <cassert>
+#include <iostream>  // For standard I/O (potentially for debugging, though not directly used in public interface)
+#include <cassert>   // For assert()
+#include <algorithm> // For std::copy
+#include <vector>    // For std::vector (used in the constructor)
+#include <cstddef>   // For std::ptrdiff_t
+#include <iterator>  // For std::random_access_iterator_tag
 #include "debug.hpp"
 
 //
@@ -199,6 +203,7 @@ public:
 };
 
 // A fast approximation of log base 2. Used in the locate function.
+// #include <vector> // No longer needed here, moved to top
 #define fast_log2(x) (31 - __builtin_clz(x))
 
 // Default constructor
@@ -206,9 +211,90 @@ template <class T> brodnik_vector<T>::brodnik_vector() { init(); }
 
 // Constructor with size
 template <class T> brodnik_vector<T>::brodnik_vector(int n) {
-  init();
-  while (n--)
-    this->grow();
+  if (n == 0) {
+    init();
+    return;
+  }
+
+  // Initialize as per init() for n > 0, but without initial allocations if n=0 is handled by init()
+  this->db_size = 0;
+  this->sb_size = 1;
+  this->db_max_size = 1;
+  this->sb_max_size = 1;
+  this->db_index = 0;
+  this->sb_index = 0;
+  this->ib_size = 1; // Start with one block conceptually for init state, will adjust
+  this->ib_max_size = 1;
+  // index_block will be allocated later to its final size.
+  // index_block[0] also allocated later.
+  this->n_size = 0; // Will be set to n at the end
+
+  std::vector<int> block_capacities; // Moved declaration earlier to satisfy compiler if needed, though not strictly necessary for this change.
+  // Simulation variables
+  int current_n = 0;
+  int sim_db_size = 0;
+  int sim_sb_size = 1;
+  int sim_db_max_size = 1;
+  int sim_sb_max_size = 1;
+  int sim_db_index = 0;
+  int sim_sb_index = 0;
+  int sim_ib_size = 1;
+  int sim_ib_max_size = 1;
+
+  // std::vector<int> block_capacities; // Declaration moved up
+  block_capacities.push_back(sim_db_max_size); // Capacity of the first block
+
+  while (current_n < n) {
+    // --- Start of simulated grow ---
+    if (sim_db_size == sim_db_max_size) {
+      if (sim_sb_size == sim_sb_max_size) {
+        sim_sb_index++;
+        if (sim_sb_index % 2)
+          sim_db_max_size <<= 1;
+        else
+          sim_sb_max_size <<= 1;
+        sim_sb_size = 0;
+      }
+
+      // Simulating new block allocation in index_block
+      // db_index points to the current block. If full, next element goes to db_index + 1
+      if (sim_db_index + 1 >= sim_ib_size) { // Need a new block pointer
+        if (sim_ib_size == sim_ib_max_size) {
+          sim_ib_max_size <<= 1;
+        }
+        // Record the capacity of this new block that would be allocated
+        block_capacities.push_back(sim_db_max_size);
+        sim_ib_size++;
+      }
+      sim_db_index++;
+      sim_db_size = 0;
+      sim_sb_size++;
+    }
+    sim_db_size++;
+    current_n++;
+    // --- End of simulated grow ---
+  }
+
+  // Set final state variables
+  this->n_size = n;
+  this->db_size = sim_db_size;
+  this->sb_size = sim_sb_size;
+  this->db_max_size = sim_db_max_size;
+  this->sb_max_size = sim_sb_max_size;
+  this->db_index = sim_db_index;
+  this->sb_index = sim_sb_index;
+  this->ib_max_size = sim_ib_max_size;
+  this->ib_size = sim_ib_size;
+
+  // Allocate index_block and data blocks
+  this->index_block = new T *[this->ib_max_size];
+  for (int i = 0; i < this->ib_size; ++i) {
+    this->index_block[i] = new T[block_capacities[i]];
+  }
+  // Fill remaining index_block pointers with nullptr if ib_max_size > ib_size
+  for (int i = this->ib_size; i < this->ib_max_size; ++i) {
+    this->index_block[i] = nullptr;
+  }
 }
 
 // Return size
@@ -257,12 +343,12 @@ template <class T> inline void brodnik_vector<T>::grow() {
 
     if (this->db_index + 2 > this->ib_size) {
       if (this->ib_size == this->ib_max_size) {
-        T **new_index_block = new T *[this->ib_size << 1];
-        for (int i = 0; i < this->ib_size; i++)
-          new_index_block[i] = this->index_block[i];
+        size_type new_ib_max_val = this->ib_max_size << 1; // In this context, ib_size == ib_max_size
+        T **new_index_block = new T *[new_ib_max_val];
+        std::copy(this->index_block, this->index_block + this->ib_size, new_index_block);
         delete[] this->index_block;
         this->index_block = new_index_block;
-        this->ib_max_size <<= 1;
+        this->ib_max_size = new_ib_max_val;
       }
       this->index_block[this->ib_size] = new T[this->db_max_size];
       this->ib_size++;
@@ -291,13 +377,30 @@ template <class T> inline void brodnik_vector<T>::shrink() {
       this->ib_size--;
     }
 
-    if ((this->ib_size << 2) <= this->ib_max_size) {
-      this->ib_max_size >>= 1; 
-      T **new_index_block = new T *[this->ib_max_size];
-      for (int i = 0; i < this->ib_max_size; i++)
-        new_index_block[i] = this->index_block[i];
+    if ((this->ib_size << 2) <= this->ib_max_size && this->ib_max_size > 1) { // Ensure ib_max_size doesn't go below 1, though init() sets to 1.
+                                                                            // The original condition implicitly handles ib_max_size > 1 for halving if ib_size >= 1.
+                                                                            // If ib_max_size is 1, (ib_size << 2) <= 1 means ib_size must be 0, which is unlikely here.
+                                                                            // Adding > 1 check for safety, though current logic might already prevent issues.
+      size_type new_ib_max_val = this->ib_max_size >> 1;
+      // Ensure new_ib_max_val is not zero if ib_max_size was 1.
+      // However, given (ib_size << 2) <= ib_max_size, if ib_max_size is 1, ib_size must be 0.
+      // If ib_size is 0, this shrink section might not be hit often or ib_size becomes 0 after deleting a block.
+      // Let's stick to the logic that ib_max_size will be at least ib_size.
+      // The condition (this->ib_size << 2) <= this->ib_max_size means 4*ib_size <= ib_max_size.
+      // So, new_ib_max_val = ib_max_size / 2 will be >= 2*ib_size. Thus, new_ib_max_val >= ib_size.
+      if (new_ib_max_val == 0 && this->ib_size > 0) { /* This case should not happen with current logic */ } 
+      else if (new_ib_max_val < this->ib_size && this->ib_size > 0 ) { /* This also should not happen */ }
+      // If new_ib_max_val becomes 0, but ib_size is also 0, it's fine.
+      // Let's assume new_ib_max_val will be appropriate or at least 1 if ib_size is 1.
+      // The smallest ib_max_size can be is 1 (from init).
+      // If ib_max_size is 1, (ib_size*4) <= 1 means ib_size is 0. Then this block isn't entered if ib_size is 0.
+      // If ib_size is 1, ib_max_size must be at least 4. Then new_ib_max_val is 2.
+      
+      T **new_index_block = new T *[new_ib_max_val];
+      std::copy(this->index_block, this->index_block + this->ib_size, new_index_block);
       delete[] this->index_block;
       this->index_block = new_index_block;
+      this->ib_max_size = new_ib_max_val;
     }
 
     this->db_index--;
