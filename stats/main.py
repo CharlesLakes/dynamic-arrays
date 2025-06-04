@@ -195,10 +195,8 @@ def main(stage_path):
             metrics = extract_metrics(line)
             if metrics:
 
-                """
                 if metrics["n"] < 1e7:
                     continue
-                """
                     
                 category = get_category(current_execution, testcases_category)
 
