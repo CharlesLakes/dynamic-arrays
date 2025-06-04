@@ -2,12 +2,15 @@ import sys
 import os
 import subprocess
 import resource
-import psutil
-from time import perf_counter, sleep
+from time import perf_counter
 
 
 def compile_code(code, compiler, debug_flag=False):
-    compile_args = [compiler, code, "-o", "code.out"]
+    compile_args = [compiler, code, 
+                    # "-O2", 
+                    # "-march=native", 
+                    "-o", 
+                    "code.out"]
     if debug_flag:
         compile_args.append("-DDEBUG_SO")  # Add -DDEBUG_SO if debug is enabled
 
@@ -45,31 +48,40 @@ def measure_cpu_time_after(before):
     return user_time, system_time
 
 
-def get_memory_usage_all(binary_path, input_path):
-    process = subprocess.Popen(
-        [binary_path],
+def measure_performance(binary_path, input_path):
+    result = subprocess.run(
+        ['/usr/bin/time', '-v'] + [binary_path],
         stdin=open(input_path, 'r'),
+        stderr=subprocess.PIPE,
         stdout=subprocess.DEVNULL,
-        stderr=subprocess.DEVNULL)
+        text=True
+    )
 
-    pid = process.pid
-    p = psutil.Process(pid)
+    rss_kb = None
+    user_time = None
+    system_time = None
 
-    max_memory_usage = 0
+    for line in result.stderr.splitlines():
+        if "Maximum resident set size" in line:
+            rss_kb = int(line.split(":")[1].strip())
+        elif "User time (seconds)" in line:
+            user_time = float(line.split(":")[1].strip())
+        elif "System time (seconds)" in line:
+            system_time = float(line.split(":")[1].strip())
 
-    try:
-        while process.poll() is None:
-            mem_info = p.memory_info()
-            max_memory_usage = max(max_memory_usage, mem_info.rss)
-            sleep(0.001)
+    if None in (rss_kb, user_time, system_time):
+        raise ValueError("Failed to retrieve all metrics.")
 
-        mem_info = p.memory_info()
-        max_memory_usage = max(max_memory_usage, mem_info.rss)
+    cpu_time_total = user_time + system_time
+    rss_bytes = rss_kb * 1024
 
-    except psutil.NoSuchProcess:
-        pass
-
-    return max_memory_usage
+    return {
+        "rss_bytes": rss_bytes,
+        "user_time": user_time,
+        "system_time": system_time,
+        "cpu_time_total": cpu_time_total,
+        "code": result.returncode
+    }
 
 
 def debug_mode(testcase_name, input_path, output_path):
@@ -127,26 +139,17 @@ def debug_mode(testcase_name, input_path, output_path):
         f"CPU Sys: {cpu_sys:.6f}s | Heap: {heap_used}B | Stack: {stack_used}B")
 
 
-def normal_mode(testcase_name, input_path, output_path):
-    # Run again for performance measurement
-    wall_start = perf_counter()
-    cpu_before = measure_cpu_time_before()
+def normal_mode(testcase_name, input_path):
+    result = measure_performance("./code.out", input_path)
 
-    result = subprocess.run(
-        ['./code.out'],
-        stdin=open(input_path, 'r'),
-        stdout=subprocess.DEVNULL,
-        stderr=subprocess.DEVNULL
-    )
+    wall_time = result["cpu_time_total"]
+    cpu_user = result["user_time"]
+    cpu_sys = result["system_time"]
+    max_memory_usage = result["rss_bytes"]
+    code = result["code"]
 
-    cpu_user, cpu_sys = measure_cpu_time_after(cpu_before)
-    wall_end = perf_counter()
-    wall_time = wall_end - wall_start
-
-    max_memory_usage = get_memory_usage_all('./code.out', input_path)
-
-    if result.returncode != 0:
-        print("Return code: ", result.returncode)
+    if code != 0:
+        print("Return code:", code)
 
     print(
         f"AC - {testcase_name} | Wall: {wall_time:.6f}s | CPU User: {cpu_user:.6f}s | "
@@ -174,7 +177,7 @@ def main(code_path, dir_folder, compiler="g++"):
         if debug_flag:
             debug_mode(testcase_name, input_path, output_path)
         else:
-            normal_mode(testcase_name, input_path, output_path)
+            normal_mode(testcase_name, input_path)
 
 
 if __name__ == "__main__":

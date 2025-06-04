@@ -19,9 +19,6 @@ jobs:
       - name: Update Package List and Install Dependencies
         run: sudo apt-get update && sudo apt-get install -y valgrind
 
-      - name: Install psutil 
-        run: pip install psutil
-
       - name: Clone Repository
         uses: actions/checkout@v4
 
@@ -31,7 +28,7 @@ jobs:
       - name: Run Brodnik (C++) Heap Test
         run: python3 check.py test/heap/main_brodnik.cpp test/heap/
 
-      - name: Run STL Deque (C) Heap Test
+      - name: Run STL Deque (C++) Heap Test
         run: python3 check.py test/heap/main_deque.cpp test/heap/
   
       - name: Run STL Vector (C++) Heap Test

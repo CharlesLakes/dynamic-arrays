@@ -36,7 +36,7 @@ def write(filename, content):
 
 
 # Generate graphs with different densities
-for n in range(1, 10):
+for n in range(1, 9):
     num_nodes = 10**n
 
     # Sparse graph (O(n) edges)
@@ -44,39 +44,65 @@ for n in range(1, 10):
     write(f"T{n}_sparse", f"{num_nodes} {edges_sparse}\n")
 
     edges_added = set()
-    for _ in range(edges_sparse):
+
+    # Step 1: Connect all nodes in a linear chain (spanning tree)
+    for i in range(num_nodes - 1):
+        u = i
+        v = i + 1
+        weight = randint(1, 1000)
+        edges_added.add((u, v))
+        edges_added.add((v, u))
+        write(f"T{n}_sparse", f"{u} {v} {weight}\n")
+
+    # Step 2: Add additional random edges without repetition and no loops
+    extra_edges = edges_sparse - (num_nodes - 1)
+    while extra_edges > 0:
         u = randint(0, num_nodes - 1)
         v = randint(0, num_nodes - 1)
-
         if u == v:
-            v = (v + 1) % num_nodes
-
+            continue
+        if (u, v) in edges_added or (v, u) in edges_added:
+            continue
         edges_added.add((u, v))
         edges_added.add((v, u))
         weight = randint(1, 1000)
         write(f"T{n}_sparse", f"{u} {v} {weight}\n")
+        extra_edges -= 1
 
     count_write = -1
     write(f"T{n}_sparse", "")
 
-    # Dense graph (O(n^2) edges, but maximum n*(n-1)/2)
-    if n <= 3:  # Only for small graphs to avoid huge test cases
+    # Dense graph (O(n^2) edges, max n*(n-1)/2)
+    if n <= 4:  # Only for small graphs to avoid huge test cases
         max_edges = (num_nodes * (num_nodes - 1)) // 2
         edges_dense = min(num_nodes * num_nodes // 4, max_edges)
         write(f"T{n}_dense", f"{num_nodes} {edges_dense}\n")
 
         edges_added = set()
-        for _ in range(edges_dense):
+
+        # Step 1: Spanning tree (chain)
+        for i in range(num_nodes - 1):
+            u = i
+            v = i + 1
+            weight = randint(1, 1000)
+            edges_added.add((u, v))
+            edges_added.add((v, u))
+            write(f"T{n}_dense", f"{u} {v} {weight}\n")
+
+        # Step 2: Additional random edges
+        extra_edges = edges_dense - (num_nodes - 1)
+        while extra_edges > 0:
             u = randint(0, num_nodes - 1)
             v = randint(0, num_nodes - 1)
-
             if u == v:
-                v = (v + 1) % num_nodes
-
+                continue
+            if (u, v) in edges_added or (v, u) in edges_added:
+                continue
             edges_added.add((u, v))
             edges_added.add((v, u))
             weight = randint(1, 1000)
             write(f"T{n}_dense", f"{u} {v} {weight}\n")
+            extra_edges -= 1
 
         count_write = -1
         write(f"T{n}_dense", "")

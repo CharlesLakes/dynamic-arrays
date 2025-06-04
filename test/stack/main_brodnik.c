@@ -21,9 +21,9 @@ int main() {
   while(q--){
     int op;
     scanf("%d", &op);
+    int value;
+    scanf("%d", &value);
     if(op){
-        int value;
-        scanf("%d", &value);
         push_back(&vec, value);
     }else{
         pop_back(&vec);
