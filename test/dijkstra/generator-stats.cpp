@@ -1,4 +1,3 @@
-
 #include <iostream>
 #include <fstream>
 #include <string>
@@ -64,7 +63,7 @@ int main() {
         
         std::set<std::pair<int, int>> edges_added;
         
-        // Paso 1: Conectar todos los nodos en una cadena lineal (árbol generador)
+        // Step 1: Connect all nodes in a linear chain (spanning tree)
         for (long long i = 0; i < num_nodes - 1; i++) {
             int u = static_cast<int>(i);
             int v = static_cast<int>(i + 1);
@@ -74,7 +73,7 @@ int main() {
             write("T" + std::to_string(n) + "_sparse", std::to_string(u) + " " + std::to_string(v) + " " + std::to_string(weight) + "\n");
         }
         
-        // Paso 2: Agregar aristas aleatorias adicionales sin repetir y sin loops
+        // Step 2: Add additional random edges without repetition and no loops
         long long extra_edges = edges_sparse - (num_nodes - 1);
         while (extra_edges > 0) {
             int u = randint(0, static_cast<int>(num_nodes - 1));
@@ -103,7 +102,7 @@ int main() {
             
             edges_added.clear();
             
-            // Paso 1: Árbol generador (cadena)
+            // Step 1: Spanning tree (chain)
             for (long long i = 0; i < num_nodes - 1; i++) {
                 int u = static_cast<int>(i);
                 int v = static_cast<int>(i + 1);
@@ -113,7 +112,7 @@ int main() {
                 write("T" + std::to_string(n) + "_dense", std::to_string(u) + " " + std::to_string(v) + " " + std::to_string(weight) + "\n");
             }
             
-            // Paso 2: Aristas aleatorias adicionales
+            // Step 2: Additional random edges
             long long extra_edges = edges_dense - (num_nodes - 1);
             while (extra_edges > 0) {
                 int u = randint(0, static_cast<int>(num_nodes - 1));

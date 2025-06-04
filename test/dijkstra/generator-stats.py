@@ -45,7 +45,7 @@ for n in range(1, 9):
 
     edges_added = set()
 
-    # Paso 1: Conectar todos los nodos en una cadena lineal (árbol generador)
+    # Step 1: Connect all nodes in a linear chain (spanning tree)
     for i in range(num_nodes - 1):
         u = i
         v = i + 1
@@ -54,7 +54,7 @@ for n in range(1, 9):
         edges_added.add((v, u))
         write(f"T{n}_sparse", f"{u} {v} {weight}\n")
 
-    # Paso 2: Agregar aristas aleatorias adicionales sin repetir y sin loops
+    # Step 2: Add additional random edges without repetition and no loops
     extra_edges = edges_sparse - (num_nodes - 1)
     while extra_edges > 0:
         u = randint(0, num_nodes - 1)
@@ -80,7 +80,7 @@ for n in range(1, 9):
 
         edges_added = set()
 
-        # Paso 1: Árbol generador (cadena)
+        # Step 1: Spanning tree (chain)
         for i in range(num_nodes - 1):
             u = i
             v = i + 1
@@ -89,7 +89,7 @@ for n in range(1, 9):
             edges_added.add((v, u))
             write(f"T{n}_dense", f"{u} {v} {weight}\n")
 
-        # Paso 2: Aristas aleatorias adicionales
+        # Step 2: Additional random edges
         extra_edges = edges_dense - (num_nodes - 1)
         while extra_edges > 0:
             u = randint(0, num_nodes - 1)
