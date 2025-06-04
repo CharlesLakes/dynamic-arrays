@@ -13,3 +13,5 @@ main.c*
 *.pdf
 
 __pycache__
+
+test/**/seed*
