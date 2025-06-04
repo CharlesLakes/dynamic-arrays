@@ -1,4 +1,3 @@
-
 #include <iostream>
 #include <fstream>
 #include <string>
@@ -63,42 +62,72 @@ int main() {
         write("T" + std::to_string(n) + "_sparse", std::to_string(num_nodes) + " " + std::to_string(edges_sparse) + "\n");
         
         std::set<std::pair<int, int>> edges_added;
-        for (long long i = 0; i < edges_sparse; i++) {
+        
+        // Step 1: Connect all nodes in a linear chain (spanning tree)
+        for (long long i = 0; i < num_nodes - 1; i++) {
+            int u = static_cast<int>(i);
+            int v = static_cast<int>(i + 1);
+            int weight = randint(1, 1000);
+            edges_added.insert({u, v});
+            edges_added.insert({v, u});
+            write("T" + std::to_string(n) + "_sparse", std::to_string(u) + " " + std::to_string(v) + " " + std::to_string(weight) + "\n");
+        }
+        
+        // Step 2: Add additional random edges without repetition and no loops
+        long long extra_edges = edges_sparse - (num_nodes - 1);
+        while (extra_edges > 0) {
             int u = randint(0, static_cast<int>(num_nodes - 1));
             int v = randint(0, static_cast<int>(num_nodes - 1));
-            
             if (u == v) {
-                v = (v + 1) % static_cast<int>(num_nodes);
+                continue;
             }
-            
+            if (edges_added.find({u, v}) != edges_added.end() || edges_added.find({v, u}) != edges_added.end()) {
+                continue;
+            }
             edges_added.insert({u, v});
             edges_added.insert({v, u});
             int weight = randint(1, 1000);
             write("T" + std::to_string(n) + "_sparse", std::to_string(u) + " " + std::to_string(v) + " " + std::to_string(weight) + "\n");
+            extra_edges--;
         }
         
         count_write = -1;
         write("T" + std::to_string(n) + "_sparse", "");
         
-        // Dense graph (O(n^2) edges, but maximum n*(n-1)/2)
-        if (n <= 3) { // Only for small graphs to avoid huge test cases
+        // Dense graph (O(n^2) edges, max n*(n-1)/2)
+        if (n <= 4) { // Only for small graphs to avoid huge test cases
             long long max_edges = (num_nodes * (num_nodes - 1)) / 2;
             long long edges_dense = std::min(num_nodes * num_nodes / 4, max_edges);
             write("T" + std::to_string(n) + "_dense", std::to_string(num_nodes) + " " + std::to_string(edges_dense) + "\n");
             
             edges_added.clear();
-            for (long long i = 0; i < edges_dense; i++) {
+            
+            // Step 1: Spanning tree (chain)
+            for (long long i = 0; i < num_nodes - 1; i++) {
+                int u = static_cast<int>(i);
+                int v = static_cast<int>(i + 1);
+                int weight = randint(1, 1000);
+                edges_added.insert({u, v});
+                edges_added.insert({v, u});
+                write("T" + std::to_string(n) + "_dense", std::to_string(u) + " " + std::to_string(v) + " " + std::to_string(weight) + "\n");
+            }
+            
+            // Step 2: Additional random edges
+            long long extra_edges = edges_dense - (num_nodes - 1);
+            while (extra_edges > 0) {
                 int u = randint(0, static_cast<int>(num_nodes - 1));
                 int v = randint(0, static_cast<int>(num_nodes - 1));
-                
                 if (u == v) {
-                    v = (v + 1) % static_cast<int>(num_nodes);
+                    continue;
                 }
-                
+                if (edges_added.find({u, v}) != edges_added.end() || edges_added.find({v, u}) != edges_added.end()) {
+                    continue;
+                }
                 edges_added.insert({u, v});
                 edges_added.insert({v, u});
                 int weight = randint(1, 1000);
                 write("T" + std::to_string(n) + "_dense", std::to_string(u) + " " + std::to_string(v) + " " + std::to_string(weight) + "\n");
+                extra_edges--;
             }
             
             count_write = -1;
@@ -108,4 +137,3 @@ int main() {
     
     return 0;
 }
-
