@@ -237,7 +237,7 @@ int main() {
 
         vector<int> blocks;
         int queries = 0, temporal_size = size;
-        for(int j = 0; j < 20; j++){
+        for(int j = 0; j < 10; j++){
             int random_number = randint(max(size/10,1),size); 
             if(j % 2 == 0)
                 temporal_size += random_number;
