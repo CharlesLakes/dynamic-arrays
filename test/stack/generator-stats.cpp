@@ -10,11 +10,32 @@ string CODE_DIR;
 
 // Random number generation setup
 random_device rd;
-mt19937 gen(rd());
+unsigned int seed = rd();
+std::mt19937 gen(seed);
+bool first_randint_call = true;
 
-// Function to get random integer in range [min, max] (inclusive)
+std::string get_current_date() {
+    auto now = std::chrono::system_clock::now();
+    auto time_t = std::chrono::system_clock::to_time_t(now);
+    std::stringstream ss;
+    ss << std::put_time(std::localtime(&time_t), "%Y%m%d_%H%M%S");
+    return ss.str();
+}
+
+void write_seed_to_file() {
+    std::string filename = "seed" + get_current_date() + ".txt";
+    std::ofstream seed_file(CODE_DIR + "/" + filename);
+    seed_file << "Seed: " << seed << std::endl;
+    seed_file.close();
+}
+
 int randint(int min, int max) {
-    uniform_int_distribution<> dis(min, max);
+    if (first_randint_call) {
+        write_seed_to_file();
+        first_randint_call = false;
+    }
+    
+    std::uniform_int_distribution<> dis(min, max);
     return dis(gen);
 }
 
