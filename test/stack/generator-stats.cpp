@@ -9,10 +9,11 @@ string write_acumulation = "";
 string CODE_DIR;
 
 // Random number generation setup
-random_device rd;
+std::random_device rd;
 unsigned int seed = rd();
-std::mt19937 gen(seed);
+std::mt19937 gen;
 bool first_randint_call = true;
+bool seed_from_args = false;
 
 std::string get_current_date() {
     auto now = std::chrono::system_clock::now();
@@ -22,10 +23,36 @@ std::string get_current_date() {
     return ss.str();
 }
 
+void initSeed(int argc, char* argv[]) {
+    // Parse command line arguments for --seed
+    for (int i = 1; i < argc; i++) {
+        std::string arg = argv[i];
+        if (arg == "--seed" && i + 1 < argc) {
+            try {
+                seed = std::stoul(argv[i + 1]);
+                seed_from_args = true;
+                std::cout << "Using seed from command line: " << seed << std::endl;
+                break;
+            } catch (const std::exception& e) {
+                std::cerr << "Error: Invalid seed value '" << argv[i + 1] << "'. Using random seed." << std::endl;
+                seed_from_args = false;
+            }
+        }
+    }
+    
+    // Initialize generator with the seed
+    gen.seed(seed);
+}
+
 void write_seed_to_file() {
     std::string filename = "seed" + get_current_date() + ".txt";
     std::ofstream seed_file(CODE_DIR + "/" + filename);
     seed_file << "Seed: " << seed << std::endl;
+    if (seed_from_args) {
+        seed_file << "Source: Command line argument" << std::endl;
+    } else {
+        seed_file << "Source: Random device" << std::endl;
+    }
     seed_file.close();
 }
 
