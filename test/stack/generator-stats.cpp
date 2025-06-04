@@ -213,10 +213,10 @@ void generate_alternating_push_pop_ops_testcase(int n_factor, RandomGenerator& r
 
 
         if (j % 2 == 0) { // Push block
-            // current_stack_size += random_block_size; // Not strictly needed for generation
+            current_stack_size += random_block_size;
         } else { // Pop block
-            random_block_size = std::min(random_block_size, std::max(current_stack_size, 0)); // Cannot pop more than exists
-            // current_stack_size -= random_block_size; // Not strictly needed
+            random_block_size = std::min(random_block_size, std::max(current_stack_size, 0));
+            current_stack_size -= random_block_size;
         }
         blocks.push_back(random_block_size);
         total_queries += random_block_size;
@@ -263,12 +263,15 @@ int main(int argc, char* argv[]) {
 
     // Generate test cases (n_factor from 0 to 8 for T0 to T8)
     // T0 will have size 1 (10^0), T1 size 10, ..., T8 size 10^8
-    for (int n = 0; n < 9; ++n) {
+    for (int n = 1; n < 10; ++n) {
         std::cout << "Generating stack test cases for N_factor = " << n << "..." << std::endl;
+        // Mode 1
         generate_random_ops_testcase(n, randomGenerator);
         generate_push_then_random_ops_testcase(n, randomGenerator);
+        // Mode 2
         generate_random_then_pop_ops_testcase(n, randomGenerator);
         generate_push_random_pop_ops_testcase(n, randomGenerator);
+        // Mode 3
         generate_alternating_push_pop_ops_testcase(n, randomGenerator);
     }
 

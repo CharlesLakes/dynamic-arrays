@@ -121,7 +121,7 @@ int main(int argc, char* argv[]) {
     // n_factor from 1 to 8, meaning sizes from 10^1 to 10^8
     // Smallest test case (n=0 for 10^0 = 1 element) can be useful too.
     // Let's adjust to n=0 to 8 for 1 to 10^8 elements.
-    for (int n = 0; n < 9; ++n) { // n_factor from 0 to 8
+    for (int n = 1; n < 9; ++n) { // n_factor from 0 to 8
         std::cout << "Generating heap test case for N_factor = " << n << "..." << std::endl;
         generate_heap_testcase(n, randomGenerator);
     }

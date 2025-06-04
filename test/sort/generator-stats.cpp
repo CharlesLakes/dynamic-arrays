@@ -110,7 +110,7 @@ int main(int argc, char* argv[]) {
     // Original loop: n = 1 to 9 (exclusive), i.e., 10^1 to 10^8.
     // We'll use n_factor from 1 to 8 to match this.
     // Or, to include 10^0, n_factor from 0 to 8. Let's use 0 to 8.
-    for (int n = 0; n < 9; ++n) { // n_factor from 0 to 8 (generates T0 to T8)
+    for (int n = 1; n < 9; ++n) { // n_factor from 0 to 8 (generates T0 to T8)
                                  // T0: 10^0=1 element, T1: 10^1=10 elements, ..., T8: 10^8 elements
         std::cout << "Generating sort test case for N_factor = " << n << "..." << std::endl;
         generate_sort_testcase(n, randomGenerator);
