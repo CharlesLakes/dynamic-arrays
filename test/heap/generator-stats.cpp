@@ -92,7 +92,9 @@ void write(const std::string& filename, const std::string& content) {
     write_acumulation = "";
 }
 
-int main() {
+int main(int argc, char* argv[]) {
+    initSeed(argc, argv);
+    
     for (int n = 1; n < 9; n++) {
         int size = static_cast<int>(std::pow(10, n));
 

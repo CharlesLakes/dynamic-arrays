@@ -94,7 +94,9 @@ void write(const string& filename, const string& content) {
     write_acumulation = "";
 }
 
-int main() {
+int main(int argc, char* argv[]) {
+    initSeed(argc, argv);
+    
     // Get current directory (approximation of Python's approach)
     CODE_DIR = filesystem::current_path().string();
     

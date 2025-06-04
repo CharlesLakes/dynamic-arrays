@@ -93,7 +93,9 @@ void write(const std::string& filename, const std::string& content) {
     write_acumulation = "";
 }
 
-int main() {
+int main(int argc, char* argv[]) {
+    initSeed(argc, argv);
+    
     // Get the directory of the current executable (equivalent to os.path.dirname(os.path.realpath(__file__)))
     CODE_DIR = std::filesystem::current_path().string();
     
