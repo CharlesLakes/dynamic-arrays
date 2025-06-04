@@ -7,8 +7,8 @@ from time import perf_counter
 
 def compile_code(code, compiler, debug_flag=False):
     compile_args = [compiler, code, 
-                    # "-O2", 
-                    # "-march=native", 
+                    "-O3", 
+                    "-march=native", 
                     "-o", 
                     "code.out"]
     if debug_flag:
