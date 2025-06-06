@@ -200,6 +200,8 @@ def main(stage_path):
         "dijkstra"
     ]
 
+    lines_cat = {}
+
     with open(stage_path) as file:
         current_execution = ""
         for line in file:
@@ -209,9 +211,6 @@ def main(stage_path):
 
             metrics = extract_metrics(line)
             if metrics:
-
-                if metrics["n"] < 1e7:
-                    continue
 
                 category = get_category(current_execution, testcases_category)
 
@@ -223,9 +222,19 @@ def main(stage_path):
                 if type_execution not in stats_by_category[category]:
                     stats_by_category[category][type_execution] = {}
 
-                if current_execution not in stats_by_category[category][type_execution]:
-                    stats_by_category[category][type_execution][current_execution] = [
-                    ]
+                if current_execution not in stats_by_category[category][type_execution]: 
+                    stats_by_category[category][type_execution][current_execution] = []
+
+                if current_execution not in lines_cat:
+                    lines_cat[current_execution] = []
+
+                if metrics["n"] >= 1_000_000_0:
+                    lines_cat[current_execution].append([
+                        "$10^" + str(round(math.log10(metrics["n"]))) + "$",
+                        "\\text{" + metrics["type_testcase"].replace("_"," ") + "}",
+                        round(metrics["cpu_user"],3),
+                        round(metrics["memory"]/(1e9),3)
+                    ])
 
                 stats_by_category[category][type_execution][current_execution].append(
                     metrics)
@@ -236,8 +245,14 @@ def main(stage_path):
 
                 current_execution = line.lower()
 
-    plot_metrics(stats_by_category)
-    print_diff(stats_by_category)
+    for current_execution in lines_cat:
+        lines_cat[current_execution].sort()
+        print(current_execution)
+        for data in lines_cat[current_execution]:
+            print(*data,sep=" & ",end=" \\\\\n")
+        print()
+    # plot_metrics(stats_by_category)
+    # print_diff(stats_by_category)
 
 
 if __name__ == "__main__":
