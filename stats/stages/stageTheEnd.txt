@@ -137,9 +137,45 @@ AC - T5_push_then_pop | Wall: 0.340000s | CPU User: 0.340000s | CPU Sys: 0.00000
 AC - T8_push_then_pop | Wall: 163.170000s | CPU User: 160.680000s | CPU Sys: 2.490000s | Max Memory: 540360704B
 AC - T9_push_then_pop | Wall: 1014.140000s | CPU User: 994.750000s | CPU Sys: 19.390000s | Max Memory: 8593559552B
 Running Brodnik (C++) Sort Test...
+AC - T8 | Wall: 49.390000s | CPU User: 49.050000s | CPU Sys: 0.340000s | Max Memory: 404094976B
+AC - T2 | Wall: 0.000000s | CPU User: 0.000000s | CPU Sys: 0.000000s | Max Memory: 3801088B
+AC - T3 | Wall: 0.000000s | CPU User: 0.000000s | CPU Sys: 0.000000s | Max Memory: 3801088B
+AC - T7 | Wall: 5.070000s | CPU User: 5.020000s | CPU Sys: 0.050000s | Max Memory: 43778048B
+AC - T6 | Wall: 0.690000s | CPU User: 0.690000s | CPU Sys: 0.000000s | Max Memory: 7995392B
+AC - T9 | Wall: 513.560000s | CPU User: 510.250000s | CPU Sys: 3.310000s | Max Memory: 4005101568B
+AC - T5 | Wall: 0.040000s | CPU User: 0.040000s | CPU Sys: 0.000000s | Max Memory: 4325376B
+AC - T4 | Wall: 0.010000s | CPU User: 0.010000s | CPU Sys: 0.000000s | Max Memory: 3932160B
+AC - T1 | Wall: 0.000000s | CPU User: 0.000000s | CPU Sys: 0.000000s | Max Memory: 3932160B
 Running Brodnik (C) Sort Test...
+AC - T8 | Wall: 60.950000s | CPU User: 59.300000s | CPU Sys: 1.650000s | Max Memory: 802615296B
+AC - T2 | Wall: 0.000000s | CPU User: 0.000000s | CPU Sys: 0.000000s | Max Memory: 1703936B
+AC - T3 | Wall: 0.000000s | CPU User: 0.000000s | CPU Sys: 0.000000s | Max Memory: 1703936B
+AC - T7 | Wall: 5.490000s | CPU User: 5.370000s | CPU Sys: 0.120000s | Max Memory: 81965056B
+AC - T6 | Wall: 0.770000s | CPU User: 0.760000s | CPU Sys: 0.010000s | Max Memory: 9678848B
+AC - T9 | Wall: 666.340000s | CPU User: 646.510000s | CPU Sys: 19.830000s | Max Memory: 8004845568B
+AC - T5 | Wall: 0.070000s | CPU User: 0.070000s | CPU Sys: 0.000000s | Max Memory: 2621440B
+AC - T4 | Wall: 0.010000s | CPU User: 0.010000s | CPU Sys: 0.000000s | Max Memory: 1835008B
+AC - T1 | Wall: 0.000000s | CPU User: 0.000000s | CPU Sys: 0.000000s | Max Memory: 1703936B
 Running STL Vector (C++) Sort Test...
+AC - T8 | Wall: 42.060000s | CPU User: 41.620000s | CPU Sys: 0.440000s | Max Memory: 403570688B
+AC - T2 | Wall: 0.000000s | CPU User: 0.000000s | CPU Sys: 0.000000s | Max Memory: 3801088B
+AC - T3 | Wall: 0.000000s | CPU User: 0.000000s | CPU Sys: 0.000000s | Max Memory: 3932160B
+AC - T7 | Wall: 4.370000s | CPU User: 4.330000s | CPU Sys: 0.040000s | Max Memory: 43515904B
+AC - T6 | Wall: 0.380000s | CPU User: 0.380000s | CPU Sys: 0.000000s | Max Memory: 7602176B
+AC - T9 | Wall: 426.640000s | CPU User: 423.330000s | CPU Sys: 3.310000s | Max Memory: 4003594240B
+AC - T5 | Wall: 0.030000s | CPU User: 0.030000s | CPU Sys: 0.000000s | Max Memory: 4014080B
+AC - T4 | Wall: 0.000000s | CPU User: 0.000000s | CPU Sys: 0.000000s | Max Memory: 3932160B
+AC - T1 | Wall: 0.000000s | CPU User: 0.000000s | CPU Sys: 0.000000s | Max Memory: 3932160B
 Running STL Deque (C++) Sort Test...
+AC - T8 | Wall: 43.910000s | CPU User: 43.500000s | CPU Sys: 0.410000s | Max Memory: 422313984B
+AC - T2 | Wall: 0.000000s | CPU User: 0.000000s | CPU Sys: 0.000000s | Max Memory: 3932160B
+AC - T3 | Wall: 0.000000s | CPU User: 0.000000s | CPU Sys: 0.000000s | Max Memory: 3801088B
+AC - T7 | Wall: 4.520000s | CPU User: 4.470000s | CPU Sys: 0.050000s | Max Memory: 45481984B
+AC - T6 | Wall: 0.630000s | CPU User: 0.620000s | CPU Sys: 0.010000s | Max Memory: 7995392B
+AC - T9 | Wall: 445.410000s | CPU User: 442.070000s | CPU Sys: 3.340000s | Max Memory: 4191027200B
+AC - T5 | Wall: 0.060000s | CPU User: 0.060000s | CPU Sys: 0.000000s | Max Memory: 4194304B
+AC - T4 | Wall: 0.010000s | CPU User: 0.010000s | CPU Sys: 0.000000s | Max Memory: 3801088B
+AC - T1 | Wall: 0.000000s | CPU User: 0.000000s | CPU Sys: 0.000000s | Max Memory: 3801088B
 Running Brodnik (C++) Binary Search Test...
 Running Brodnik (C) Binary Search Test...
 Running STL Vector (C++) Binary Search Test...
