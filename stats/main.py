@@ -110,7 +110,7 @@ def plot_metrics(stats_by_category):
 
                 ax.plot(
                     ns,
-                    cpu_users,
+                    memorys,
                     marker=get_marker(current_execution),
                     linestyle=linestyles[id_execution % len(linestyles)],
                     label=current_execution,
