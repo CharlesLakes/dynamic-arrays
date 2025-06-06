@@ -206,62 +206,51 @@ for n in range(1, 10):
     write(f"T{n}_push_random_then_pop", "")
 
 # A_0 push + A_1 pop ...
-
 for n in range(1, 10):
     size = 10**n
 
-    blocks_size = []
-
-    temporal_size = size
-    max_block_size = size // (2 * n)
-    while temporal_size > 0:
-        left = min(int(size**2 / 3), temporal_size)
-        right = min(max_block_size, temporal_size)
-
-        if left > right:
-            pivot = left
-            left = right
-            right = pivot
-
-        block = randint(left, right)
-        blocks_size.append(block)
-
-        temporal_size -= block
-
     write(
-        f"T{n}_push_then_pop",
-        f"{size}\n"
+        "T" + str(n) + "_push_then_pop",
+        str(size) + "\n"
     )
 
     for i in range(size):
         write(
-            f"T{n}_push_then_pop",
+            "T" + str(n) + "_push_then_pop",
             str(randint(1, 1000000000)) + (" " if size > i + 1 else "\n")
         )
 
+    blocks = []
+    queries = 0
+    temporal_size = size
+    for j in range(10):
+        random_number = randint(max(size // 10, 1), size)
+        if j % 2 == 0:
+            temporal_size += random_number
+        else:
+            random_number = min(random_number, temporal_size)
+            temporal_size -= random_number
+        blocks.append(random_number)
+        queries += random_number
+
     write(
-        f"T{n}_push_then_pop",
-        f"{sum(blocks_size)}\n"
+        "T" + str(n) + "_push_then_pop",
+        str(queries) + "\n"
     )
 
-    for i, block in enumerate(blocks_size):
-
-        if i % 2 == 0:
-            # -- push --
-
-            for i in range(block):
+    for j in range(len(blocks)):
+        block = blocks[j]
+        for k in range(block):
+            if j % 2 == 0:
                 write(
-                    f"T{n}_push_then_pop",
-                    f"{1} {randint(1, 1000000000)}\n"
+                    "T" + str(n) + "_push_then_pop",
+                    "1 " + str(randint(1, 1000000000)) + "\n"
                 )
-        else:
-            # -- pop --
-
-            for i in range(block):
+            else:
                 write(
-                    f"T{n}_push_then_pop",
-                    f"{0} {0}\n"
+                    "T" + str(n) + "_push_then_pop",
+                    "0 0\n"
                 )
 
     count_write = -1
-    write(f"T{n}_push_then_pop", "")
+    write("T" + str(n) + "_push_then_pop", "")
