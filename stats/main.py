@@ -170,16 +170,14 @@ def print_diff(stats_by_category):
 
                         if "cpu_user" in target_data and data["cpu_user"] > 0:
                             cnt_cpu += 1
-                            diff_cpu = (
-                                data["cpu_user"] - target_data["cpu_user"]) / data["cpu_user"]
+                            diff_cpu = (data["cpu_user"] - target_data["cpu_user"]) / data["cpu_user"]
                             acum_cpu += diff_cpu
                             min_cpu = min(min_cpu, diff_cpu)
                             print(f"\t\tCPU user: {diff_cpu* 100}")
 
                         if "memory" in target_data and data["memory"] > 0:
                             cnt_memo += 1
-                            diff_memo = (
-                                data["memory"] - target_data["memory"]) / data["memory"]
+                            diff_memo = (data["memory"] - target_data["memory"]) / data["memory"]
                             acum_memo += diff_memo
                             min_memo = min(min_memo, diff_memo)
                             print(f"\t\tMemory: {diff_memo * 100}")
