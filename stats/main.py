@@ -225,15 +225,19 @@ def main(stage_path):
                 if current_execution not in stats_by_category[category][type_execution]: 
                     stats_by_category[category][type_execution][current_execution] = []
 
-                if current_execution not in lines_cat:
-                    lines_cat[current_execution] = []
+                group = f"{category}:{type_execution}"
 
-                if metrics["n"] >= 1_000_000_0:
-                    lines_cat[current_execution].append([
+                if group not in lines_cat:
+                    lines_cat[group] = []
+
+                if metrics["n"] >= 1_000:
+                    lines_cat[group].append([
                         "$10^" + str(round(math.log10(metrics["n"]))) + "$",
-                        "\\text{" + metrics["type_testcase"].replace("_"," ") + "}",
-                        round(metrics["cpu_user"],3),
-                        round(metrics["memory"]/(1e9),3)
+                        "\\text{" + current_execution.split("(")[0] \
+                            .replace("stl","") \
+                            .replace("stack","").strip()  + "}",
+                        "{:.3f}".format(round(metrics["cpu_user"],3)),
+                        "{:.3f}".format(round(metrics["memory"]/(1e9),3))
                     ])
 
                 stats_by_category[category][type_execution][current_execution].append(
@@ -245,10 +249,19 @@ def main(stage_path):
 
                 current_execution = line.lower()
 
-    for current_execution in lines_cat:
-        lines_cat[current_execution].sort()
-        print(current_execution)
-        for data in lines_cat[current_execution]:
+    for group in lines_cat:
+        lines_cat[group].sort()
+        print(group)
+        aux_conj = set()
+        for data in lines_cat[group]:
+            if data[0] not in aux_conj:
+                aux_conj.add(data[0])
+                print("\\hline")
+                print("\\hline")
+                data[0] = "\\multirow{3}{*}{" + data[0] + "}"
+            else:
+                print("\\cline{2-4}")
+                data[0] = ""
             print(*data,sep=" & ",end=" \\\\\n")
         print()
     # plot_metrics(stats_by_category)
