@@ -33,9 +33,24 @@ def extract_metrics(line):
         return None
 
 
+def get_marker(data_title):
+    markers = {
+        "brodnik": "s",
+        "vector": "o",
+        "deque": "^"
+    }
+
+    for marker in markers:
+        if marker in data_title:
+            return markers[marker]
+    return "o"
+
 # Function to plot metrics for each execution
 
+
 def plot_metrics(stats_by_category):
+    linestyles = ["--", "-.", ":"]
+
     # Plot CPU User Time
     for category in stats_by_category:
         for type_execution in stats_by_category[category]:
@@ -44,7 +59,7 @@ def plot_metrics(stats_by_category):
 
             _, ax = plt.subplots(figsize=(10, 6))
 
-            for current_execution in executions:
+            for id_execution, current_execution in enumerate(executions):
                 executions_data = stats_by_category[category][type_execution][current_execution]
                 aux_ns = [(execution_data["n"], i)
                           for i, execution_data in enumerate(executions_data)]
@@ -58,7 +73,8 @@ def plot_metrics(stats_by_category):
                 ax.plot(
                     ns,
                     cpu_users,
-                    marker='o',
+                    marker=get_marker(current_execution),
+                    linestyle=linestyles[id_execution % len(linestyles)],
                     label=current_execution,
                     alpha=0.5)
 
@@ -66,8 +82,7 @@ def plot_metrics(stats_by_category):
             ax.set_xlabel("n")
             ax.set_ylabel("CPU User Time (s)")
             ax.set_xscale('log')
-            # ax.set_yscale('log')
-            ax.ticklabel_format(axis='y', style='sci', scilimits=(0, 0))
+            ax.set_yscale('log')
             ax.grid(True, which='both')
             ax.legend()
             plt.tight_layout()
@@ -82,7 +97,7 @@ def plot_metrics(stats_by_category):
 
             _, ax = plt.subplots(figsize=(10, 6))
 
-            for current_execution in executions:
+            for id_execution, current_execution in enumerate(executions):
                 executions_data = stats_by_category[category][type_execution][current_execution]
                 aux_ns = [(execution_data["n"], i)
                           for i, execution_data in enumerate(executions_data)]
@@ -96,7 +111,8 @@ def plot_metrics(stats_by_category):
                 ax.plot(
                     ns,
                     memorys,
-                    marker='o',
+                    marker=get_marker(current_execution),
+                    linestyle=linestyles[id_execution % len(linestyles)],
                     label=current_execution,
                     alpha=0.5)
 
@@ -104,8 +120,7 @@ def plot_metrics(stats_by_category):
             ax.set_xlabel("n")
             ax.set_ylabel("Memory (Bytes)")
             ax.set_xscale('log')
-            # ax.set_yscale('log')
-            ax.ticklabel_format(axis='y', style='sci', scilimits=(0, 0))
+            ax.set_yscale('log')
             ax.grid(True, which='both')
             ax.legend()
             plt.tight_layout()
@@ -146,31 +161,32 @@ def print_diff(stats_by_category):
                             (x for x in target_execution_data if x["n"] == data["n"]), None)
                         if not target_data:
                             continue
-                        if data["n"] < 1e7:
+
+                        if data["n"] < 1e8:
                             continue
 
-                        print(f"\tN = {data["n"]}:")
+                        N = data["n"]
+                        print(f"\tN = {N}:")
 
                         if "cpu_user" in target_data and data["cpu_user"] > 0:
                             cnt_cpu += 1
-                            diff_cpu = (
-                                data["cpu_user"] - target_data["cpu_user"]) / data["cpu_user"]
+                            diff_cpu = (data["cpu_user"] - target_data["cpu_user"]) / data["cpu_user"]
                             acum_cpu += diff_cpu
                             min_cpu = min(min_cpu, diff_cpu)
-                            print(f"\t\tCPU user: {diff_cpu}")
+                            print(f"\t\tCPU user: {diff_cpu* 100}")
 
                         if "memory" in target_data and data["memory"] > 0:
                             cnt_memo += 1
-                            diff_memo = (
-                                data["memory"] - target_data["memory"]) / data["memory"]
+                            diff_memo = (data["memory"] - target_data["memory"]) / data["memory"]
                             acum_memo += diff_memo
                             min_memo = min(min_memo, diff_memo)
-                            print(f"\t\tMemory: {diff_memo}")
+                            print(f"\t\tMemory: {diff_memo * 100}")
 
-                    print(f"\tCPU user avg: {100 * acum_cpu / cnt_cpu}%")
-                    print(f"\tMemory avg: {100 * acum_memo / cnt_memo}%")
+                    print(f"\tCPU user avg: {100 * acum_cpu / cnt_cpu if cnt_cpu else 0}%")
+                    print(f"\tMemory avg: {100 * acum_memo / cnt_memo if cnt_memo else 0}%")
                     print(f"\tCPU user min: {100 * min_cpu}%")
                     print(f"\tMemory min: {100 * min_memo}%")
+
 
 def main(stage_path):
     stats_by_category = {}
@@ -180,8 +196,11 @@ def main(stage_path):
         "binary search",
         "linear search",
         "sort",
-        "heap"
+        "heap",
+        "dijkstra"
     ]
+
+    lines_cat = {}
 
     with open(stage_path) as file:
         current_execution = ""
@@ -192,6 +211,7 @@ def main(stage_path):
 
             metrics = extract_metrics(line)
             if metrics:
+
                 category = get_category(current_execution, testcases_category)
 
                 type_execution = metrics["type_testcase"]
@@ -202,9 +222,23 @@ def main(stage_path):
                 if type_execution not in stats_by_category[category]:
                     stats_by_category[category][type_execution] = {}
 
-                if current_execution not in stats_by_category[category][type_execution]:
-                    stats_by_category[category][type_execution][current_execution] = [
-                    ]
+                if current_execution not in stats_by_category[category][type_execution]: 
+                    stats_by_category[category][type_execution][current_execution] = []
+
+                group = f"{category}:{type_execution}"
+
+                if group not in lines_cat:
+                    lines_cat[group] = []
+
+                if metrics["n"] >= 1_000:
+                    lines_cat[group].append([
+                        "$10^" + str(round(math.log10(metrics["n"]))) + "$",
+                        "\\text{" + current_execution.split("(")[0] \
+                            .replace("stl","") \
+                            .replace("stack","").strip()  + "}",
+                        "{:.3f}".format(round(metrics["cpu_user"],3)),
+                        "{:.3f}".format(round(metrics["memory"]/(1e9),3))
+                    ])
 
                 stats_by_category[category][type_execution][current_execution].append(
                     metrics)
@@ -215,8 +249,23 @@ def main(stage_path):
 
                 current_execution = line.lower()
 
-    plot_metrics(stats_by_category)
-    print_diff(stats_by_category)
+    for group in lines_cat:
+        lines_cat[group].sort()
+        print(group)
+        aux_conj = set()
+        for data in lines_cat[group]:
+            if data[0] not in aux_conj:
+                aux_conj.add(data[0])
+                print("\\hline")
+                print("\\hline")
+                data[0] = "\\multirow{3}{*}{" + data[0] + "}"
+            else:
+                print("\\cline{2-4}")
+                data[0] = ""
+            print(*data,sep=" & ",end=" \\\\\n")
+        print()
+    # plot_metrics(stats_by_category)
+    # print_diff(stats_by_category)
 
 
 if __name__ == "__main__":
