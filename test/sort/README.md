@@ -21,7 +21,7 @@ g++ -Ofast testcase-generator.cpp -o main
 
 ### Test Case Specifications
 
-The generator creates sorting benchmarks with randomly generated arrays using uniformly distributed integer values. Array sizes can be configured by modifying the loop parameters in `main()`. 
+The generator creates sorting benchmarks with randomly generated arrays using uniformly distributed integer values.
 
 Each generated `.in` file contains:
 - First line: Number of elements (N)
