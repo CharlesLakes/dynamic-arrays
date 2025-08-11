@@ -17,68 +17,9 @@ The repository is organized into the following main directories and files:
 
 ## Test Case Instructions
 
-This section explains how to generate the test cases for each of the supported algorithmic scenarios. For more detailed information, refer to the `README.md` file located in each respective test directory.
+For detailed instructions on how to generate test cases for each of the supported algorithmic scenarios, please refer to the `README.md` file in the respective test directory:
 
-### Sort
-
-The sort tests evaluate container performance with `std::sort` operations.
-
-**Test Case Generation:**
-1.  Navigate to the `test/sort/` directory.
-2.  Compile the test case generator:
-    ```sh
-    g++ -Ofast testcase-generator.cpp -o main
-    ```
-3.  Run the generator:
-    - For a random seed: `./main`
-    - For a specific seed: `./main --seed 12345`
-
-### Stack
-
-The stack tests evaluate container performance in LIFO (Last-In, First-Out) scenarios.
-
-**Test Case Generation:**
-1.  Navigate to the `test/stack/` directory.
-2.  The generator has three modes. You can compile for a specific mode or all modes at once.
-    - **Compile a specific mode (e.g., Mode 1):**
-      ```sh
-      g++ -DMODE_1 -Ofast testcase-generator.cpp -o main
-      ```
-    - **Compile all modes:**
-      ```sh
-      g++ -DMODE_1 -DMODE_2 -DMODE_3 -Ofast testcase-generator.cpp -o main
-      ```
-    - **Using Make (recommended):**
-      - `make mode_1`, `make mode_2`, or `make mode_3` for specific modes.
-      - `make mode_all` for all modes.
-3.  Run the generator:
-    - For a random seed: `./main`
-    - For a specific seed: `./main --seed 12345`
-
-### Dijkstra
-
-The Dijkstra tests evaluate container performance as the underlying storage for a `std::priority_queue` in Dijkstra's shortest path algorithm.
-
-**Test Case Generation:**
-1.  Navigate to the `test/dijkstra/` directory.
-2.  Compile the test case generator:
-    ```sh
-    g++ -Ofast testcase-generator.cpp -o main
-    ```
-3.  Run the generator:
-    - For a random seed: `./main`
-    - For a specific seed: `./main --seed 12345`
-
-### Heap
-
-The heap tests evaluate container performance with `std::priority_queue` operations.
-
-**Test Case Generation:**
-1.  Navigate to the `test/heap/` directory.
-2.  Compile the test case generator:
-    ```sh
-    g++ -Ofast testcase-generator.cpp -o main
-    ```
-3.  Run the generator:
-    - For a random seed: `./main`
-    - For a specific seed: `./main --seed 12345`
+- **Sort**: See instructions in [`test/sort/README.md`](./test/sort/README.md).
+- **Stack**: See instructions in [`test/stack/README.md`](./test/stack/README.md).
+- **Dijkstra**: See instructions in [`test/dijkstra/README.md`](./test/dijkstra/README.md).
+- **Heap**: See instructions in [`test/heap/README.md`](./test/heap/README.md).
