@@ -266,13 +266,21 @@ int main(int argc, char* argv[]) {
     for (int n = 1; n < 10; ++n) {
         std::cout << "Generating stack test cases for N_factor = " << n << "..." << std::endl;
         // Mode 1
+        #ifdef MODE_1
         generate_random_ops_testcase(n, randomGenerator);
         generate_push_then_random_ops_testcase(n, randomGenerator);
+        #endif
+
         // Mode 2
+        #ifdef MODE_2
         generate_random_then_pop_ops_testcase(n, randomGenerator);
         generate_push_random_pop_ops_testcase(n, randomGenerator);
+        #endif
+
         // Mode 3
+        #ifdef MODE_3
         generate_alternating_push_pop_ops_testcase(n, randomGenerator);
+        #endif
     }
 
     std::cout << "Stack test case generation complete." << std::endl;

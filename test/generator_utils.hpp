@@ -8,10 +8,9 @@
 #include <chrono>
 #include <iomanip>
 #include <fstream>
-#include <filesystem> // Required for std::filesystem::create_directories
+#include <filesystem>
 
 // Function to get the current date and time as a string
-// Copied from test/dijkstra/generator-stats.cpp
 std::string get_current_date() {
     auto now = std::chrono::system_clock::now();
     auto time_t_now = std::chrono::system_clock::to_time_t(now); // Renamed to avoid conflict
