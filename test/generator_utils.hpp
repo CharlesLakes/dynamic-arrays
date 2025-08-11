@@ -135,4 +135,4 @@ public:
     }
 };
 
-#endif // GENERATOR_UTILS_HPP
+#endif
