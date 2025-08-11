@@ -1,6 +1,6 @@
-# Brodnik's Data Structure: An STL-Compatible Implementation and Evaluation
+# Dynamic Arrays: Implementation and Performance Evaluation
 
-This research project implements and evaluates Brodnik's data structure as a modern C++ STL-compatible container. The primary goal is to compare its performance against `std::vector` and `std::deque` across different algorithmic scenarios.
+This research project provides a framework for implementing and evaluating dynamic array data structures, with a focus on Brodnik's theoretically optimal structure as an STL-compatible container. While primarily emphasizing Brodnik's implementation, this repository serves as a platform for comparing various dynamic array structures against standard C++ containers like `std::vector` and `std::deque`.
 
 ## Repository Structure
 
@@ -19,7 +19,32 @@ The repository is organized into the following main directories and files:
 
 For detailed instructions on how to generate test cases for each of the supported algorithmic scenarios, please refer to the `README.md` file in the respective test directory:
 
-- **Sort**: See instructions in [`test/sort/README.md`](./test/sort/README.md).
-- **Stack**: See instructions in [`test/stack/README.md`](./test/stack/README.md).
-- **Dijkstra**: See instructions in [`test/dijkstra/README.md`](./test/dijkstra/README.md).
-- **Heap**: See instructions in [`test/heap/README.md`](./test/heap/README.md).
+- **Sort**: See instructions in [`test/sort/`](./test/sort/).
+- **Stack**: See instructions in [`test/stack/`](./test/stack/).
+- **Dijkstra**: See instructions in [`test/dijkstra/`](./test/dijkstra/).
+- **Heap**: See instructions in [`test/heap/`](./test/heap/).
+
+## Contributing
+
+We welcome contributions to expand the framework with additional dynamic array implementations or enhance the existing benchmarking suite.
+
+### Contribution Guidelines
+
+1. **Fork the repository** and create a feature branch
+2. **Follow the existing code style** and project structure
+3. **Add comprehensive tests** for new implementations
+4. **Update documentation** as needed
+5. **Submit a pull request** with a descriptive title following GitHub conventions
+
+### Pull Request Standards
+
+- **Squash and merge** strategy is applied to maintain clean commit history
+- **Title format**: Use conventional commit format (e.g., `feat: add new dynamic array implementation`, `fix: resolve memory leak in brodnik`, `docs: update benchmark instructions`)
+
+### Areas for Contribution
+
+- **New Data Structures**: Implement additional dynamic array variants
+- **Optimization**: Hardware-specific optimizations and performance improvements
+- **Benchmarking**: Extended test scenarios and real-world application benchmarks
+- **Analysis Tools**: Enhanced performance visualization and statistical analysis
+- **Documentation**: Improved guides and theoretical explanations
