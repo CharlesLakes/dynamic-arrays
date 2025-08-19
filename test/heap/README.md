@@ -28,3 +28,7 @@ Each generated `.in` file contains:
 - Initial integers and operation sequences (`1 value` for push, `0` for pop)
 
 These test cases evaluate heap performance when different containers serve as underlying storage for priority queues.
+
+## Seeds
+
+* "Brodnik’s Data Structure in Practice, Revisited": 3204928272

@@ -42,3 +42,7 @@ Each `.in` file contains:
 File naming: `T{n}_sparse.in` and `T{n}_dense.in`
 
 These test cases evaluate how different containers (brodnik, std::vector, std::deque) perform as underlying storage for `std::priority_queue` in Dijkstra's algorithm.
+
+## Seeds
+
+* "Brodnik’s Data Structure in Practice, Revisited": 1195902166

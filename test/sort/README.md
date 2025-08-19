@@ -28,3 +28,7 @@ Each generated `.in` file contains:
 - Following lines: N integers for sorting
 
 These test cases evaluate random access performance and cache characteristics when different containers serve as underlying storage for sorting algorithms.
+
+## Seeds
+
+* "Brodnik’s Data Structure in Practice, Revisited": 1766789625
