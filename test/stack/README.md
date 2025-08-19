@@ -61,3 +61,10 @@ make mode_all
 ```sh
 ./main --seed 12345
 ```
+
+## Seeds
+
+* "Brodnik’s Data Structure in Practice, Revisited":
+  * Mode 1: 2613726499
+  * Mode 2: 1969640844
+  * Mode 3: 2839142279
