@@ -24,6 +24,15 @@ For detailed instructions on how to generate test cases for each of the supporte
 - **Dijkstra**: See instructions in [`test/dijkstra/`](./test/dijkstra/).
 - **Heap**: See instructions in [`test/heap/`](./test/heap/).
 
+# Run Code with Test Cases
+
+```sh
+make run
+```
+
+The above command automatically runs the test cases generated in the `test/*/*` directories.
+The execution mechanism tests all files with the `.in` extension.
+
 ## Contributing
 
 We welcome contributions to expand the framework with additional dynamic array implementations or enhance the existing benchmarking suite.
